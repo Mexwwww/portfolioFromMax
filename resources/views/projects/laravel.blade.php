@@ -1,9 +1,6 @@
 @extends('Layout.layout')
-<body onkeydown="onkeydown(KeyboardEvent.code)">
+<body>
 @section('content')
 
 @endsection
 </body>
-
-<script>
-</script>

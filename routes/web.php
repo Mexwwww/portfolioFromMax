@@ -27,5 +27,5 @@ Route::get('/projects/unity', function () {
 });
 
 Route::get('/projects/unreal-engine', function () {
-    return view('unreal-engine');
+    return view('projects.unreal-engine');
 });

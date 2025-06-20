@@ -27,13 +27,13 @@
         transition: scale 0.3s ease !important;
     }
 
-    .selcection:hover {
+    .slct-selcection {
         color: yellow !important;
         transition: scale 0.3s ease !important;
         scale: 1.11 !important;
     }
 
-    .slct-selcection {
+    .slct-selcection:hover {
         color: yellow !important;
         transition: scale 0.3s ease !important;
         scale: 1.11 !important;
@@ -55,7 +55,7 @@
     }
 </style>
 @extends('Layout.layout')
-<body onkeydown="onkeydown(KeyboardEvent.code)">
+<body onload="StartTimer()">
 @section('content')
     <div class="divLeft">
         <div class="spacer"></div>
@@ -63,7 +63,8 @@
            style="font-size: 250%; outline: solid yellow; border-radius: 0;
           display: inline-flex; gap: 12px; transform: scale(0.9);
           text-decoration: none; align-items: center;" id="laravel"
-           onclick="GoTooPage(id, getProjectsCollectionInOrder())">
+           onclick="GoTooPage(id, GetProjectsCollectionInOrder())"
+           onmouseover="Hover(id)">
             <img src="{{ asset('images/save-star.png') }}"
                  alt="selected"
                  width="50"
@@ -76,7 +77,8 @@
            style="font-size: 250%; outline: solid yellow; border-radius: 0;
           display: inline-flex; gap: 12px; transform: scale(0.9);
           text-decoration: none; align-items: center;" id="unity"
-           onclick="GoTooPage(id, getProjectsCollectionInOrder())">
+           onclick="GoTooPage(id, GetProjectsCollectionInOrder())"
+           onmouseover="Hover(id)">
             <img src="{{ asset('images/save-star.png') }}"
                  alt="selected"
                  width="50"
@@ -89,7 +91,8 @@
            style="font-size: 250%; outline: solid yellow; border-radius: 0;
           display: inline-flex; gap: 12px; transform: scale(0.9);
           text-decoration: none; align-items: center;" id="unrealEngine"
-           onclick="GoTooPage(id, getProjectsCollectionInOrder)">
+           onclick="GoTooPage(id, GetProjectsCollectionInOrder())"
+           onmouseover="Hover(id)">
             <img src="{{ asset('images/save-star.png') }}"
                  alt="selected"
                  width="50"
@@ -127,8 +130,16 @@ $images = glob("images/unreal-engine/*.{png}", GLOB_BRACE);
 $unrealEngineImageList = array_map('basename', $images);
 ?>
 
+<script src="{{ asset('js/KeyCodeTooKey.js') }}"></script>
+
 <script>
-    function getProjectsCollectionInOrder()
+
+    function StartTimer()
+    {
+        setInterval(ImageChange, 3000);
+    }
+
+    function GetProjectsCollectionInOrder()
     {
         const Laravel = document.getElementById('laravel');
         const Unity = document.getElementById('unity');
@@ -136,9 +147,35 @@ $unrealEngineImageList = array_map('basename', $images);
         return [Laravel, Unity, UnrealEngine];
     }
 
+    function Hover(id)
+    {
+        const projectsCollectionInOrder = GetProjectsCollectionInOrder();
+        if (projectsCollectionInOrder.at(GetSelectedButtonOrderNumber(projectsCollectionInOrder)).id === id)
+        {
+            return;
+        }
+
+        let count = 0;
+        projectsCollectionInOrder.forEach(function (option)
+        {
+            const image = document.querySelector('#' + projectsCollectionInOrder.at(count).id + ' img');
+            if (option.id !== id)
+            {
+                option.setAttribute('class', 'btn selcection');
+                image.setAttribute('class', 'hover-icon')
+            } else
+            {
+                option.setAttribute('class', 'btn slct-selcection');
+                image.setAttribute('class', 'slct-hover-icon')
+            }
+            count++;
+        })
+        ImageChange();
+    }
+
     function PictureList()
     {
-        const collectionInOrder = getProjectsCollectionInOrder();
+        const collectionInOrder = GetProjectsCollectionInOrder();
         const selected = collectionInOrder.at(GetSelectedButtonOrderNumber(collectionInOrder)).id;
 
         if (selected === 'laravel')
@@ -162,53 +199,6 @@ $unrealEngineImageList = array_map('basename', $images);
         }
     }
 
-    document.onkeydown = function (e)
-    {
-        //why don't i do all the keys this way? couse the wasd is not used for movement in every keyboard langue so i do those 4 based on the layout not the actual keys
-        let key = null;
-        switch (e.keyCode)
-        {
-            case 37:
-                key = 'KeyLeftArrow';
-                break;
-            case 38:
-                key = 'KeyUpArrow';
-                break;
-            case 39:
-                key = 'KeyRightArrow';
-                break;
-            case 40:
-                key = 'KeyDownArrow';
-                break;
-            case 13:
-                key = 'KeyEnter';
-                break;
-            case 32:
-                key = 'KeySpace';
-                break;
-            case 46:
-                key = 'KeyDelete'
-                break;
-            case 8:
-                key = 'KeyBackSpace'
-                break;
-            case 27:
-                key = 'KeyEscape'
-                break;
-            case 81:
-                key = 'KeyQ'
-                break
-            case 88:
-                key = 'KeyX'
-                break
-        }
-        if (key != null)
-        {
-            OnKeyDown(key)
-            OnProjectKeyDown(key);
-        }
-    };
-
     document.addEventListener('keydown', function (event)
     {
         let key = 'Key' + event.key;  // This is layout-dependent
@@ -226,6 +216,7 @@ $unrealEngineImageList = array_map('basename', $images);
             document.getElementById("selected").textContent = 'false'
         }
 
+        console.log(key)
         if (key === "KeyUpArrow" || key === 'KeyW' || key === "KeyDownArrow" || key === 'KeyS')
         {
             document.getElementById("selected").textContent = 'true'
@@ -235,13 +226,13 @@ $unrealEngineImageList = array_map('basename', $images);
 
         if (document.getElementById("selected").textContent === 'true' && (key === 'KeyE' || key === 'KeyF' || key === 'KeyZ' || key === 'KeySpace' || key === 'KeyEnter'))
         {
-            GoTooPage(null, getProjectsCollectionInOrder())
+            GoTooPage(null, GetProjectsCollectionInOrder())
         }
     }
 
     function UpAndDown(key)
     {
-        const collectionInOrder = getProjectsCollectionInOrder();
+        const collectionInOrder = GetProjectsCollectionInOrder();
         let count = collectionInOrder.length;
         let upOrDown = 1;
         if (key === "KeyW" || key === 'KeyUpArrow')
@@ -281,6 +272,16 @@ $unrealEngineImageList = array_map('basename', $images);
         let preview = document.getElementById('preview');
         const pictureList = PictureList();
         const max = pictureList[1].length;
+        let $randomNumber = Math.floor(Math.random());
+        console.log(preview.src);
+        let count = 0;
+        console.log(max)
+        // while (preview.src.includes($randomNumber) || count > 0  || max < 1)
+        // {
+        //     $randomNumber = Math.floor(Math.random());
+        //     count++
+        // }
+
         const picture = pictureList[0] + pictureList[1][Math.floor(Math.random() * max)];
         $default = "{{ asset('') }}".toString()
         preview.src = "{{ asset('') }}" + picture.toString();

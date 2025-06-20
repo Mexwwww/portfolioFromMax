@@ -18,7 +18,7 @@
     }
 
     .slct-darkslate {
-        color: slategrey !important;
+        color: slategrey;
         transform: scale(1.20);
         transition: scale 0.3s ease;
     }
@@ -36,7 +36,7 @@
     }
 </style>
 
-<body style="background: black" onload="OnLoad()">
+<body style="background: black" onload="OnLoad()" onkeydown="onkeydown(KeyboardEvent.code)">
 <p id="selectedInLayout" hidden="">false</p>
 <div style="text-align: center;" class="cnt-white">
     <!-- naming of id's must be correct cause they are used to generate the link -->
@@ -54,6 +54,8 @@
 </div>
 </html>
 
+<script src="{{ asset('js/KeyCodeTooKey.js') }}"></script>
+
 <script>
     function getCollectionInOrder()
     {
@@ -63,22 +65,40 @@
         return [aboutMe, projects, contact];
     }
 
+    document.onkeydown = function (e)
+    {
+        const key = Convert(e.keyCode);
+        if (key != null)
+        {
+            OnKeyDown(key)
+            if (CurrentPageButton().id === 'projects')
+            {
+                OnProjectKeyDown(key);
+            }
+        }
+    };
+
     document.addEventListener('keydown', function(event) {
         const key = event.code;
-        if (key === 'KeyA' || key === 'KeyD' || key === 'KeyE' || key === 'KeyF' || key === 'KeyZ' || key === 'KeyS' || key === 'KeyW')
+        if (key === 'KeyA' || key === 'KeyD' || key === 'KeyE' || key === 'KeyF' || key === 'KeyZ' || key === 'KeyS' || key === 'KeyW' || key === 'KeyQ' || key === 'KeyX')
         {
             OnKeyDown(key);
         }
     });
 
-    function OnLoad()
+    function CurrentPageButton()
     {
         const collectionInOrder = getCollectionInOrder();
-        const index = collectionInOrder.findIndex(pageOption =>
+        return  collectionInOrder.find(pageOption =>
         {
             return document.URL.toString().includes(UrlVersionOfId(pageOption));
         });
-        collectionInOrder.at(index).setAttribute('class', 'btn slct-darkslate')
+    }
+
+    function OnLoad()
+    {
+        const currentPageButton = CurrentPageButton();
+        currentPageButton.setAttribute('class', 'btn slct-darkslate')
     }
 
     function OnKeyDown(key)
