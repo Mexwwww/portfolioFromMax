@@ -173,15 +173,12 @@
         {
             orderNumber = collectionInOrder.findIndex(option =>
             {
-                console.log(option.id);
                 return id === option.id;
             });
-            console.log(id)
         } else
         {
             orderNumber = GetSelectedButtonOrderNumber(collectionInOrder)
         }
-        console.log(orderNumber);
 
         const pageOption = UrlVersionOfId(collectionInOrder.at(orderNumber))
         if (spitUrlLocation != null)

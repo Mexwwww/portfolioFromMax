@@ -65,7 +65,7 @@
           text-decoration: none; align-items: center;" id="laravel"
            onclick="GoTooPage(id, GetProjectsCollectionInOrder())"
            onmouseover="Hover(id)">
-            <img src="{{ asset('images/save-star.png') }}"
+            <img src="{{ asset('images/0.png') }}"
                  alt="selected"
                  width="50"
                  height="50"
@@ -79,7 +79,7 @@
           text-decoration: none; align-items: center;" id="unity"
            onclick="GoTooPage(id, GetProjectsCollectionInOrder())"
            onmouseover="Hover(id)">
-            <img src="{{ asset('images/save-star.png') }}"
+            <img src="{{ asset('images/0.png') }}"
                  alt="selected"
                  width="50"
                  height="50"
@@ -93,7 +93,7 @@
           text-decoration: none; align-items: center;" id="unrealEngine"
            onclick="GoTooPage(id, GetProjectsCollectionInOrder())"
            onmouseover="Hover(id)">
-            <img src="{{ asset('images/save-star.png') }}"
+            <img src="{{ asset('images/0.png') }}"
                  alt="selected"
                  width="50"
                  height="50"
@@ -182,6 +182,7 @@ $unrealEngineImageList = array_map('basename', $images);
         {
             $p1 = 'images/laravel/';
             $p2 = <?php echo json_encode($laravelImageList); ?>;
+            return [$p1, $p2];
         }
 
         if (selected === 'unity')
@@ -216,7 +217,6 @@ $unrealEngineImageList = array_map('basename', $images);
             document.getElementById("selected").textContent = 'false'
         }
 
-        console.log(key)
         if (key === "KeyUpArrow" || key === 'KeyW' || key === "KeyDownArrow" || key === 'KeyS')
         {
             document.getElementById("selected").textContent = 'true'
@@ -270,17 +270,16 @@ $unrealEngineImageList = array_map('basename', $images);
     function ImageChange()
     {
         let preview = document.getElementById('preview');
+
         const pictureList = PictureList();
         const max = pictureList[1].length;
-        let $randomNumber = Math.floor(Math.random());
-        console.log(preview.src);
+        let randomNumber = Math.floor(Math.random());
         let count = 0;
-        console.log(max)
-        // while (preview.src.includes($randomNumber) || count > 0  || max < 1)
-        // {
-        //     $randomNumber = Math.floor(Math.random());
-        //     count++
-        // }
+        while (preview.src.includes(randomNumber) && count < 5  && max > 1)
+        {
+            randomNumber = Math.floor(Math.random());
+            count++
+        }
 
         const picture = pictureList[0] + pictureList[1][Math.floor(Math.random() * max)];
         $default = "{{ asset('') }}".toString()
