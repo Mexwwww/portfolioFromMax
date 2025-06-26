@@ -63,9 +63,9 @@
            style="font-size: 250%; outline: solid yellow; border-radius: 0;
           display: inline-flex; gap: 12px; transform: scale(0.9);
           text-decoration: none; align-items: center;" id="laravel"
-           onclick="GoTooPage(id, GetProjectsCollectionInOrder())"
+           onclick="GoToURL('categorisedProjects')"
            onmouseover="Hover(id)">
-            <img src="{{ asset('images/0.png') }}"
+            <img src="{{ asset('images/save-star.png') }}"
                  alt="selected"
                  width="50"
                  height="50"
@@ -77,9 +77,9 @@
            style="font-size: 250%; outline: solid yellow; border-radius: 0;
           display: inline-flex; gap: 12px; transform: scale(0.9);
           text-decoration: none; align-items: center;" id="unity"
-           onclick="GoTooPage(id, GetProjectsCollectionInOrder())"
+           onclick="GoToURL('categorisedProjects')"
            onmouseover="Hover(id)">
-            <img src="{{ asset('images/0.png') }}"
+            <img src="{{ asset('images/save-star.png') }}"
                  alt="selected"
                  width="50"
                  height="50"
@@ -91,9 +91,9 @@
            style="font-size: 250%; outline: solid yellow; border-radius: 0;
           display: inline-flex; gap: 12px; transform: scale(0.9);
           text-decoration: none; align-items: center;" id="unrealEngine"
-           onclick="GoTooPage(id, GetProjectsCollectionInOrder())"
+           onclick="GoToURL('categorisedProjects')"
            onmouseover="Hover(id)">
-            <img src="{{ asset('images/0.png') }}"
+            <img src="{{ asset('images/save-star.png') }}"
                  alt="selected"
                  width="50"
                  height="50"
@@ -136,6 +136,7 @@ $unrealEngineImageList = array_map('basename', $images);
 
     function StartTimer()
     {
+        OnLoad();
         setInterval(ImageChange, 3000);
     }
 
@@ -226,7 +227,7 @@ $unrealEngineImageList = array_map('basename', $images);
 
         if (document.getElementById("selected").textContent === 'true' && (key === 'KeyE' || key === 'KeyF' || key === 'KeyZ' || key === 'KeySpace' || key === 'KeyEnter'))
         {
-            GoTooPage(null, GetProjectsCollectionInOrder())
+            GoToURL('categorisedProjects')
         }
     }
 

@@ -5,7 +5,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
 <style>
+    .backgroundColor {
+        background: black;
+    }
+
     a:hover,
     .btn-darkslate:hover {
         color: slategrey !important;
@@ -29,40 +34,49 @@
         border-width: 0;
         border-bottom-width: 1px;
         border-color: darkslategray;
+        background: black;
     }
 
     .tab {
         Padding-left: 35px;
     }
 </style>
+@yield('style')
 
-<body style="background: black" onload="OnLoad()" onkeydown="onkeydown(KeyboardEvent.code)">
+
+<body class="backgroundColor" onload="OnLoad()" onkeydown="onkeydown(KeyboardEvent.code)">
 <p id="selectedInLayout" hidden="">false</p>
 <div style="text-align: center;" class="cnt-white">
     <!-- naming of id's must be correct cause they are used to generate the link -->
     <text style="color: darkslategray; font-size: large">
-        <a onclick="GoTooPage(id, getCollectionInOrder())" class="btn btn-darkslate" id="aboutMe"> About me</a>
+        <a onclick="GoTooPage(GetCollectionInOrder(), id)" class="btn btn-darkslate" id="aboutMe"> About me</a>
         <span class="tab"> </span>
-        <a onclick="GoTooPage(id, getCollectionInOrder())" class="btn btn-darkslate" id="projects">Projects</a>
+        <a onclick="GoTooPage(GetCollectionInOrder(), id)" class="btn btn-darkslate" id="categorys">Categorys</a>
         <span class="tab"> </span>
-        <a onclick="GoTooPage(id, getCollectionInOrder())" class="btn btn-darkslate" id="contact">Contact</a>
+        <a onclick="GoTooPage(GetCollectionInOrder(), id)" class="btn btn-darkslate" id="contact">Contact</a>
     </text>
 </div>
 </body>
-<div style="color: white">
-    @yield('content')
-</div>
+@yield('content')
 </html>
 
 <script src="{{ asset('js/KeyCodeTooKey.js') }}"></script>
 
 <script>
-    function getCollectionInOrder()
+    let KeyboardSuport = true;
+
+    function SetKeyboardSuport(bool)
+    {
+        KeyboardSuport = bool;
+    }
+
+
+    function GetCollectionInOrder()
     {
         const aboutMe = document.getElementById('aboutMe');
-        const projects = document.getElementById('projects');
+        const categorys = document.getElementById('categorys');
         const contact = document.getElementById('contact');
-        return [aboutMe, projects, contact];
+        return [aboutMe, categorys, contact];
     }
 
     document.onkeydown = function (e)
@@ -71,14 +85,15 @@
         if (key != null)
         {
             OnKeyDown(key)
-            if (CurrentPageButton().id === 'projects')
+            if (CurrentPageButton().id === 'categorys')
             {
                 OnProjectKeyDown(key);
             }
         }
     };
 
-    document.addEventListener('keydown', function(event) {
+    document.addEventListener('keydown', function (event)
+    {
         const key = event.code;
         if (key === 'KeyA' || key === 'KeyD' || key === 'KeyE' || key === 'KeyF' || key === 'KeyZ' || key === 'KeyS' || key === 'KeyW' || key === 'KeyQ' || key === 'KeyX')
         {
@@ -88,8 +103,8 @@
 
     function CurrentPageButton()
     {
-        const collectionInOrder = getCollectionInOrder();
-        return  collectionInOrder.find(pageOption =>
+        const collectionInOrder = GetCollectionInOrder();
+        return collectionInOrder.find(pageOption =>
         {
             return document.URL.toString().includes(UrlVersionOfId(pageOption));
         });
@@ -103,6 +118,10 @@
 
     function OnKeyDown(key)
     {
+        if (KeyboardSuport === false)
+        {
+            return;
+        }
         if (key === "KeyD" || key === "KeyRightArrow" || key === "KeyA" || key === 'KeyLeftArrow')
         {
             document.getElementById("selectedInLayout").textContent = 'true'
@@ -115,9 +134,9 @@
         }
 
         $url = document.URL.split('/');
-        if (!($url[$url.length - 1] === 'projects' && document.getElementById("selectedInLayout").textContent === 'false') && (key === 'KeyEnter' || key === 'KeySpace' || key === 'KeyE' || key === 'KeyF' || key === 'KeyZ'))
+        if (!($url[$url.length - 1] === 'categorys' && document.getElementById("selectedInLayout").textContent === 'false') && (key === 'KeyEnter' || key === 'KeySpace' || key === 'KeyE' || key === 'KeyF' || key === 'KeyZ'))
         {
-            GoTooPage(null, getCollectionInOrder());
+            GoTooPage(GetCollectionInOrder());
         }
 
         if (key === 'KeyDelete' || key === 'KeyBackSpace' || key === 'KeyEscape' || key === 'KeyQ' || key === 'KeyX')
@@ -128,7 +147,7 @@
 
     function LeftAndRight(key)
     {
-        const collectionInOrder = getCollectionInOrder();
+        const collectionInOrder = GetCollectionInOrder();
         let count = collectionInOrder.length;
         let leftOrRight = 1;
         if (key === "KeyA" || key === 'KeyLeftArrow')
@@ -154,18 +173,32 @@
         }
     }
 
-    function GoTooPage(id = null, collectionInOrder)
+    function GoTooPage(collectionInOrder, id = null)
     {
+        const temp = GetCollectionInOrder();
+        let backNotForward = false;
+        if (collectionInOrder.at(0).id === GetCollectionInOrder().at(0).id)
+        {
+            backNotForward = true;
+        }
+
         const $link = document.URL;
-        let spitUrlLocation = collectionInOrder.find(function (option)
+        let splitUrlLocation;
+        if (backNotForward === false)
         {
-            const layers = option.id.split('/');
-            const lastpage = UrlVersionOfId(null, layers[layers.length - 1]);
-            return $link.includes(lastpage)
-        })
-        if (spitUrlLocation != null)
+            splitUrlLocation = collectionInOrder.find(function (option)
+            {
+                const layers = option.id.split('/');
+                const lastpage = UrlVersionOfId(null, layers[layers.length - 1]);
+                return $link.includes(lastpage);
+            })
+            if (splitUrlLocation != null)
+            {
+                splitUrlLocation = UrlVersionOfId(splitUrlLocation)
+            }
+        } else
         {
-            spitUrlLocation = UrlVersionOfId(spitUrlLocation)
+            splitUrlLocation = $link.split('//').at(0) + '//' + $link.split('//').at(1).split('/').at(0) + '/';
         }
 
         let orderNumber;
@@ -181,14 +214,26 @@
         }
 
         const pageOption = UrlVersionOfId(collectionInOrder.at(orderNumber))
-        if (spitUrlLocation != null)
+        if (splitUrlLocation != null)
         {
-            window.location.assign($link.split(spitUrlLocation)[0] + pageOption);
-        }
-        else
+            GoToURL($link.split(splitUrlLocation)[0] + pageOption);
+        } else
         {
-            window.location.assign($link + '/' + pageOption);
+            GoToURL($link + '/' + pageOption);
         }
+    }
+
+    function GoToURL(url)
+    {
+        if (url === 'categorisedProjects')
+        {
+            const thisUrl = document.URL;
+            const startUrl = thisUrl.split('//').at(0) + '//' + thisUrl.split('//').at(1).split('/').at(0) + '/';
+
+            url = UrlVersionOfId(null, url);
+            url = startUrl + url;
+        }
+        window.location.assign(url);
     }
 
     function GetSelectedButtonOrderNumber(collectionInOrder)
@@ -210,8 +255,7 @@
         if (id == null)
         {
             pageOption = pageOption.id;
-        }
-        else
+        } else
         {
             pageOption = id
         }

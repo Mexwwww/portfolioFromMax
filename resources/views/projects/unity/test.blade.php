@@ -1,10 +1,6 @@
 @extends('Layout.layout')
-<body>
 @section('content')
-
+    <text style="color: white">
+        test
+    </text>
 @endsection
-</body>
-
-<script>
-
-</script>
