@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\File; @endphp
 <style>
     .divLeft {
         margin-top: 7%;
@@ -55,52 +56,35 @@
     }
 </style>
 @extends('Layout.layout')
-<body onload="StartTimer()">
+<body>
 @section('content')
     <div class="divLeft">
         <div class="spacer"></div>
-        <a class="btn slct-selcection"
-           style="font-size: 250%; outline: solid yellow; border-radius: 0;
+        <?php
+        $dirNames = [];
+        $basePath = resource_path('views/projects');
+        foreach (File::directories($basePath) as $dir)
+        {
+            $dirNames[] = basename($dir);
+        }
+        $dirNames = collect($dirNames)->unique()->values()->toArray();
+        ?>
+        @foreach($dirNames as $name)
+            <a class="btn selcection"
+               style="font-size: 250%; outline: solid yellow; border-radius: 0;
           display: inline-flex; gap: 12px; transform: scale(0.9);
-          text-decoration: none; align-items: center;" id="laravel"
-           onclick="GoToURL('categorisedProjects')"
-           onmouseover="Hover(id)">
-            <img src="{{ asset('images/save-star.png') }}"
-                 alt="selected"
-                 width="50"
-                 height="50"
-                 style="align-self: flex-start;"
-                 class="slct-hover-icon">
-            <span style="line-height: 1;">Laravel</span>
-        </a>
-        <a class="btn selcection"
-           style="font-size: 250%; outline: solid yellow; border-radius: 0;
-          display: inline-flex; gap: 12px; transform: scale(0.9);
-          text-decoration: none; align-items: center;" id="unity"
-           onclick="GoToURL('categorisedProjects')"
-           onmouseover="Hover(id)">
-            <img src="{{ asset('images/save-star.png') }}"
-                 alt="selected"
-                 width="50"
-                 height="50"
-                 style="align-self: flex-start;"
-                 class="hover-icon">
-            <span style="line-height: 1;">Unity</span>
-        </a>
-        <a class="btn selcection"
-           style="font-size: 250%; outline: solid yellow; border-radius: 0;
-          display: inline-flex; gap: 12px; transform: scale(0.9);
-          text-decoration: none; align-items: center;" id="unrealEngine"
-           onclick="GoToURL('categorisedProjects')"
-           onmouseover="Hover(id)">
-            <img src="{{ asset('images/save-star.png') }}"
-                 alt="selected"
-                 width="50"
-                 height="50"
-                 style="align-self: flex-start;"
-                 class="hover-icon">
-            <span style="line-height: 1;">Unreal Engine</span>
-        </a>
+          text-decoration: none; align-items: center;" id="{{$name}}"
+               onclick="GoToURL('categorised/Projects/' + id)"
+               onmouseover="Hover(id)">
+                <img src="{{ asset('images/save-star.png') }}"
+                     alt="selected"
+                     width="50"
+                     height="50"
+                     style="align-self: flex-start;"
+                     class="hover-icon">
+                <span style="line-height: 1;">{{$name}}</span>
+            </a>
+        @endforeach
         <div class="spacer"></div>
     </div>
 
@@ -133,19 +117,22 @@ $unrealEngineImageList = array_map('basename', $images);
 <script src="{{ asset('js/KeyCodeTooKey.js') }}"></script>
 
 <script>
-
-    function StartTimer()
-    {
-        OnLoad();
-        setInterval(ImageChange, 3000);
-    }
+    @section('onLoad')
+    document.getElementById("selectedInLayout").textContent = 'false';
+    document.getElementById("selected").textContent = 'true';
+    OnKeyDown('KeyS');
+    setInterval(ImageChange, 3000);
+    @endsection
 
     function GetProjectsCollectionInOrder()
     {
-        const Laravel = document.getElementById('laravel');
-        const Unity = document.getElementById('unity');
-        const UnrealEngine = document.getElementById('unrealEngine');
-        return [Laravel, Unity, UnrealEngine];
+        let buttons = [];
+        let names = <?php echo json_encode($dirNames); ?>;
+        names.forEach(function (name)
+        {
+            buttons.push(document.getElementById(name));
+        })
+        return buttons;
     }
 
     function Hover(id)
@@ -177,7 +164,7 @@ $unrealEngineImageList = array_map('basename', $images);
     function PictureList()
     {
         const collectionInOrder = GetProjectsCollectionInOrder();
-        const selected = collectionInOrder.at(GetSelectedButtonOrderNumber(collectionInOrder)).id;
+        let selected = collectionInOrder.at(GetSelectedButtonOrderNumber(collectionInOrder)).id;
 
         if (selected === 'laravel')
         {
@@ -193,7 +180,7 @@ $unrealEngineImageList = array_map('basename', $images);
             return [$p1, $p2];
         }
 
-        if (selected === 'unrealEngine')
+        if (selected === 'unreal-engine')
         {
             $p1 = 'images/unreal-engine/';
             $p2 = <?php echo json_encode($unrealEngineImageList); ?>;
@@ -201,35 +188,25 @@ $unrealEngineImageList = array_map('basename', $images);
         }
     }
 
-    document.addEventListener('keydown', function (event)
+    @section('KeyInYX')
+    document.getElementById("selectedInLayout").textContent = 'false'
+    document.getElementById("selected").textContent = 'true'
+    UpAndDown(key);
+    ImageChange();
+    @endsection
+
+    @section('KeyInXX')
+    document.getElementById("selectedInLayout").textContent = 'true'
+    document.getElementById("selected").textContent = 'false'
+    @endsection
+
+    @section('Select')
+    if (document.getElementById("selected").textContent === 'true')
     {
-        let key = 'Key' + event.key;  // This is layout-dependent
-        key = 'Key' + key.split('y')[1].toUpperCase();
-        if (key === 'KeyS' || key === 'KeyW' || key === "KeyA" || key === "KeyD" || key === 'KeyE' || key === 'KeyF' || key === 'KeyZ')
-        {
-            OnProjectKeyDown(key);
-        }
-    });
-
-    function OnProjectKeyDown(key)
-    {
-        if (key === "KeyLeftArrow" || key === "KeyA" || key === "KeyRightArrow" || key === "KeyD")
-        {
-            document.getElementById("selected").textContent = 'false'
-        }
-
-        if (key === "KeyUpArrow" || key === 'KeyW' || key === "KeyDownArrow" || key === 'KeyS')
-        {
-            document.getElementById("selected").textContent = 'true'
-            UpAndDown(key);
-            ImageChange();
-        }
-
-        if (document.getElementById("selected").textContent === 'true' && (key === 'KeyE' || key === 'KeyF' || key === 'KeyZ' || key === 'KeySpace' || key === 'KeyEnter'))
-        {
-            GoToURL('categorisedProjects')
-        }
+        const selectedButtonId = GetProjectsCollectionInOrder().at(GetSelectedButtonOrderNumber(GetProjectsCollectionInOrder())).id;
+        GoToURL('categorised/Projects/' + selectedButtonId)
     }
+    @endsection
 
     function UpAndDown(key)
     {
@@ -276,7 +253,7 @@ $unrealEngineImageList = array_map('basename', $images);
         const max = pictureList[1].length;
         let randomNumber = Math.floor(Math.random());
         let count = 0;
-        while (preview.src.includes(randomNumber) && count < 5  && max > 1)
+        while (preview.src.includes(randomNumber) && count < 5 && max > 1)
         {
             randomNumber = Math.floor(Math.random());
             count++

@@ -1,4 +1,4 @@
-@extends('Layout.layout')
+@extends('layout.layout')
 @section('content')
     <text style="color: white">
         about me
