@@ -16,7 +16,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
-RUN composer install --no-dev -interaction
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 RUN mkdir -p database && touch
 
