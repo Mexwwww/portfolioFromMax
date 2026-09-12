@@ -43,6 +43,7 @@
 
     .project {
         background: none;
+        display: none;
     }
 
     .temp {
