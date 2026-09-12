@@ -1,6 +1,6 @@
 {{-- Here you can set the description that will show under the title on the select project page --}}
 {{--DESCRIPTION §Worked on multiple existing websites, adding and fixing features on request of customers.§--}}
-{{-- IMAGE §images/unreal-engine/0.png§ --}}
+{{-- IMAGE §images/laravel/laravel-logo.png§ --}}
 <style>
     .project-detail {
         max-width: 800px;

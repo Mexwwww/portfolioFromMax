@@ -16,6 +16,8 @@
         border-radius: 8px;
         display: block;
         margin: 1rem 0;
+        aspect-ratio: 16 / 9;
+        background: #111;
     }
 
     .project-detail h2 {
