@@ -18,7 +18,7 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN mkdir -p database && touch
+RUN mkdir -p database && touch database/database.sqlite
 
 EXPOSE 10000
 
