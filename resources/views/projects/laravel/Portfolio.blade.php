@@ -1,6 +1,6 @@
 {{-- Here you can set the description that will show under the title on the select project page --}}
 {{--DESCRIPTION §This portfolio website itself, built with Laravel with full keyboard navigation and dynamically generated project pages.§--}}
-{{-- IMAGE §images/laravel/laravel-logo.png§ --}}
+{{-- IMAGE §images/laravel/laravel-Logo.png§ --}}
 <style>
     .project-detail {
         max-width: 800px;
