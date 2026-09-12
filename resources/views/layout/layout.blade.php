@@ -116,6 +116,61 @@
         }
     });
 
+    let scrollDirection = 0;
+    let scrollAnimationFrame = null;
+
+    function IsTypingInField()
+    {
+        const activeTag = document.activeElement ? document.activeElement.tagName : null;
+        return activeTag === 'INPUT' || activeTag === 'TEXTAREA';
+    }
+
+    function ScrollStep()
+    {
+        if (scrollDirection !== 0)
+        {
+            window.scrollBy(0, scrollDirection * 12);
+            scrollAnimationFrame = requestAnimationFrame(ScrollStep);
+        } else
+        {
+            scrollAnimationFrame = null;
+        }
+    }
+
+    document.addEventListener('keydown', function (event)
+    {
+        if (KeyboardSuport === false || IsTypingInField())
+        {
+            return;
+        }
+        if (event.code === 'KeyS')
+        {
+            scrollDirection = 1;
+        } else if (event.code === 'KeyW')
+        {
+            scrollDirection = -1;
+        } else
+        {
+            return;
+        }
+        if (scrollAnimationFrame === null)
+        {
+            scrollAnimationFrame = requestAnimationFrame(ScrollStep);
+        }
+    });
+
+    document.addEventListener('keyup', function (event)
+    {
+        if (event.code === 'KeyS' && scrollDirection === 1)
+        {
+            scrollDirection = 0;
+        }
+        if (event.code === 'KeyW' && scrollDirection === -1)
+        {
+            scrollDirection = 0;
+        }
+    });
+
     function CurrentPageButton()
     {
         const collectionInOrder = GetCollectionInOrder();
@@ -262,7 +317,11 @@
                     document.body.appendChild(p);
                 }
 
-                if (collectionInOrder[0].getAttribute('class') === $standardClass.getAttribute('class'))
+                if (collectionInOrder[0].getAttribute('class') !== $standardClass.getAttribute('class'))
+                {
+                    return 0;
+                }
+                if (collectionInOrder[1].getAttribute('class') !== $standardClass.getAttribute('class'))
                 {
                     return 1;
                 }
@@ -277,7 +336,12 @@
             let $class = (collectionInOrder[0]).getAttribute('class');
             if ($class !== (collectionInOrder[1]).getAttribute('class'))
             {
+                const oldClass = $class;
                 $class = (collectionInOrder[2]).getAttribute('class');
+                if ($class === oldClass)
+                {
+                    return 1;
+                }
             }
 
             return collectionInOrder.findIndex(option =>

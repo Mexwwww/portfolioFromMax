@@ -15,11 +15,13 @@ class ContactMail extends Mailable
 
     public string $header;
     public string $content;
+    public string $senderEmail;
 
-    public function __construct($header, $message)
+    public function __construct($header, $message, $senderEmail)
     {
         $this->header = $header;
         $this->content = $message;
+        $this->senderEmail = $senderEmail;
     }
 
     /**
@@ -27,7 +29,7 @@ class ContactMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(subject: $this->header,);
+        return new Envelope(subject: $this->header, replyTo: [$this->senderEmail],);
     }
 
     /**

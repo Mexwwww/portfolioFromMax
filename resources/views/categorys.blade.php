@@ -74,7 +74,7 @@
                style="font-size: 250%; outline: solid yellow; border-radius: 0;
           display: inline-flex; gap: 12px; transform: scale(0.9);
           text-decoration: none; align-items: center;" id="{{$name}}"
-               onclick="GoToURL('categorised/Projects/' + id)"
+               onclick="SelectCategory(id)"
                onmouseover="Hover(id)">
                 <img src="{{ asset('images/save-star.png') }}"
                      alt="selected"
@@ -120,7 +120,7 @@ $unrealEngineImageList = array_map('basename', $images);
     @section('onLoad')
     document.getElementById("selectedInLayout").textContent = 'false';
     document.getElementById("selected").textContent = 'true';
-    OnKeyDown('KeyS');
+    RestoreCategorySelection();
     setInterval(ImageChange, 3000);
     @endsection
 
@@ -133,6 +133,42 @@ $unrealEngineImageList = array_map('basename', $images);
             buttons.push(document.getElementById(name));
         })
         return buttons;
+    }
+
+    function SelectCategory(id)
+    {
+        localStorage.setItem('lastCategory', id);
+        GoToURL('categorised/Projects/' + id);
+    }
+
+    function RestoreCategorySelection()
+    {
+        const collectionInOrder = GetProjectsCollectionInOrder();
+        const lastCategory = localStorage.getItem('lastCategory');
+        let index = collectionInOrder.findIndex(function (option)
+        {
+            return option.id === lastCategory;
+        });
+        if (index === -1)
+        {
+            index = 0;
+        }
+
+        collectionInOrder.forEach(function (option, i)
+        {
+            const image = document.querySelector('#' + option.id + ' img');
+            if (i === index)
+            {
+                option.setAttribute('class', 'btn slct-selcection');
+                image.setAttribute('class', 'slct-hover-icon');
+            } else
+            {
+                option.setAttribute('class', 'btn selcection');
+                image.setAttribute('class', 'hover-icon');
+            }
+        });
+
+        ImageChange();
     }
 
     function Hover(id)
@@ -204,7 +240,7 @@ $unrealEngineImageList = array_map('basename', $images);
     if (document.getElementById("selected").textContent === 'true')
     {
         const selectedButtonId = GetProjectsCollectionInOrder().at(GetSelectedButtonOrderNumber(GetProjectsCollectionInOrder())).id;
-        GoToURL('categorised/Projects/' + selectedButtonId)
+        SelectCategory(selectedButtonId)
     }
     @endsection
 

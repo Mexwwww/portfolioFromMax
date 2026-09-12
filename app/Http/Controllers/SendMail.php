@@ -16,6 +16,6 @@ class SendMail extends Controller
 
     function ContactMail(Request $request)
     {
-        $this->service->ContactMail($request->input('header'), $request->input('message'));
+        $this->service->ContactMail($request->input('header'), $request->input('message'), $request->input('email'));
     }
 }
