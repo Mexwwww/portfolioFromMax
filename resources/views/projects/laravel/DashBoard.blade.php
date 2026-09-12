@@ -14,7 +14,7 @@
         margin-top: 2rem;
     }
 </style>
-@extends('Layout.layout')
+@extends('layout.layout')
 @section('content')
     <div class="project-detail">
         <h1>Dashboard</h1>

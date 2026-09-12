@@ -24,7 +24,7 @@
         line-height: 1.4;
     }
 </style>
-@extends('Layout.layout')
+@extends('layout.layout')
 @section('content')
     <div class="project-detail">
         <h1>AI Bot Extensions</h1>

@@ -55,7 +55,7 @@
         transition: opacity 0.3s ease !important;
     }
 </style>
-@extends('Layout.layout')
+@extends('layout.layout')
 <body>
 @section('content')
     <div class="divLeft">

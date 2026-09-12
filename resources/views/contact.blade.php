@@ -154,7 +154,7 @@
 
 </style>
 
-@extends('Layout.layout')
+@extends('layout.layout')
 @section('content')
     <div class="contactWrapper">
         <div class="divRight" onfocusin="TurnOffKeyboardSupport()" onfocusout="TurnOnfKeyboardSupport()">
