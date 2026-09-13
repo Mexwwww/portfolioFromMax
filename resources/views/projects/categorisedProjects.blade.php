@@ -251,7 +251,7 @@ if(!function_exists('GetProjectTags'))
     @section('onLoad')
     const id = document.URL.split('/').at(-1);
     document.getElementById(id).setAttribute('class', 'temp_slct blackBackgroundColor_slct')
-    document.getElementById('categorys').setAttribute('class', 'btn slct-darkslate')
+    document.getElementById('categories').setAttribute('class', 'btn slct-darkslate')
     ChangeFilter(id);
     document.getElementById("selectedInLayout").textContent = -2;
     @endsection

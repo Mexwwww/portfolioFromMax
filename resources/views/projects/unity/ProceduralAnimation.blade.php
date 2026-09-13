@@ -48,14 +48,8 @@
         <pre><code>private void LegPlacement()
 {
     // Check if the other leg is currently walking.
-    if (_otherFootToGround._ThisLegWalking == true)
-    {
-        _otherLegWalking = true;
-    }
-    else
-    {
-        _otherLegWalking = false;
-    }
+
+    _otherLegWalking = _otherFootToGround._ThisLegWalking
 
     // If the other leg is walking, don't move this leg.
     if (_otherLegWalking == true) return;

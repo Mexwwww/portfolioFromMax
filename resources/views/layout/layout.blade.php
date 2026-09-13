@@ -99,7 +99,7 @@
         if (key != null)
         {
             OnKeyDown(key)
-            if (CurrentPageButton().id === 'categorys')
+            if (CurrentPageButton().id === 'categories')
             {
                 OnProjectKeyDown(key);
             }
@@ -186,7 +186,7 @@
         let currentPageButton = CurrentPageButton();
         if (currentPageButton === undefined)
         {
-            currentPageButton = document.getElementById('categorys')
+            currentPageButton = document.getElementById('categories')
         }
         currentPageButton.setAttribute('class', 'btn slct-darkslate')
     }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function ()
 {
-    return redirect('categorys');
+    return redirect('categories');
 });
 
 Route::get('/{name}', [LayoutButtonController::class, 'index']);
