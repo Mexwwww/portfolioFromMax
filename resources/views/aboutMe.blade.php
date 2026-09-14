@@ -43,7 +43,8 @@
         <img class="profile" src="{{ asset('images/max.png') }}" alt="Max Geurts">
         <p>Hello,</p>
         <p>My name is Max Geurts. I am a developer who finished the 4-year Game Development study at Grafisch Lyceum Utrecht, which included two internship periods that combined took about a year.</p>
-        <p>What I like most about software development is solving problems and seeing the end result of a project I have worked on.</p>
+        <p>After my studies, I started working at Xeropex, where I also completed my internship periods and worked during the summer vacation.</p>
+        <p>What I like most about software development is solving complex problems and seeing the end result of a project I have worked on.</p>
         <p>In my free time, I like to code, play D&D, hang out with friends, and meet new people. My favourite game is Horizon Zero Dawn, with Undertale in second place and Omori in third.</p>
         <a class="cv-download" download href="{{ asset('cv/CvOfMaxGeurts.pdf') }}">Download CV</a>
         <div class="clear"></div>
