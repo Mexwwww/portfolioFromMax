@@ -40,7 +40,7 @@
         The avrage cost for generating a website with this project was 5 euro's and it would take around 15-30 min to generate.</p>
 
         <h3>Here is a generated site that of a company that allowed me to put it on my protfolio:</h3>
-        <a class="cv-download" download href="{{ asset('site/xeropexGeneratedSite') }}">Download generated site.</a>
+        <a class="cv-download" download href="{{ asset('site/xeropexGeneratedSite.zip') }}">Download CV</a>
         <p>When downloaded just click the index file to open the home page.</p>
     </div>
 @endsection
