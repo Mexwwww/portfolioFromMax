@@ -47,21 +47,20 @@
     }
 
     .temp {
-        color: white;
-        text-decoration: none;
-    }
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
 
-    .temp:hover {
-        transform: scale(1.20);
-        color: white;
-        text-decoration: none;
-    }
+.temp:hover {
+    color: white;
+    text-decoration: none;
+}
 
-    .temp_slct {
-        transform: scale(1.20);
-        color: white;
-        text-decoration: none;
-    }
+.temp_slct {
+    color: white;
+    text-decoration: none;
+}
 
     #projectHandeler {
         padding: 2vh 0 6vh;

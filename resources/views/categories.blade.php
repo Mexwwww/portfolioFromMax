@@ -78,24 +78,16 @@
     }
 
     .slct-selcection {
-    color: #ffe94a !important;
-    background: transparent !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    border-left: 3px solid #ffe94a !important;
-    transition: all 0.2s ease !important;
-    scale: 1.03 !important;
-}
+        color: yellow !important;
+        transition: scale 0.3s ease !important;
+        scale: 1.11 !important;
+    }
 
-.slct-selcection:hover {
-    color: #fff !important;
-    background: rgba(255, 233, 74, 0.05) !important;
-    border-left-color: #fff !important;
-    box-shadow: none !important;
-    scale: 1.03 !important;
-}
+    .slct-selcection:hover {
+        color: yellow !important;
+        transition: scale 0.3s ease !important;
+        scale: 1.11 !important;
+    }
 
     .slct-hover-icon {
         opacity: 1;
