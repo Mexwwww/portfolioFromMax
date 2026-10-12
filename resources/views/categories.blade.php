@@ -77,16 +77,24 @@
         transition: scale 0.3s ease !important;
     }
 
+    
     .slct-selcection {
-        color: yellow !important;
-        transition: scale 0.3s ease !important;
-        scale: 1.11 !important;
+        color: #ffeb3b !important;
+        background: linear-gradient(135deg, #343434, #202020) !important;
+        border: 2px solid #ffeb3b !important;
+        border-radius: 10px !important;
+        box-shadow: 0 0 12px rgba(255, 235, 59, 0.2),
+                    inset 0 0 8px rgba(255, 235, 59, 0.05);
+        transition: all 0.25s ease !important;
+        scale: 1.05 !important;
     }
 
     .slct-selcection:hover {
-        color: yellow !important;
-        transition: scale 0.3s ease !important;
-        scale: 1.11 !important;
+        color: #fff176 !important;
+        background: linear-gradient(135deg, #414141, #292929) !important;
+        border-color: #fff176 !important;
+        box-shadow: 0 0 18px rgba(255, 235, 59, 0.35);
+        scale: 1.05 !important;
     }
 
     .slct-hover-icon {
