@@ -72,7 +72,7 @@
     }
 
     .selcection {
-        color: greenyellow;
+        color: #e0e0e0 !important;
         text-decoration: none;
         transition: scale 0.3s ease !important;
     }
