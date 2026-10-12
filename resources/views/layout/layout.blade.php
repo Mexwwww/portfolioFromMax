@@ -1,74 +1,135 @@
 @php use Illuminate\Support\Facades\File; @endphp
-    <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale())}}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<style>
-    .backgroundColor {
-        background: black;
-    }
+    <style>
+        .backgroundColor {
+            background: black;
+        }
 
-    a:hover,
-    .btn-darkslate:hover {
-        color: slategrey !important;
-        transform: scale(1.20);
-        transition: scale 0.3s ease;
-    }
+        a:hover,
+        .btn-darkslate:hover {
+            color: slategrey !important;
+            transform: scale(1.20);
+            transition: scale 0.3s ease;
+        }
 
-    .btn-darkslate {
-        color: darkslategray !important;
-    }
+        .btn-darkslate {
+            color: darkslategray !important;
+        }
 
-    .slct-darkslate {
-        color: slategrey;
-        transform: scale(1.20);
-        transition: scale 0.3s ease;
-    }
+        .slct-darkslate {
+            color: slategrey;
+            transform: scale(1.20);
+            transition: scale 0.3s ease;
+        }
 
-    .cnt-white {
-        width: 100%;
-        border-style: solid;
-        border-width: 0;
-        border-bottom-width: 1px;
-        border-color: darkslategray;
-        background: black;
-    }
+        .cnt-white {
+            width: 100%;
+            border-style: solid;
+            border-width: 0;
+            border-bottom-width: 1px;
+            border-color: darkslategray;
+            background: black;
+        }
 
-    .tab {
-        Padding-left: 35px;
-    }
-</style>
-@yield('style')
+        /* Keep the navigation horizontal and spaced out on desktop. */
+        .layout-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 70px;
+            padding: 4px 16px;
+            color: darkslategray;
+            font-size: large;
+        }
 
+        .layout-nav-links a {
+            max-width: 100%;
+        }
 
+        img,
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        iframe {
+            max-width: 100%;
+        }
+
+        pre {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        /* Small-screen adjustments; desktop styling above remains unchanged. */
+        @media (max-width: 767.98px) {
+            body {
+                min-width: 0;
+                overflow-wrap: break-word;
+            }
+
+            .layout-nav-links {
+                gap: 6px 8px;
+                padding: 8px;
+                font-size: 1rem;
+            }
+
+            .layout-nav-links a {
+                padding: 0.45rem 0.6rem;
+                font-size: 0.9rem;
+                white-space: normal;
+                overflow-wrap: anywhere;
+            }
+
+            /* Avoid hover/selection scaling that can crowd or clip phone layouts. */
+            a:hover,
+            .btn-darkslate:hover,
+            .slct-darkslate {
+                transform: none;
+                transition: none;
+            }
+
+            table {
+                display: block;
+                max-width: 100%;
+                overflow-x: auto;
+            }
+        }
+    </style>
+    @yield('style')
+</head>
 <body class="backgroundColor" onload="OnLoad()" onkeydown="onkeydown(KeyboardEvent.code)">
 <p id="selectedInLayout" hidden="">true</p>
-<div style="text-align: center;" class="cnt-white">
-    <text style="color: darkslategray; font-size: large">
+
+<nav class="cnt-white" aria-label="Main navigation">
+    <div class="layout-nav-links">
         <?php
         $fileNames = [];
         $basePath = resource_path('views/');
-        foreach (File::files($basePath) as $file)
-        {
+        foreach (File::files($basePath) as $file) {
             $fileNames[] = basename(str_replace('.blade', '', $file->getFilenameWithoutExtension()));
         }
         $fileNames = collect($fileNames)->unique()->values()->toArray();
         ?>
         @foreach($fileNames as $name)
-            <span class="tab"> </span>
-            <a href="/{{$name}}" class="btn btn-darkslate" id="{{$name}}"> {{$name}}</a>
-            <span class="tab"> </span>
+            <a href="/{{$name}}" class="btn btn-darkslate" id="{{$name}}">{{$name}}</a>
         @endforeach
-    </text>
-</div>
-</body>
-@yield('content')
-</html>
+    </div>
+</nav>
 
+@yield('content')
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 <script src="{{ asset('js/KeyCodeTooKey.js') }}"></script>
 
 <script>
@@ -351,4 +412,5 @@
         }
     }
 </script>
-
+</body>
+</html>
