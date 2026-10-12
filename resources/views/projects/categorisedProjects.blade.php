@@ -11,7 +11,114 @@
     </style>
 @endsection
 
-<style> .backgroundColor { background: white; } #catagoryButtons { padding: 6vh 1rem 2vh; } .blackBackgroundColor { background: black; border-radius: 999px; border: 2px solid transparent; transition: background 0.2s ease; } .blackBackgroundColor:hover { background: #444; } .blackBackgroundColor_slct { background: #444; color: white; text-decoration: none; border: 2px solid transparent; } #catagoryButtons.at-category-level .blackBackgroundColor_slct { border-color: slategrey; } .project { background: none; display: none; } .temp { color: white; text-decoration: none; } .temp:hover { color: white; text-decoration: none; } .temp_slct { color: white; text-decoration: none; transform: none !important; scale: 1 !important; } #projectHandeler { padding: 2vh 0 6vh; } .project-card { background: white; border: 2px solid transparent; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); transition: box-shadow 0.2s ease, border-color 0.2s ease; max-width: 320px; margin: 0 auto; transform: none !important; scale: 1 !important; } .project-card:hover { transform: none !important; scale: 1 !important; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); } .temp_slct .project-card, .temp_slct .project-card:hover { border: 2px solid slategrey !important; transform: none !important; scale: 1 !important; } .project-card img { display: block; width: 100%; height: 180px; object-fit: cover; } .project-card .card-title { color: #1a1a1a; font-weight: 600; } .project-card .card-text { color: #5a5a5a; } .project-tags { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem; } .project-tag { display: inline-block; background: #eee; color: #444; font-size: 0.75rem; padding: 0.25em 0.7em; border-radius: 999px; } </style>
+<style>
+
+    #catagoryButtons {
+        padding: 6vh 1rem 2vh;
+    }
+
+    .blackBackgroundColor
+    {
+        background: black;
+        border-radius: 999px;
+        border: 2px solid transparent;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .blackBackgroundColor:hover {
+        background: #444;
+    }
+
+    .blackBackgroundColor_slct
+    {
+        border-radius: 999px;
+        background: #444;
+        color: white;
+        text-decoration: none;
+        border: 2px solid transparent;
+    }
+
+    #catagoryButtons.at-category-level .blackBackgroundColor_slct {
+        border-color: slategrey;
+    }
+
+    .project {
+        background: none;
+        display: none;
+    }
+
+    .temp {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.temp:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.temp_slct {
+    color: white;
+    text-decoration: none;
+}
+
+    #projectHandeler {
+        padding: 2vh 0 6vh;
+    }
+
+    .project-card {
+        border: 2px solid transparent;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+    }
+
+    .temp_slct .project-card {
+        border: 2px solid slategrey;
+    }
+
+    .project-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .project-card .card-title {
+        color: #1a1a1a;
+        font-weight: 600;
+    }
+
+    .project-card .card-text {
+        color: #5a5a5a;
+    }
+
+    .project-tags {
+        margin-top: 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+
+    .project-tag {
+        display: inline-block;
+        background: #eee;
+        color: #444;
+        font-size: 0.75rem;
+        padding: 0.25em 0.7em;
+        border-radius: 999px;
+    }
+
+
+</style>
 
 <body style="color: black">
 
