@@ -12,6 +12,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        box-sizing: border-box;
+        min-width: 0;
     }
 
     .divRight {
@@ -19,7 +21,54 @@
         float: right;
         margin-right: 5%;
         width: 40%;
-        height: 60%;
+        height: 60vh;
+        outline: solid gray;
+        box-sizing: border-box;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    /* Keep each category button inside the left panel and let long names wrap. */
+    .divLeft .selcection,
+    .divLeft .slct-selcection {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        white-space: normal !important;
+        overflow-wrap: anywhere;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 0.4rem 0.5rem;
+        gap: clamp(6px, 1vw, 12px) !important;
+    }
+
+    .divLeft .selcection img,
+    .divLeft .slct-selcection img {
+        width: clamp(24px, 3vw, 50px) !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1;
+        flex: 0 0 auto;
+        object-fit: contain;
+    }
+
+    .divLeft .selcection span,
+    .divLeft .slct-selcection span {
+        min-width: 0;
+        flex: 1 1 auto;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        line-height: 1.15 !important;
+    }
+
+    /* Prevent the preview image itself from exceeding its container. */
+    #preview {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+        box-sizing: border-box;
     }
 
     .selcection {
@@ -53,6 +102,41 @@
     .selcection:hover .hover-icon {
         opacity: 1;
         transition: opacity 0.3s ease !important;
+    }
+
+    /* Stack the category list and preview on phones and narrow screens. */
+    @media (max-width: 768px) {
+        .divLeft,
+        .divRight {
+            float: none;
+            width: 92%;
+            max-width: 40rem;
+            margin: 1.25rem auto;
+        }
+
+        .divLeft {
+            height: auto;
+            min-height: 0;
+            text-align: left;
+            gap: 0.5rem;
+        }
+
+        .divLeft .selcection,
+        .divLeft .slct-selcection {
+            font-size: clamp(1rem, 4vw, 1.4rem) !important;
+            transform: none !important;
+            scale: 1 !important;
+        }
+
+        .divLeft .selcection img,
+        .divLeft .slct-selcection img {
+            width: clamp(24px, 7vw, 36px) !important;
+        }
+
+        .divRight {
+            height: auto;
+            aspect-ratio: 16 / 9;
+        }
     }
 </style>
 @extends('layout.layout')
@@ -88,12 +172,9 @@
         <div class="spacer"></div>
     </div>
 
-    <div class="divRight" style="outline: solid gray;">
+    <div class="divRight">
         <img src="{{ asset('') }}"
              alt="selected"
-             width="100%"
-             height="100%"
-             style="align-self: flex-start; object-fit: cover;"
              id="preview">
     </div>
     <p hidden="" id="selected">true</p>
