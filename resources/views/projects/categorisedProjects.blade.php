@@ -116,6 +116,19 @@
         border-radius: 999px;
     }
 
+    .temp_slct,
+.temp_slct:hover {
+    transform: none !important;
+    scale: 1 !important;
+}
+
+.temp_slct .project-card,
+.temp_slct .project-card:hover {
+    transform: none !important;
+    scale: 1 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+    border: 2px solid slategrey !important;
+}
 </style>
 
 <body style="color: black">
