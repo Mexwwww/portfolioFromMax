@@ -94,7 +94,7 @@
         <p>Hello,</p>
         <p>My name is Max Geurts. I am a software developer who completed the 4-year Game Development study at Grafisch Lyceum Utrecht, which included two internship periods that combined took about a year.</p>
         <p>After my studies, I started working at Xeropex, where I completed my internship periods and worked during summer vacation.</p>
-        <p>What I like most about software development is solving complex technical problems and seeing the end result of a high-quality project I have built.</p>
+        <p><br><br>What I like most about software development is solving complex technical problems and seeing the end result of a high-quality project I have built.</p>
         <p>In my free time, I like to code, play D&D, hang out with friends, and meet new people. My favourite game is Horizon Zero Dawn, with Undertale in second place and Omori in third.</p>
         <a class="cv-download" download href="{{ asset('cv/CvOfMaxGeurts.pdf') }}">
             <span>↓</span> Download CV
