@@ -46,15 +46,7 @@
             border-radius: 6px;
             padding: 0.4rem 0.8rem;
             text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .btn-darkslate:hover,
-        a:hover {
-            color: #58a6ff !important;
-            background: rgba(56, 139, 253, 0.1);
-            border-color: #30363d;
-            transform: translateY(-1px);
+            pointer-events: none; /* Disable mouse clicks */
         }
 
         .slct-darkslate {
@@ -64,6 +56,7 @@
             border-radius: 6px;
             padding: 0.4rem 0.8rem;
             box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+            pointer-events: none; /* Disable mouse clicks */
         }
 
         img, video {
@@ -87,11 +80,6 @@
                 gap: 6px;
                 padding: 4px;
                 font-size: 0.85rem;
-            }
-            a:hover,
-            .btn-darkslate:hover,
-            .slct-darkslate {
-                transform: none;
             }
         }
     </style>
@@ -154,7 +142,7 @@
     document.addEventListener('keydown', function (event) {
         let key = 'Key' + event.key;
         key = 'Key' + key.split('y')[1].toUpperCase();
-        if (['KeyA', 'KeyD', 'KeyE', 'KeyF', 'KeyZ', 'KeyS', 'KeyW', 'KeyQ', 'KeyX'].includes(key)) {
+        if (['KeyA', 'KeyD', 'KeyE', 'KeyF', 'KeyZ', 'KeyS', 'KeyW', 'KeyQ', 'KeyX'].includes(key) || event.code === 'Escape' || event.code === 'KeyEscape') {
             OnKeyDown(key);
         }
     });
@@ -235,7 +223,8 @@
             }
         }
 
-        if (['KeyDelete', 'KeyBackSpace', 'KeyEscape', 'KeyQ', 'KeyX'].includes(key)) {
+        // Only keep Escape key functionality for going back
+        if (key === 'KeyEscape' || event.code === 'Escape') {
             history.back();
         }
     }
@@ -267,7 +256,9 @@
         if (url.includes('http')) {
             window.location.assign(url);
         } else {
-            window.location.assign(document.URL.split(document.URL.split('/')[3])[0] + '/' + url);
+            const cleanUrl = url.startsWith('/') ? url.slice(1) : url;
+            const baseUrl = window.location.origin + '/';
+            window.location.assign(baseUrl + cleanUrl);
         }
     }
 
