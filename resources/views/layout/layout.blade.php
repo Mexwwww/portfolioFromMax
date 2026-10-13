@@ -252,13 +252,17 @@
         GoToURL(collectionInOrder.at(orderNumber).id);
     }
 
-    function GoToURL(url) {
+function GoToURL(url) {
         if (url.includes('http')) {
             window.location.assign(url);
         } else {
-            const cleanUrl = url.startsWith('/') ? url.slice(1) : url;
-            const baseUrl = window.location.origin + '/';
-            window.location.assign(baseUrl + cleanUrl);
+            // Ensure clean path combination without duplicate slashes
+            let base = window.location.origin;
+            let cleanPath = url.startsWith('/') ? url : '/' + url;
+            
+            // If we are currently inside a subfolder structure like /categorised/Projects/...
+            // we want to make sure we resolve correctly relative to the root domain.
+            window.location.assign(base + cleanPath);
         }
     }
 
