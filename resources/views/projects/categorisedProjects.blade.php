@@ -1,76 +1,15 @@
 @php use Illuminate\Support\Facades\File; @endphp
-@extends('layout.layout')
-
-@section('style')
-    <style>
-        .backgroundColor {
-            background: #0d1117 !important;
-        }
-    </style>
-@endsection
-
 <style>
-    body {
-        background-color: #0d1117;
-        color: #c9d1d9;
+    .projects-container {
+        max-width: 1200px;
+        margin: 6vh auto;
+        padding: 0 1.5rem;
     }
 
-    #catagoryButtons {
-        padding: 6vh 1rem 2vh;
-    }
-
-    .blackBackgroundColor {
-        background: #161b22;
-        border-radius: 8px;
-        border: 1px solid #30363d;
-        color: #8b949e;
-        transition: all 0.2s ease;
-        font-family: 'Fira Code', monospace;
-    }
-
-    .blackBackgroundColor:hover {
-        background: #21262d;
-        color: #c9d1d9;
-        border-color: #8b949e;
-    }
-
-    .blackBackgroundColor_slct {
-        border-radius: 8px;
-        background: rgba(56, 139, 253, 0.15) !important;
-        color: #58a6ff !important;
-        text-decoration: none;
-        border: 1px solid #58a6ff !important;
-        box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
-        font-family: 'Fira Code', monospace;
-    }
-
-    #catagoryButtons.at-category-level .blackBackgroundColor_slct {
-        border-color: #58a6ff;
-    }
-
-    .project {
-        background: none;
-        display: none;
-    }
-
-    .temp {
-        color: #c9d1d9;
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
-
-    .temp:hover {
-        color: #58a6ff;
-        text-decoration: none;
-    }
-
-    .temp_slct {
-        color: #58a6ff;
-        text-decoration: none;
-    }
-
-    #projectHandeler {
-        padding: 2vh 0 6vh;
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
     }
 
     .project-card {
@@ -78,379 +17,138 @@
         border: 1px solid #30363d;
         border-radius: 12px;
         overflow: hidden;
+        text-decoration: none;
+        color: #c9d1d9;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.2s ease;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        max-width: 320px;
-        margin: 0 auto;
     }
 
     .project-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6);
-        border-color: #8b949e;
+        border-color: #58a6ff;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(88, 166, 255, 0.15);
+        color: #c9d1d9;
     }
 
-    .temp_slct .project-card {
-        border: 1px solid #58a6ff;
-        box-shadow: 0 0 15px rgba(88, 166, 255, 0.25);
-    }
-
-    .project-card img {
+    .project-img-wrapper {
         width: 100%;
         height: 180px;
-        object-fit: cover;
+        background: #0d1117;
         border-bottom: 1px solid #30363d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
     }
 
-    .project-card .card-title {
-        color: #58a6ff;
-        font-weight: 600;
+    .project-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .project-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        flex: 1;
+    }
+
+    .project-title {
         font-family: 'Fira Code', monospace;
+        font-size: 1.2rem;
+        color: #58a6ff;
+        margin: 0;
+        line-height: 1.4;
     }
 
-    .project-card .card-text {
+    .project-desc {
+        font-size: 0.95rem;
         color: #8b949e;
-        font-size: 0.9rem;
+        line-height: 1.5;
+        flex: 1;
+        margin: 0;
     }
 
     .project-tags {
-        margin-top: 0.75rem;
         display: flex;
         flex-wrap: wrap;
-        gap: 0.4rem;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
     }
 
-    .project-tag {
-        display: inline-block;
-        background: #21262d;
-        color: #8b949e;
-        font-size: 0.75rem;
-        padding: 0.25em 0.7em;
-        border-radius: 999px;
-        border: 1px solid #30363d;
+    .tag-badge {
         font-family: 'Fira Code', monospace;
+        font-size: 0.75rem;
+        background: rgba(56, 139, 253, 0.1);
+        color: #58a6ff;
+        border: 1px solid rgba(56, 139, 253, 0.2);
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
     }
 </style>
 
-<body style="color: #c9d1d9; background-color: #0d1117;">
-
-<?php
-$projects = [];
-$projectNames = [];
-$directoryNames = [];
-$basePath = resource_path('views/projects');
-foreach (File::directories($basePath) as $directory)
-{
-    foreach (File::files($directory) as $file)
-    {
-        $projects[] = $file;
-        $projectNames[basename($directory)][] = str_replace('.blade', '', $file->getFilenameWithoutExtension());
-        $directoryNames[] = basename($directory);
-    }
-}
-
-$categoryOrder = [
-    'unity' => ['WinterWonderRide', 'Hack', 'ThePlay', 'ProceduralAnimation'],
-];
-foreach ($categoryOrder as $categoryName => $order)
-{
-    if (isset($projectNames[$categoryName]))
-    {
-        usort($projectNames[$categoryName], function ($a, $b) use ($order) {
-            $posA = array_search($a, $order);
-            $posB = array_search($b, $order);
-            $posA = $posA === false ? count($order) : $posA;
-            $posB = $posB === false ? count($order) : $posB;
-            return $posA <=> $posB;
-        });
-    }
-}
-$directoryNames = collect($directoryNames)->unique()->values()->toArray();
-if(!function_exists('GetProjectDiscriptionOrImage'))
-{
-    function GetProjectDiscriptionOrImage($project, $projects, $lookForImage = false)
-    {
-        $text = $lookForImage === true? 'IMAGE' : "DESCRIPTION";
-        $result = explode('§', collect(file(collect($projects)->filter(function ($file) use ($project, $text) {
-            return $file->getFilename() === $project . '.blade.php';
-        })->first()->getRealPath()))->filter(function ($line) use ($text) {
-            return str_contains($line, $text);
-        })->first());
-        return ($result[1] ?? null) == null ? null : ($lookForImage ? asset($result[1]) : $result[1]);
-    }
-}
-if(!function_exists('GetProjectTags'))
-{
-    function GetProjectTags($project, $projects)
-    {
-        $line = collect(file(collect($projects)->filter(function ($file) use ($project) {
-            return $file->getFilename() === $project . '.blade.php';
-        })->first()->getRealPath()))->filter(function ($line) {
-            return str_contains($line, 'TAGS');
-        })->first();
-        $result = explode('§', $line ?? '');
-        $tags = $result[1] ?? null;
-        return $tags == null ? [] : array_map('trim', explode(',', $tags));
-    }
-}
-?>
-
+@extends('layout.layout')
 @section('content')
-    <div id="catagoryButtons" style="text-align: center;">
-        @foreach($directoryNames as $directoryName)
-            <a class="temp blackBackgroundColor"
-               style="font-size: 1.15rem; padding: 0.6em 1.5em; margin: 0 0.4em; display: inline-block;"
-               id="{{$directoryName}}" onclick="ClickedOn(id)">
-                <span style="line-height: 1;">{{$directoryName}}</span>
-            </a>
-        @endforeach
-    </div>
-    <div class="container text-center">
-        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3" id="projectHandeler">
-            @php($count = 0)
-            @foreach($projectNames as $key => $category)
-                @foreach($category as $project)
-                    @php($projectForName = (function ($project)
-{
-    $words = preg_split('/(?=[A-Z])/',$project);
-    $name = null;
-    foreach ($words as $word)
-    {
-        if ($word != '')
-        {
-            if ($name == null)
-            {
-                $name = ucfirst($word);
-            }
-            else
-            {
-                $name = $name . ' ' . lcfirst($word);
-            }
-        }
-    }
-    return $name;
-})($project))
-                    @php($projectDescription = GetProjectDiscriptionOrImage($project, $projects))
-                    @php($projectTags = GetProjectTags($project, $projects))
-                    @php($count++)
-                    <div class="col project" id="{{$key}}">
-                        <div id="project {{$count}}" class="col temp">
-                            <a href="/projects/{{$key}}/{{$project}}">
-                                <div class="card project-card">
-                                    <img src="{{GetProjectDiscriptionOrImage($project, $projects, true)}}" alt="selected"
-                                         class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{$projectForName}}</h5>
-                                        <p class="card-text">{{$projectDescription}}</p>
-                                        @if(count($projectTags) > 0)
-                                            <div class="project-tags">
-                                                @foreach($projectTags as $tag)
-                                                    <span class="project-tag">{{$tag}}</span>
-                                                @endforeach
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+    <div class="projects-container">
+        <div class="project-grid">
+            <?php
+            $category = request()->route('category');
+            $files = File::files(resource_path("views/projects/{$category}"));
+            
+            foreach ($files as $file) {
+                $fileName = $file->getFilenameWithoutExtension();
+                $content = File::get($file->getPathname());
+                
+                // Extract custom image tag or fallback
+                $image = 'images/laravel/laravel-Logo.png';
+                if (preg_match('/{{--\s*IMAGE\s*§(.*?)§\s*--}}/', $content, $imgMatch)) {
+                    $image = trim($imgMatch[1]);
+                }
+
+                // Extract custom description tag if available
+                $description = '';
+                if (preg_match('/{{--\s*DESCRIPTION\s*§(.*?)§\s*--}}/', $content, $descMatch)) {
+                    $description = trim($descMatch[1]);
+                } else {
+                    // Fallback to extracting text from the 1-sentence summary div if DESCRIPTION tag isn't present
+                    if (preg_match('/<div class="project-summary">\s*(.*?)\s*<\/div>/s', $content, $summaryMatch)) {
+                        $description = trim(strip_tags($summaryMatch[1]));
+                    }
+                }
+
+                // Extract the improved <h1> title from the file
+                $title = $fileName;
+                if (preg_match('/<h1>(.*?)<\/h1>/s', $content, $titleMatch)) {
+                    $title = trim(strip_tags($titleMatch[1]));
+                }
+
+                // Extract tags if present
+                $tags = [];
+                if (preg_match('/{{--\s*TAGS\s*§(.*?)§\s*--}}/', $content, $tagMatch)) {
+                    $tags = array_map('trim', explode(',', $tagMatch[1]));
+                }
+            ?>
+                <a href="/projects/{{$category}}/{{$fileName}}" class="project-card" id="{{$fileName}}">
+                    <div class="project-img-wrapper">
+                        <img src="{{ asset($image) }}" alt="{{$title}}">
                     </div>
-                @endforeach
-            @endforeach
+                    <div class="project-content">
+                        <h3 class="project-title">{{$title}}</h3>
+                        <p class="project-desc">{{$description}}</p>
+                        @if(!empty($tags))
+                            <div class="project-tags">
+                                @foreach($tags as $tag)
+                                    <span class="tag-badge">{{$tag}}</span>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                </a>
+            <?php } ?>
         </div>
     </div>
 @endsection
-</body>
-<script>
-    @section('onLoad')
-    const id = document.URL.split('/').at(-1);
-    document.getElementById(id).setAttribute('class', 'temp_slct blackBackgroundColor_slct')
-    document.getElementById('categories').setAttribute('class', 'btn slct-darkslate')
-    ChangeFilter(id);
-    document.getElementById("selectedInLayout").textContent = -2;
-    @endsection
-
-    function ChangeFilter(id)
-    {
-        const projects = document.getElementsByClassName('project');
-        for (var i = 0; i < projects.length; i++)
-        {
-            var project = projects[i];
-            if (project.id === id)
-            {
-                project.setAttribute('style', 'display: block');
-            } else
-            {
-                project.setAttribute('style', 'display: none');
-            }
-        }
-    }
-
-    function GetColumnCount(projectNames)
-    {
-        if (projectNames.length === 0)
-        {
-            return 1;
-        }
-        const firstTop = projectNames.at(0).offsetTop;
-        let count = 0;
-        for (let i = 0; i < projectNames.length; i++)
-        {
-            if (projectNames.at(i).offsetTop === firstTop)
-            {
-                count++;
-            } else
-            {
-                break;
-            }
-        }
-        return count;
-    }
-
-    @section('KeyInYX')
-    let previousDepthLevel = document.getElementById("selectedInLayout").textContent;
-
-    if (previousDepthLevel == -2)
-    {
-        const shownProjects = GetShownProjects();
-        const columnCount = GetColumnCount(shownProjects);
-        let currentIndex = GetSelectedButtonOrderNumber(shownProjects);
-        if (currentIndex === -1 || currentIndex === undefined)
-        {
-            currentIndex = 0;
-        }
-        const indexDelta = upDownInt === -1 ? columnCount : -columnCount;
-        const targetIndex = currentIndex + indexDelta;
-
-        if (targetIndex >= 0 && targetIndex < shownProjects.length)
-        {
-            shownProjects.at(currentIndex).setAttribute('class', 'col temp');
-            shownProjects.at(targetIndex).setAttribute('class', 'col temp_slct');
-            document.getElementById("selectedInLayout").textContent = -2;
-            return;
-        }
-
-        if (upDownInt === -1)
-        {
-            document.getElementById("selectedInLayout").textContent = -2;
-            return;
-        }
-    }
-
-    depthLevel = previousDepthLevel;
-    if (depthLevel === 'true')
-    {
-        depthLevel = 0;
-    }
-    depthLevel = parseInt(depthLevel) + parseInt(upDownInt);
-    if (depthLevel >= 0)
-    {
-        depthLevel = 'true'
-    }
-    if (depthLevel < -2)
-    {
-        depthLevel = -2;
-    }
-
-    if (depthLevel === -2 && previousDepthLevel != -2)
-    {
-        const projectNames = GetShownProjects();
-        let orderNumber = GetSelectedButtonOrderNumber(projectNames);
-        if (orderNumber === -1 || orderNumber === undefined)
-        {
-            orderNumber = 0;
-        }
-        const project = projectNames.at(orderNumber);
-        if (!project.getAttribute('class').includes('slct'))
-        {
-            project.setAttribute('class', 'col temp_slct')
-        }
-    }
-
-    if (previousDepthLevel == -2 && depthLevel !== -2)
-    {
-        GetShownProjects().forEach(function (project)
-        {
-            project.setAttribute('class', 'col temp')
-        });
-    }
-
-    if (depthLevel === -1)
-    {
-        document.getElementById('catagoryButtons').classList.add('at-category-level');
-    } else
-    {
-        document.getElementById('catagoryButtons').classList.remove('at-category-level');
-    }
-
-    document.getElementById("selectedInLayout").textContent = depthLevel;
-    @endsection
-
-    @section('KeyInXX')
-    depthLevel = document.getElementById("selectedInLayout").textContent;
-    if (depthLevel !== 'true')
-    {
-        if (depthLevel === '-1')
-        {
-            $cattagoryButtons = GetCattagoryButtons();
-            LeftAndRight(key, $cattagoryButtons, 'temp blackBackgroundColor', 'temp_slct blackBackgroundColor_slct')
-            ChangeFilter($cattagoryButtons.at(GetSelectedButtonOrderNumber($cattagoryButtons)).id);
-        } else
-        {
-            $projectNames = GetShownProjects();
-            LeftAndRight(key, $projectNames, 'col temp', 'col temp_slct');
-        }
-    }
-    @endsection
-
-    @section('Select')
-    let projects = GetShownProjects()
-    GoToURL(projects.at(GetSelectedButtonOrderNumber(projects)).children[0].href);
-    @endsection
-
-    function GetCattagoryButtons()
-    {
-        let catagoryButtons = [];
-        const names = <?php echo json_encode($directoryNames); ?>;
-        names.forEach(function (id)
-        {
-            catagoryButtons.push(document.getElementById(id));
-        })
-        return catagoryButtons;
-    }
-
-    function GetShownProjects()
-    {
-        const categorys = GetCattagoryButtons();
-        const category = categorys.at(GetSelectedButtonOrderNumber(categorys)).id
-        const projects = document.getElementsByClassName('col');
-        let projectAtributes = [];
-        for (var i = 0; i < projects.length; i++)
-        {
-            var project = projects[i];
-            if (project.id === category)
-            {
-                projectAtributes.push(document.getElementById(project.children[0].id));
-            }
-        }
-        return projectAtributes;
-    }
-
-    function ClickedOn(id)
-    {
-        ChangeFilter(id);
-        GetCattagoryButtons().forEach(function (button)
-        {
-            if (button.id === id)
-            {
-                document.getElementById(button.id).setAttribute('class', 'temp_slct blackBackgroundColor_slct')
-            } else
-            {
-                document.getElementById(button.id).setAttribute('class', 'temp blackBackgroundColor')
-            }
-        })
-    }
-
-    @section('CanMove')
-    canMove = document.getElementById("selectedInLayout").textContent === 'true';
-    @endsection
-</script>

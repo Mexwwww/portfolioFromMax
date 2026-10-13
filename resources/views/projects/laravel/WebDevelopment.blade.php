@@ -58,10 +58,10 @@
             Professional client-facing web development involving custom feature engineering, scheduled design management systems, and critical browser-freeze bug resolution.
         </div>
 
-        <p>I've worked on multiple existing websites, adding or fixing features at the request of a customer. This work was all done while working at a company, so I unfortunately can't go into specifics, talk about the customers themselves, or share the code behind these projects[cite: 16].</p>
-        <p>What I can share is the kind of feature I built. For one customer, for example, I added the ability to schedule when the design of banners and other visual aspects of their website would change, for a set amount of time, all managed through a separate dashboard[cite: 16].</p>
+        <p>I've worked on multiple existing websites, adding or fixing features at the request of a customer. This work was all done while working at a company, so I unfortunately can't go into specifics, talk about the customers themselves, or share the code behind these projects.</p>
+        <p>What I can share is the kind of feature I built. For one customer, for example, I added the ability to schedule when the design of banners and other visual aspects of their website would change, for a set amount of time, all managed through a separate dashboard.</p>
 
         <h2>Bug fixing</h2>
-        <p>Alongside building features, I also found and fixed a good number of bugs. One example was a bug that would freeze the entire website, and depending on which browser you used, the whole browser along with it. It had never been found before because it was really specific to trigger[cite: 16].</p>
+        <p>Alongside building features, I also found and fixed a good number of bugs. One example was a bug that would freeze the entire website, and depending on which browser you used, the whole browser along with it. It had never been found before because it was really specific to trigger.</p>
     </div>
 @endsection
