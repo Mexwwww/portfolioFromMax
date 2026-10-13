@@ -105,30 +105,30 @@
                 
                 // Extract custom image tag or fallback
                 $image = 'images/laravel/laravel-Logo.png';
-                if (preg_match('/{{--\s*IMAGE\s*§(.*?)§\s*--}}/', $content, $imgMatch)) {
+                if (preg_match('/{{--\s*IMAGE\s*§(.*?)§\s*--}}/', $content, $imgMatch) && isset($imgMatch[1])) {
                     $image = trim($imgMatch[1]);
                 }
 
-                // Extract custom description tag if available
+                // Extract custom description tag if available, with safe array check
                 $description = '';
-                if (preg_match('/{{--\s*DESCRIPTION\s*§(.*?)§\s*--}}/', $content, $descMatch)) {
+                if (preg_match('/{{--\s*DESCRIPTION\s*§(.*?)§\s*--}}/', $content, $descMatch) && isset($descMatch[1])) {
                     $description = trim($descMatch[1]);
                 } else {
                     // Fallback to extracting text from the 1-sentence summary div if DESCRIPTION tag isn't present
-                    if (preg_match('/<div class="project-summary">\s*(.*?)\s*<\/div>/s', $content, $summaryMatch)) {
+                    if (preg_match('/<div class="project-summary">\s*(.*?)\s*<\/div>/s', $content, $summaryMatch) && isset($summaryMatch[1])) {
                         $description = trim(strip_tags($summaryMatch[1]));
                     }
                 }
 
-                // Extract the improved <h1> title from the file
+                // Extract the improved <h1> title from the file safely
                 $title = $fileName;
-                if (preg_match('/<h1>(.*?)<\/h1>/s', $content, $titleMatch)) {
+                if (preg_match('/<h1>(.*?)<\/h1>/s', $content, $titleMatch) && isset($titleMatch[1])) {
                     $title = trim(strip_tags($titleMatch[1]));
                 }
 
-                // Extract tags if present
+                // Extract tags if present safely
                 $tags = [];
-                if (preg_match('/{{--\s*TAGS\s*§(.*?)§\s*--}}/', $content, $tagMatch)) {
+                if (preg_match('/{{--\s*TAGS\s*§(.*?)§\s*--}}/', $content, $tagMatch) && isset($tagMatch[1])) {
                     $tags = array_map('trim', explode(',', $tagMatch[1]));
                 }
             ?>
