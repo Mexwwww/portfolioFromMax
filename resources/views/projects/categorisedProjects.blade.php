@@ -166,26 +166,68 @@ foreach ($categoryOrder as $categoryName => $order)
     }
 }
 $directoryNames = collect($directoryNames)->unique()->values()->toArray();
+
 if(!function_exists('GetProjectDiscriptionOrImage'))
 {
     function GetProjectDiscriptionOrImage($project, $projects, $lookForImage = false)
     {
-        $text = $lookForImage === true? 'IMAGE' : "DESCRIPTION";
-        $result = explode('§', collect(file(collect($projects)->filter(function ($file) use ($project, $text) {
+        $fileObj = collect($projects)->filter(function ($file) use ($project) {
             return $file->getFilename() === $project . '.blade.php';
-        })->first()->getRealPath()))->filter(function ($line) use ($text) {
-            return str_contains($line, $text);
-        })->first());
-        return ($result[1] ?? null) == null ? null : ($lookForImage ? asset($result[1]) : $result[1]);
+        })->first();
+
+        if (!$fileObj) return null;
+        $content = File::get($fileObj->getRealPath());
+
+        if ($lookForImage) {
+            if (preg_match('/{{--\s*IMAGE\s*§(.*?)§\s*--}}/', $content, $imgMatch) && isset($imgMatch[1])) {
+                return asset(trim($imgMatch[1]));
+            }
+            return asset('images/laravel/laravel-Logo.png');
+        } else {
+            // Check DESCRIPTION tag first
+            if (preg_match('/{{--\s*DESCRIPTION\s*§(.*?)§\s*--}}/', $content, $descMatch) && isset($descMatch[1])) {
+                return trim($descMatch[1]);
+            }
+            // Fallback to project-summary div
+            if (preg_match('/<div class="project-summary">\s*(.*?)\s*<\/div>/s', $content, $summaryMatch) && isset($summaryMatch[1])) {
+                return trim(strip_tags($summaryMatch[1]));
+            }
+            return null;
+        }
     }
 }
+
+if(!function_exists('GetProjectTitle'))
+{
+    function GetProjectTitle($project, $projects)
+    {
+        $fileObj = collect($projects)->filter(function ($file) use ($project) {
+            return $file->getFilename() === $project . '.blade.php';
+        })->first();
+
+        if (!$fileObj) return $project;
+        $content = File::get($fileObj->getRealPath());
+
+        // Extract <h1> title from file
+        if (preg_match('/<h1>(.*?)<\/h1>/s', $content, $titleMatch) && isset($titleMatch[1])) {
+            return trim(strip_tags($titleMatch[1]));
+        }
+        return $project;
+    }
+}
+
 if(!function_exists('GetProjectTags'))
 {
     function GetProjectTags($project, $projects)
     {
-        $line = collect(file(collect($projects)->filter(function ($file) use ($project) {
+        $fileObj = collect($projects)->filter(function ($file) use ($project) {
             return $file->getFilename() === $project . '.blade.php';
-        })->first()->getRealPath()))->filter(function ($line) {
+        })->first();
+
+        if (!$fileObj) return [];
+        $content = File::get($fileObj->getRealPath());
+
+        $line = collect(file($fileObj->getRealPath()))->filter(function ($line) {
             return str_contains($line, 'TAGS');
         })->first();
         $result = explode('§', $line ?? '');
@@ -210,26 +252,7 @@ if(!function_exists('GetProjectTags'))
             @php($count = 0)
             @foreach($projectNames as $key => $category)
                 @foreach($category as $project)
-                    @php($projectForName = (function ($project)
-{
-    $words = preg_split('/(?=[A-Z])/',$project);
-    $name = null;
-    foreach ($words as $word)
-    {
-        if ($word != '')
-        {
-            if ($name == null)
-            {
-                $name = ucfirst($word);
-            }
-            else
-            {
-                $name = $name . ' ' . lcfirst($word);
-            }
-        }
-    }
-    return $name;
-})($project))
+                    @php($projectForName = GetProjectTitle($project, $projects))
                     @php($projectDescription = GetProjectDiscriptionOrImage($project, $projects))
                     @php($projectTags = GetProjectTags($project, $projects))
                     @php($count++)
