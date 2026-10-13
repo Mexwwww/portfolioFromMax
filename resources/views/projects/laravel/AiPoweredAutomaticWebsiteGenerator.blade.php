@@ -45,6 +45,17 @@
         margin-bottom: 1.5rem;
     }
 
+    .project-detail .project-summary {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #58a6ff;
+        background: rgba(56, 139, 253, 0.1);
+        border-left: 3px solid #58a6ff;
+        padding: 0.75rem 1rem;
+        margin-bottom: 2rem;
+        border-radius: 0 6px 6px 0;
+    }
+
     .project-detail a.cv-download {
         display: inline-flex;
         align-items: center;
@@ -71,7 +82,12 @@
 @extends('layout.layout')
 @section('content')
     <div class="project-detail">
-        <h1>Deeper description and why I made it</h1>
+        <h1>AI-Driven Automated Website Lead Generator & Upgrader</h1>
+
+        <!-- 1-Sentence summary explaining the whole project -->
+        <div class="project-summary">
+            An automated lead-generation pipeline that uses AI to discover prospective business websites, evaluate their feature gaps, and dynamically build upgraded drop-in replacement prototypes.
+        </div>
 
         <p>This project was made to bring in more customers by sending them a testable improved version of their site without putting hours into working on a site when it isn't even confirmed that the customer wants a new site[cite: 13].</p>
 

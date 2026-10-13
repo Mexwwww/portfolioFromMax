@@ -36,11 +36,28 @@
         margin-bottom: 1.1rem;
         color: #b1bac4;
     }
+
+    .project-detail .project-summary {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #58a6ff;
+        background: rgba(56, 139, 253, 0.1);
+        border-left: 3px solid #58a6ff;
+        padding: 0.75rem 1rem;
+        margin-bottom: 2rem;
+        border-radius: 0 6px 6px 0;
+    }
 </style>
 @extends('layout.layout')
 @section('content')
     <div class="project-detail">
-        <h1>Web Development</h1>
+        <h1>Commercial Web Application Maintenance & Feature Development</h1>
+
+        <!-- 1-Sentence summary explaining the whole project -->
+        <div class="project-summary">
+            Professional client-facing web development involving custom feature engineering, scheduled design management systems, and critical browser-freeze bug resolution.
+        </div>
+
         <p>I've worked on multiple existing websites, adding or fixing features at the request of a customer. This work was all done while working at a company, so I unfortunately can't go into specifics, talk about the customers themselves, or share the code behind these projects[cite: 16].</p>
         <p>What I can share is the kind of feature I built. For one customer, for example, I added the ability to schedule when the design of banners and other visual aspects of their website would change, for a set amount of time, all managed through a separate dashboard[cite: 16].</p>
 

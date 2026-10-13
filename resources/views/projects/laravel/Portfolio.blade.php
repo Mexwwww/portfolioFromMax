@@ -27,7 +27,7 @@
         color: #58a6ff;
         font-size: 1.4rem;
         margin-top: 2rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.0rem;
     }
 
     .project-detail p {
@@ -36,11 +36,28 @@
         margin-bottom: 1.1rem;
         color: #b1bac4;
     }
+
+    .project-detail .project-summary {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #58a6ff;
+        background: rgba(56, 139, 253, 0.1);
+        border-left: 3px solid #58a6ff;
+        padding: 0.75rem 1rem;
+        margin-bottom: 2rem;
+        border-radius: 0 6px 6px 0;
+    }
 </style>
 @extends('layout.layout')
 @section('content')
     <div class="project-detail">
-        <h1>Portfolio</h1>
+        <h1>Modular Laravel Developer Portfolio & File-Driven View Engine</h1>
+
+        <!-- 1-Sentence summary explaining the whole project -->
+        <div class="project-summary">
+            A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering and responsive developer-themed UI layouts.
+        </div>
+
         <p>This is this exact website. I made this in PhpStorm and made it as nice to use as I could make it[cite: 15].</p>
 
         <h2>Keyboard navigation</h2>

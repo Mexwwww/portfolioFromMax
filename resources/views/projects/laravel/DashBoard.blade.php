@@ -37,11 +37,28 @@
         margin-bottom: 1.1rem;
         color: #b1bac4;
     }
+
+    .project-detail .project-summary {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #58a6ff;
+        background: rgba(56, 139, 253, 0.1);
+        border-left: 3px solid #58a6ff;
+        padding: 0.75rem 1rem;
+        margin-bottom: 2rem;
+        border-radius: 0 6px 6px 0;
+    }
 </style>
 @extends('layout.layout')
 @section('content')
     <div class="project-detail">
-        <h1>Dashboard</h1>
+        <h1>Enterprise Financial Management & Automated Payment Dashboard</h1>
+
+        <!-- 1-Sentence summary explaining the whole project -->
+        <div class="project-summary">
+            A standalone internal accounting and billing platform integrated with Exact Online to automate multi-interval recurring subscription payments and financial tracking.
+        </div>
+
         <p>I made a dashboard to be used internally at the company. It would automatically send payments and keep track of the status of those payments, and automatically send an email if a vacature hadn't been paid for a certain amount of days[cite: 14].</p>
 
         <h2>Finances and vacatures</h2>

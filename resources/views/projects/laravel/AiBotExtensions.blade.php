@@ -37,6 +37,17 @@
         color: #b1bac4;
     }
 
+    .project-detail .project-summary {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #58a6ff;
+        background: rgba(56, 139, 253, 0.1);
+        border-left: 3px solid #58a6ff;
+        padding: 0.75rem 1rem;
+        margin-bottom: 2rem;
+        border-radius: 0 6px 6px 0;
+    }
+
     .project-detail pre {
         background: #0d1117;
         border: 1px solid #30363d;
@@ -53,7 +64,13 @@
 @extends('layout.layout')
 @section('content')
     <div class="project-detail">
-        <h1>AI Bot Extensions</h1>
+        <h1>Local AI Chat Interface & Automated Database Reporting Extension</h1>
+        
+        <!-- 1-Sentence summary explaining the whole project -->
+        <div class="project-summary">
+            A custom web platform that parses structured commands from a local AI's chat replies to query isolated databases and generate automated reports.
+        </div>
+
         <p>I worked with an existing, locally-run AI by building a custom website around it, with its own chat area[cite: 12].</p>
         <p>By giving the AI a specific set of rules, I got it to write certain things in its replies in a specific format. My own code on the website could then read that format out of the AI's response and use it to do things the AI itself wasn't able to do directly, such as getting information from a database the AI had no direct access to, and using that information to generate a report with visual graphs and text[cite: 12].</p>
 
