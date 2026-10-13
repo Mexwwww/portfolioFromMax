@@ -1,185 +1,139 @@
 @php use Illuminate\Support\Facades\File; @endphp
 <style>
-    .divLeft {
-        margin-top: 7%;
-        float: left;
-        width: 25%;
-        margin-left: 13.5%;
-        height: 60%;
-        text-align: right;
-        outline: solid gray;
+    .categories-wrapper {
+        display: flex;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 5vh auto;
+        padding: 0 1.5rem;
+        align-items: stretch;
+    }
 
+    .divLeft {
+        flex: 0 0 350px;
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        padding: 1.5rem;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        box-sizing: border-box;
-        min-width: 0;
+        gap: 0.75rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
     .divRight {
-        margin-top: 7%;
-        float: right;
-        margin-right: 5%;
-        width: 40%;
-        height: 60vh;
-        outline: solid gray;
-        box-sizing: border-box;
-        min-width: 0;
+        flex: 1;
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 12px;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        min-height: 400px;
     }
 
-    /* Keep each category button inside the left panel and let long names wrap. */
-    .divLeft .selcection,
-    .divLeft .slct-selcection {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        box-sizing: border-box;
-        white-space: normal !important;
-        overflow-wrap: anywhere;
-        justify-content: flex-start;
-        text-align: left;
-        padding: 0.4rem 0.5rem;
-        gap: clamp(6px, 1vw, 12px) !important;
-    }
-
-    .divLeft .selcection img,
-    .divLeft .slct-selcection img {
-        width: clamp(24px, 3vw, 50px) !important;
-        height: auto !important;
-        aspect-ratio: 1 / 1;
-        flex: 0 0 auto;
-        object-fit: contain;
-    }
-
-    .divLeft .selcection span,
-    .divLeft .slct-selcection span {
-        min-width: 0;
-        flex: 1 1 auto;
-        white-space: normal;
-        overflow-wrap: anywhere;
-        line-height: 1.15 !important;
-    }
-
-    /* Prevent the preview image itself from exceeding its container. */
-    #preview {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        height: 100%;
-        object-fit: cover;
-        box-sizing: border-box;
-    }
-
-    .selcection {
-        color: #e0e0e0 !important;
+    .selcection, .slct-selcection {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0.85rem 1.2rem;
+        border-radius: 8px;
+        color: #8b949e !important;
+        background: #0d1117;
+        border: 1px solid #30363d;
         text-decoration: none;
-        transition: scale 0.3s ease !important;
+        font-family: 'Fira Code', monospace;
+        font-size: 1.1rem !important;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .selcection:hover {
+        color: #c9d1d9 !important;
+        background: #21262d;
+        border-color: #8b949e;
+        transform: translateX(4px);
     }
 
     .slct-selcection {
-        color: yellow !important;
-        transition: scale 0.3s ease !important;
-        scale: 1.11 !important;
-    }
-
-    .slct-selcection:hover {
-        color: yellow !important;
-        transition: scale 0.3s ease !important;
-        scale: 1.11 !important;
+        color: #58a6ff !important;
+        background: rgba(56, 139, 253, 0.1) !important;
+        border-color: #58a6ff !important;
+        box-shadow: 0 0 12px rgba(88, 166, 255, 0.25);
+        transform: translateX(6px) !important;
     }
 
     .slct-hover-icon {
         opacity: 1;
-        transition: opacity 0.3s ease !important;
+        color: #58a6ff;
+        font-weight: bold;
     }
 
     .hover-icon {
-        opacity: 0;
-        transition: opacity 0.3s ease !important;
+        opacity: 0.3;
+        color: #8b949e;
     }
 
-    .selcection:hover .hover-icon {
-        opacity: 1;
-        transition: opacity 0.3s ease !important;
+    #preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 10px;
     }
 
-    /* Stack the category list and preview on phones and narrow screens. */
-    @media (max-width: 768px) {
-        .divLeft,
-        .divRight {
-            float: none;
-            width: 92%;
-            max-width: 40rem;
-            margin: 1.25rem auto;
+    @media (max-width: 900px) {
+        .categories-wrapper {
+            flex-direction: column;
+            margin: 2vh auto;
+            padding: 0 1rem;
         }
 
         .divLeft {
-            height: auto;
-            min-height: 0;
-            text-align: left;
-            gap: 0.5rem;
-        }
-
-        .divLeft .selcection,
-        .divLeft .slct-selcection {
-            font-size: clamp(1rem, 4vw, 1.4rem) !important;
-            transform: none !important;
-            scale: 1 !important;
-        }
-
-        .divLeft .selcection img,
-        .divLeft .slct-selcection img {
-            width: clamp(24px, 7vw, 36px) !important;
+            flex: none;
+            width: 100%;
         }
 
         .divRight {
-            height: auto;
-            aspect-ratio: 16 / 9;
+            width: 100%;
+            height: 250px;
+            min-height: 250px;
         }
     }
 </style>
-@extends('layout.layout')
-<body>
-@section('content')
-    <div class="divLeft">
-        <div class="spacer"></div>
-        <?php
-        $dirNames = [];
-        $basePath = resource_path('views/projects');
-        foreach (File::directories($basePath) as $dir)
-        {
-            $dirNames[] = basename($dir);
-        }
-        $dirNames = collect($dirNames)->unique()->values()->toArray();
-        ?>
-        @foreach($dirNames as $name)
-            <a class="btn selcection"
-               style="font-size: 250%; outline: solid yellow; border-radius: 0;
-          display: inline-flex; gap: 12px; transform: scale(0.9);
-          text-decoration: none; align-items: center;" id="{{$name}}"
-               onclick="SelectCategory(id)"
-               onmouseover="Hover(id)">
-                <img src="{{ asset('images/save-star.png') }}"
-                     alt="selected"
-                     width="50"
-                     height="50"
-                     style="align-self: flex-start;"
-                     class="hover-icon">
-                <span style="line-height: 1;">{{$name}}</span>
-            </a>
-        @endforeach
-        <div class="spacer"></div>
-    </div>
 
-    <div class="divRight">
-        <img src="{{ asset('') }}"
-             alt="selected"
-             id="preview">
+@extends('layout.layout')
+@section('content')
+    <div class="categories-wrapper">
+        <div class="divLeft">
+            <?php
+            $dirNames = [];
+            $basePath = resource_path('views/projects');
+            foreach (File::directories($basePath) as $dir) {
+                $dirNames[] = basename($dir);
+            }
+            $dirNames = collect($dirNames)->unique()->values()->toArray();
+            ?>
+            @foreach($dirNames as $name)
+                <a class="btn selcection"
+                   id="{{$name}}"
+                   onclick="SelectCategory(id)"
+                   onmouseover="Hover(id)">
+                    <span class="hover-icon">&gt;</span>
+                    <span>{{$name}}</span>
+                </a>
+            @endforeach
+        </div>
+
+        <div class="divRight">
+            <img src="{{ asset('') }}" alt="Category Preview" id="preview">
+        </div>
     </div>
     <p hidden="" id="selected">true</p>
 @endsection
-</body>
 
 <?php
 $images = glob("images/*.{png}", GLOB_BRACE);
@@ -205,179 +159,124 @@ $unrealEngineImageList = array_map('basename', $images);
     setInterval(ImageChange, 3000);
     @endsection
 
-    function GetProjectsCollectionInOrder()
-    {
+    function GetProjectsCollectionInOrder() {
         let buttons = [];
         let names = <?php echo json_encode($dirNames); ?>;
-        names.forEach(function (name)
-        {
+        names.forEach(function (name) {
             buttons.push(document.getElementById(name));
-        })
+        });
         return buttons;
     }
 
-    function SelectCategory(id)
-    {
+    function SelectCategory(id) {
         localStorage.setItem('lastCategory', id);
         GoToURL('categorised/Projects/' + id);
     }
 
-    function RestoreCategorySelection()
-    {
+    function RestoreCategorySelection() {
         const collectionInOrder = GetProjectsCollectionInOrder();
         const lastCategory = localStorage.getItem('lastCategory');
-        let index = collectionInOrder.findIndex(function (option)
-        {
+        let index = collectionInOrder.findIndex(function (option) {
             return option.id === lastCategory;
         });
-        if (index === -1)
-        {
-            index = 0;
-        }
+        if (index === -1) index = 0;
 
-        collectionInOrder.forEach(function (option, i)
-        {
-            const image = document.querySelector('#' + option.id + ' img');
-            if (i === index)
-            {
+        collectionInOrder.forEach(function (option, i) {
+            const icon = option.querySelector('span:first-child');
+            if (i === index) {
                 option.setAttribute('class', 'btn slct-selcection');
-                image.setAttribute('class', 'slct-hover-icon');
-            } else
-            {
+                if (icon) icon.setAttribute('class', 'slct-hover-icon');
+            } else {
                 option.setAttribute('class', 'btn selcection');
-                image.setAttribute('class', 'hover-icon');
+                if (icon) icon.setAttribute('class', 'hover-icon');
             }
         });
 
         ImageChange();
     }
 
-    function Hover(id)
-    {
+    function Hover(id) {
         const projectsCollectionInOrder = GetProjectsCollectionInOrder();
-        if (projectsCollectionInOrder.at(GetSelectedButtonOrderNumber(projectsCollectionInOrder)).id === id)
-        {
-            return;
-        }
+        if (projectsCollectionInOrder.at(GetSelectedButtonOrderNumber(projectsCollectionInOrder)).id === id) return;
 
-        let count = 0;
-        projectsCollectionInOrder.forEach(function (option)
-        {
-            const image = document.querySelector('#' + projectsCollectionInOrder.at(count).id + ' img');
-            if (option.id !== id)
-            {
+        projectsCollectionInOrder.forEach(function (option) {
+            const icon = option.querySelector('span:first-child');
+            if (option.id !== id) {
                 option.setAttribute('class', 'btn selcection');
-                image.setAttribute('class', 'hover-icon')
-            } else
-            {
+                if (icon) icon.setAttribute('class', 'hover-icon');
+            } else {
                 option.setAttribute('class', 'btn slct-selcection');
-                image.setAttribute('class', 'slct-hover-icon')
+                if (icon) icon.setAttribute('class', 'slct-hover-icon');
             }
-            count++;
-        })
+        });
         ImageChange();
     }
 
-    function PictureList()
-    {
+    function PictureList() {
         const collectionInOrder = GetProjectsCollectionInOrder();
         let selected = collectionInOrder.at(GetSelectedButtonOrderNumber(collectionInOrder)).id;
 
-        if (selected === 'laravel')
-        {
-            $p1 = 'images/laravel/';
-            $p2 = <?php echo json_encode($laravelImageList); ?>;
-            return [$p1, $p2];
+        if (selected === 'laravel') {
+            return ['images/laravel/', <?php echo json_encode($laravelImageList); ?>];
         }
-
-        if (selected === 'unity')
-        {
-            $p1 = 'images/unity/';
-            $p2 = <?php echo json_encode($unityImageList); ?>;
-            return [$p1, $p2];
+        if (selected === 'unity') {
+            return ['images/unity/', <?php echo json_encode($unityImageList); ?>];
         }
-
-        if (selected === 'unreal-engine')
-        {
-            $p1 = 'images/unreal-engine/';
-            $p2 = <?php echo json_encode($unrealEngineImageList); ?>;
-            return [$p1, $p2];
+        if (selected === 'unreal-engine') {
+            return ['images/unreal-engine/', <?php echo json_encode($unrealEngineImageList); ?>];
         }
+        return ['', []];
     }
 
     @section('KeyInYX')
-    document.getElementById("selectedInLayout").textContent = 'false'
-    document.getElementById("selected").textContent = 'true'
+    document.getElementById("selectedInLayout").textContent = 'false';
+    document.getElementById("selected").textContent = 'true';
     UpAndDown(key);
     ImageChange();
     @endsection
 
     @section('KeyInXX')
-    document.getElementById("selectedInLayout").textContent = 'true'
-    document.getElementById("selected").textContent = 'false'
+    document.getElementById("selectedInLayout").textContent = 'true';
+    document.getElementById("selected").textContent = 'false';
     @endsection
 
     @section('Select')
-    if (document.getElementById("selected").textContent === 'true')
-    {
+    if (document.getElementById("selected").textContent === 'true') {
         const selectedButtonId = GetProjectsCollectionInOrder().at(GetSelectedButtonOrderNumber(GetProjectsCollectionInOrder())).id;
-        SelectCategory(selectedButtonId)
+        SelectCategory(selectedButtonId);
     }
     @endsection
 
-    function UpAndDown(key)
-    {
+    function UpAndDown(key) {
         const collectionInOrder = GetProjectsCollectionInOrder();
         let count = collectionInOrder.length;
-        let upOrDown = 1;
-        if (key === "KeyW" || key === 'KeyUpArrow')
-        {
-            upOrDown = -1;
-        }
+        let upOrDown = (key === "KeyW" || key === 'KeyUpArrow') ? -1 : 1;
+        const collectionOrderNumber = GetSelectedButtonOrderNumber(collectionInOrder);
 
-        const collectionOrderNumber = GetSelectedButtonOrderNumber(collectionInOrder)
+        let targetIndex = collectionOrderNumber + upOrDown;
+        if (targetIndex < 0) targetIndex = count - 1;
+        if (targetIndex >= count) targetIndex = 0;
 
-        if (collectionOrderNumber + upOrDown !== -1 && collectionInOrder.at(collectionOrderNumber + upOrDown) != null)
-        {
-            let image = document.querySelector('#' + collectionInOrder.at(collectionOrderNumber).id + ' img');
-            image.setAttribute('class', 'hover-icon');
-            collectionInOrder.at(collectionOrderNumber).setAttribute('class', 'btn selcection');
-
-            image = document.querySelector('#' + collectionInOrder.at(collectionOrderNumber + upOrDown).id + ' img');
-            image.setAttribute('class', 'slct-hover-icon')
-            collectionInOrder.at(collectionOrderNumber + upOrDown).setAttribute('class', 'btn slct-selcection');
-        } else
-        {
-            let image = document.querySelector('#' + collectionInOrder.at(collectionOrderNumber).id + ' img');
-            image.setAttribute('class', 'hover-icon')
-            collectionInOrder.at(collectionOrderNumber).setAttribute('class', 'btn selcection')
-            let orderNumber = 0;
-            if (upOrDown === -1)
-            {
-                orderNumber = count - 1;
+        collectionInOrder.forEach((btn, idx) => {
+            const icon = btn.querySelector('span:first-child');
+            if (idx === targetIndex) {
+                btn.setAttribute('class', 'btn slct-selcection');
+                if (icon) icon.setAttribute('class', 'slct-hover-icon');
+            } else {
+                btn.setAttribute('class', 'btn selcection');
+                if (icon) icon.setAttribute('class', 'hover-icon');
             }
-            image = document.querySelector('#' + collectionInOrder.at(orderNumber).id + ' img');
-            image.setAttribute('class', 'slct-hover-icon')
-            collectionInOrder.at(orderNumber).setAttribute('class', 'btn slct-selcection')
-        }
+        });
     }
 
-    function ImageChange()
-    {
+    function ImageChange() {
         let preview = document.getElementById('preview');
-
         const pictureList = PictureList();
-        const max = pictureList[1].length;
-        let randomNumber = Math.floor(Math.random());
-        let count = 0;
-        while (preview.src.includes(randomNumber) && count < 5 && max > 1)
-        {
-            randomNumber = Math.floor(Math.random());
-            count++
-        }
+        if (!pictureList[1] || pictureList[1].length === 0) return;
 
-        const picture = pictureList[0] + pictureList[1][Math.floor(Math.random() * max)];
-        $default = "{{ asset('') }}".toString()
-        preview.src = "{{ asset('') }}" + picture.toString();
+        const max = pictureList[1].length;
+        const randomIndex = Math.floor(Math.random() * max);
+        const picture = pictureList[0] + pictureList[1][randomIndex];
+        preview.src = "{{ asset('') }}" + picture;
     }
 </script>

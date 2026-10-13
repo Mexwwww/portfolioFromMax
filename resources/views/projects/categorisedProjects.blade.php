@@ -3,43 +3,49 @@
 
 @section('style')
     <style>
-
         .backgroundColor {
-            background: white;
+            background: #0d1117 !important;
         }
-
     </style>
 @endsection
 
 <style>
+    body {
+        background-color: #0d1117;
+        color: #c9d1d9;
+    }
 
     #catagoryButtons {
         padding: 6vh 1rem 2vh;
     }
 
-    .blackBackgroundColor
-    {
-        background: black;
-        border-radius: 999px;
-        border: 2px solid transparent;
-        transition: background 0.2s ease, transform 0.2s ease;
+    .blackBackgroundColor {
+        background: #161b22;
+        border-radius: 8px;
+        border: 1px solid #30363d;
+        color: #8b949e;
+        transition: all 0.2s ease;
+        font-family: 'Fira Code', monospace;
     }
 
     .blackBackgroundColor:hover {
-        background: #444;
+        background: #21262d;
+        color: #c9d1d9;
+        border-color: #8b949e;
     }
 
-    .blackBackgroundColor_slct
-    {
-        border-radius: 999px;
-        background: #444;
-        color: white;
+    .blackBackgroundColor_slct {
+        border-radius: 8px;
+        background: rgba(56, 139, 253, 0.15) !important;
+        color: #58a6ff !important;
         text-decoration: none;
-        border: 2px solid transparent;
+        border: 1px solid #58a6ff !important;
+        box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+        font-family: 'Fira Code', monospace;
     }
 
     #catagoryButtons.at-category-level .blackBackgroundColor_slct {
-        border-color: slategrey;
+        border-color: #58a6ff;
     }
 
     .project {
@@ -48,57 +54,63 @@
     }
 
     .temp {
-    color: white;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
+        color: #c9d1d9;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
 
-.temp:hover {
-    color: white;
-    text-decoration: none;
-}
+    .temp:hover {
+        color: #58a6ff;
+        text-decoration: none;
+    }
 
-.temp_slct {
-    color: white;
-    text-decoration: none;
-}
+    .temp_slct {
+        color: #58a6ff;
+        text-decoration: none;
+    }
 
     #projectHandeler {
         padding: 2vh 0 6vh;
     }
 
     .project-card {
-        border: 2px solid transparent;
+        background: #161b22;
+        border: 1px solid #30363d;
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         max-width: 320px;
         margin: 0 auto;
     }
 
     .project-card:hover {
         transform: translateY(-6px);
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6);
+        border-color: #8b949e;
     }
 
     .temp_slct .project-card {
-        border: 2px solid slategrey;
+        border: 1px solid #58a6ff;
+        box-shadow: 0 0 15px rgba(88, 166, 255, 0.25);
     }
 
     .project-card img {
         width: 100%;
         height: 180px;
         object-fit: cover;
+        border-bottom: 1px solid #30363d;
     }
 
     .project-card .card-title {
-        color: #1a1a1a;
+        color: #58a6ff;
         font-weight: 600;
+        font-family: 'Fira Code', monospace;
     }
 
     .project-card .card-text {
-        color: #5a5a5a;
+        color: #8b949e;
+        font-size: 0.9rem;
     }
 
     .project-tags {
@@ -110,17 +122,17 @@
 
     .project-tag {
         display: inline-block;
-        background: #eee;
-        color: #444;
+        background: #21262d;
+        color: #8b949e;
         font-size: 0.75rem;
         padding: 0.25em 0.7em;
         border-radius: 999px;
+        border: 1px solid #30363d;
+        font-family: 'Fira Code', monospace;
     }
-
-
 </style>
 
-<body style="color: black">
+<body style="color: #c9d1d9; background-color: #0d1117;">
 
 <?php
 $projects = [];
@@ -295,7 +307,7 @@ if(!function_exists('GetProjectTags'))
     }
 
     @section('KeyInYX')
-        let previousDepthLevel = document.getElementById("selectedInLayout").textContent;
+    let previousDepthLevel = document.getElementById("selectedInLayout").textContent;
 
     if (previousDepthLevel == -2)
     {
@@ -373,8 +385,8 @@ if(!function_exists('GetProjectTags'))
     document.getElementById("selectedInLayout").textContent = depthLevel;
     @endsection
 
-        @section('KeyInXX')
-        depthLevel = document.getElementById("selectedInLayout").textContent;
+    @section('KeyInXX')
+    depthLevel = document.getElementById("selectedInLayout").textContent;
     if (depthLevel !== 'true')
     {
         if (depthLevel === '-1')
@@ -439,6 +451,6 @@ if(!function_exists('GetProjectTags'))
     }
 
     @section('CanMove')
-        canMove = document.getElementById("selectedInLayout").textContent === 'true';
+    canMove = document.getElementById("selectedInLayout").textContent === 'true';
     @endsection
 </script>

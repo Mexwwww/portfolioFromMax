@@ -6,101 +6,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Google Fonts for a clean tech look -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+
         .backgroundColor {
-            background: black;
+            background: #0d1117;
         }
 
-        a:hover,
-        .btn-darkslate:hover {
-            color: slategrey !important;
-            transform: scale(1.20);
-            transition: scale 0.3s ease;
-        }
-
-        .btn-darkslate {
-            color: darkslategray !important;
-        }
-
-        .slct-darkslate {
-            color: slategrey;
-            transform: scale(1.20);
-            transition: scale 0.3s ease;
-        }
-
+        /* Modern Developer Nav Bar */
         .cnt-white {
             width: 100%;
-            border-style: solid;
-            border-width: 0;
-            border-bottom-width: 1px;
-            border-color: darkslategray;
-            background: black;
+            border-bottom: 1px solid #30363d;
+            background: #161b22;
+            padding: 0.5rem 1rem;
         }
 
-        /* Keep the navigation horizontal and spaced out on desktop. */
         .layout-nav-links {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 8px 70px;
-            padding: 4px 16px;
-            color: darkslategray;
-            font-size: large;
+            gap: 1rem 3rem;
+            padding: 8px 16px;
+            font-size: 0.95rem;
+            font-family: 'Fira Code', monospace;
         }
 
-        .layout-nav-links a {
-            max-width: 100%;
+        .btn-darkslate {
+            color: #8b949e !important;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
 
-        img,
-        video {
+        .btn-darkslate:hover,
+        a:hover {
+            color: #58a6ff !important;
+            background: rgba(56, 139, 253, 0.1);
+            border-color: #30363d;
+            transform: translateY(-1px);
+        }
+
+        .slct-darkslate {
+            color: #58a6ff !important;
+            background: rgba(56, 139, 253, 0.15);
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+        }
+
+        img, video {
             max-width: 100%;
             height: auto;
-        }
-
-        iframe {
-            max-width: 100%;
         }
 
         pre {
             max-width: 100%;
             overflow-x: auto;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 1rem;
+            color: #e6edf3;
+            font-family: 'Fira Code', monospace;
         }
 
-        /* Small-screen adjustments; desktop styling above remains unchanged. */
         @media (max-width: 767.98px) {
-            body {
-                min-width: 0;
-                overflow-wrap: break-word;
-            }
-
             .layout-nav-links {
-                gap: 6px 8px;
-                padding: 8px;
-                font-size: 1rem;
+                gap: 6px;
+                padding: 4px;
+                font-size: 0.85rem;
             }
-
-            .layout-nav-links a {
-                padding: 0.45rem 0.6rem;
-                font-size: 0.9rem;
-                white-space: normal;
-                overflow-wrap: anywhere;
-            }
-
-            /* Avoid hover/selection scaling that can crowd or clip phone layouts. */
             a:hover,
             .btn-darkslate:hover,
             .slct-darkslate {
                 transform: none;
-                transition: none;
-            }
-
-            table {
-                display: block;
-                max-width: 100%;
-                overflow-x: auto;
             }
         }
     </style>
@@ -135,44 +126,35 @@
 <script>
     let KeyboardSuport = true;
 
-    function SetKeyboardSuport(bool)
-    {
+    function SetKeyboardSuport(bool) {
         KeyboardSuport = bool;
     }
 
-    function GetCollectionInOrder()
-    {
+    function GetCollectionInOrder() {
         let buttons = [];
         let names = <?php echo json_encode($fileNames); ?>;
-        names.forEach(function (name)
-        {
-            if(name != null)
-            {
+        names.forEach(function (name) {
+            if (name != null) {
                 buttons.push(document.getElementById(name));
             }
         })
         return buttons;
     }
 
-    document.onkeydown = function (e)
-    {
+    document.onkeydown = function (e) {
         const key = Convert(e.keyCode);
-        if (key != null)
-        {
+        if (key != null) {
             OnKeyDown(key)
-            if (CurrentPageButton().id === 'categories')
-            {
+            if (CurrentPageButton() && CurrentPageButton().id === 'categories') {
                 OnProjectKeyDown(key);
             }
         }
     };
 
-    document.addEventListener('keydown', function (event)
-    {
-        let key = 'Key' + event.key;  // This is layout-dependent
+    document.addEventListener('keydown', function (event) {
+        let key = 'Key' + event.key;
         key = 'Key' + key.split('y')[1].toUpperCase();
-        if (key === 'KeyA' || key === 'KeyD' || key === 'KeyE' || key === 'KeyF' || key === 'KeyZ' || key === 'KeyS' || key === 'KeyW' || key === 'KeyQ' || key === 'KeyX')
-        {
+        if (['KeyA', 'KeyD', 'KeyE', 'KeyF', 'KeyZ', 'KeyS', 'KeyW', 'KeyQ', 'KeyX'].includes(key)) {
             OnKeyDown(key);
         }
     });
@@ -180,235 +162,136 @@
     let scrollDirection = 0;
     let scrollAnimationFrame = null;
 
-    function IsTypingInField()
-    {
+    function IsTypingInField() {
         const activeTag = document.activeElement ? document.activeElement.tagName : null;
         return activeTag === 'INPUT' || activeTag === 'TEXTAREA';
     }
 
-    function ScrollStep()
-    {
-        if (scrollDirection !== 0)
-        {
-            window.scrollBy(0, scrollDirection * 12);
+    function ScrollStep() {
+        if (scrollDirection !== 0) {
+            window.scrollBy(0, scrollDirection * 15);
             scrollAnimationFrame = requestAnimationFrame(ScrollStep);
-        } else
-        {
+        } else {
             scrollAnimationFrame = null;
         }
     }
 
-    document.addEventListener('keydown', function (event)
-    {
-        if (KeyboardSuport === false || IsTypingInField())
-        {
-            return;
-        }
-        if (event.code === 'KeyS')
-        {
+    document.addEventListener('keydown', function (event) {
+        if (KeyboardSuport === false || IsTypingInField()) return;
+        if (event.code === 'KeyS') {
             scrollDirection = 1;
-        } else if (event.code === 'KeyW')
-        {
+        } else if (event.code === 'KeyW') {
             scrollDirection = -1;
-        } else
-        {
+        } else {
             return;
         }
-        if (scrollAnimationFrame === null)
-        {
+        if (scrollAnimationFrame === null) {
             scrollAnimationFrame = requestAnimationFrame(ScrollStep);
         }
     });
 
-    document.addEventListener('keyup', function (event)
-    {
-        if (event.code === 'KeyS' && scrollDirection === 1)
-        {
-            scrollDirection = 0;
-        }
-        if (event.code === 'KeyW' && scrollDirection === -1)
-        {
-            scrollDirection = 0;
-        }
+    document.addEventListener('keyup', function (event) {
+        if (event.code === 'KeyS' && scrollDirection === 1) scrollDirection = 0;
+        if (event.code === 'KeyW' && scrollDirection === -1) scrollDirection = 0;
     });
 
-    function CurrentPageButton()
-    {
+    function CurrentPageButton() {
         const collectionInOrder = GetCollectionInOrder();
-        return collectionInOrder.find(pageOption =>
-        {
-            return document.URL.toString().includes(pageOption);
+        return collectionInOrder.find(pageOption => {
+            return pageOption && document.URL.toString().includes(pageOption.id);
         });
     }
 
-    function OnLoad()
-    {
+    function OnLoad() {
         @yield('onLoad')
         let currentPageButton = CurrentPageButton();
-        if (currentPageButton === undefined)
-        {
+        if (currentPageButton === undefined) {
             currentPageButton = document.getElementById('categories')
         }
-        currentPageButton.setAttribute('class', 'btn slct-darkslate')
+        if (currentPageButton) {
+            currentPageButton.setAttribute('class', 'btn slct-darkslate')
+        }
     }
 
-    function OnKeyDown(key)
-    {
-        if (KeyboardSuport === false)
-        {
-            return;
-        }
-        if (key === "KeyD" || key === "KeyRightArrow" || key === "KeyA" || key === 'KeyLeftArrow')
-        {
+    function OnKeyDown(key) {
+        if (KeyboardSuport === false) return;
+        if (["KeyD", "KeyRightArrow", "KeyA", "KeyLeftArrow"].includes(key)) {
             let canMove = true;
             @yield('KeyInXX')
             @yield('CanMove')
-            if (canMove === true)
-            {
+            if (canMove === true) {
                 LeftAndRight(key);
             }
         }
 
-        if (key === 'KeyS' || key === 'KeyW' || key === 'KeyUpArrow' || key === 'KeyDownArrow')
-        {
-            let upDownInt = 1;
-            if (key === 'KeyS' || key === 'KeyDownArrow')
-            {
-                upDownInt = -1
-            }
-
+        if (['KeyS', 'KeyW', 'KeyUpArrow', 'KeyDownArrow'].includes(key)) {
             @yield('KeyInYX')
         }
 
-        $url = document.URL.split('/');
-        if (key === 'KeyEnter' || key === 'KeySpace' || key === 'KeyE' || key === 'KeyF' || key === 'KeyZ')
-        {
+        if (['KeyEnter', 'KeySpace', 'KeyE', 'KeyF', 'KeyZ'].includes(key)) {
             @yield('Select')
-            if(document.getElementById("selectedInLayout").textContent === 'true')
-            {
+            if (document.getElementById("selectedInLayout").textContent === 'true') {
                 GoTooPage(GetCollectionInOrder());
             }
         }
 
-        if (key === 'KeyDelete' || key === 'KeyBackSpace' || key === 'KeyEscape' || key === 'KeyQ' || key === 'KeyX')
-        {
+        if (['KeyDelete', 'KeyBackSpace', 'KeyEscape', 'KeyQ', 'KeyX'].includes(key)) {
             history.back();
         }
     }
 
-    function LeftAndRight(key , collectionInOrder = null , oClassName = 'btn btn-darkslate', nClassName = 'btn slct-darkslate')
-    {
-        if (collectionInOrder === null)
-        {
+    function LeftAndRight(key, collectionInOrder = null, oClassName = 'btn btn-darkslate', nClassName = 'btn slct-darkslate') {
+        if (collectionInOrder === null) {
             collectionInOrder = GetCollectionInOrder();
         }
-
         let count = collectionInOrder.length;
-        let leftOrRight = 1;
-        if (key === "KeyA" || key === 'KeyLeftArrow')
-        {
-            leftOrRight = -1;
-        }
-
-        const collectionOrderNumber = GetSelectedButtonOrderNumber(collectionInOrder)
-        if (collectionOrderNumber + leftOrRight !== -1 && collectionInOrder.at(collectionOrderNumber + leftOrRight) != null)
-        {
-            collectionInOrder.at(collectionOrderNumber).setAttribute('class', oClassName)
-            collectionInOrder.at(collectionOrderNumber + leftOrRight).setAttribute('class', nClassName)
-
-        } else
-        {
-            collectionInOrder.at(collectionOrderNumber).setAttribute('class', oClassName)
-            let orderNumber = 0;
-            if (leftOrRight === -1)
-            {
-                orderNumber = count - 1;
-            }
-            collectionInOrder.at(orderNumber).setAttribute('class', nClassName)
+        let leftOrRight = (key === "KeyA" || key === 'KeyLeftArrow') ? -1 : 1;
+        const collectionOrderNumber = GetSelectedButtonOrderNumber(collectionInOrder);
+        
+        if (collectionOrderNumber + leftOrRight !== -1 && collectionInOrder.at(collectionOrderNumber + leftOrRight) != null) {
+            collectionInOrder.at(collectionOrderNumber).setAttribute('class', oClassName);
+            collectionInOrder.at(collectionOrderNumber + leftOrRight).setAttribute('class', nClassName);
+        } else {
+            collectionInOrder.at(collectionOrderNumber).setAttribute('class', oClassName);
+            let orderNumber = (leftOrRight === -1) ? count - 1 : 0;
+            collectionInOrder.at(orderNumber).setAttribute('class', nClassName);
         }
     }
 
-    function GoTooPage(collectionInOrder, id = null)
-    {
-        let orderNumber;
-        if (id != null)
-        {
-            orderNumber = collectionInOrder.findIndex(option =>
-            {
-                return id === option.id;
-            });
-        } else
-        {
-            orderNumber = GetSelectedButtonOrderNumber(collectionInOrder)
-        }
+    function GoTooPage(collectionInOrder, id = null) {
+        let orderNumber = (id != null) ? collectionInOrder.findIndex(option => id === option.id) : GetSelectedButtonOrderNumber(collectionInOrder);
         GoToURL(collectionInOrder.at(orderNumber).id);
     }
 
-    function GoToURL(url)
-    {
-        if (url.includes('http'))
-        {
+    function GoToURL(url) {
+        if (url.includes('http')) {
             window.location.assign(url);
-        }
-        else
-        {
-            window.location.assign(document.URL.split(document.URL.split('/')[3])[0] + url);
+        } else {
+            window.location.assign(document.URL.split(document.URL.split('/')[3])[0] + '/' + url);
         }
     }
 
-    function GetSelectedButtonOrderNumber(collectionInOrder)
-    {
-        if (collectionInOrder.length < 3)
-        {
-            if (collectionInOrder.length === 1)
-            {
-                return 0;
-            }
-
-            if (collectionInOrder.length === 2)
-            {
-                let $standardClass = document.getElementById('standardClass')
-                if (document.getElementById('standardClass') === null)
-                {
-                    p = document.createElement("p");
+    function GetSelectedButtonOrderNumber(collectionInOrder) {
+        if (collectionInOrder.length < 3) {
+            if (collectionInOrder.length === 1) return 0;
+            if (collectionInOrder.length === 2) {
+                let $standardClass = document.getElementById('standardClass');
+                if (!$standardClass) {
+                    let p = document.createElement("p");
                     p.setAttribute('style', 'display: none');
-                    p.setAttribute('id', 'standardClass')
-                    p.setAttribute('class', collectionInOrder[1].getAttribute('class'))
-                    $standardClass = p;
+                    p.setAttribute('id', 'standardClass');
+                    p.setAttribute('class', collectionInOrder[1].getAttribute('class'));
                     document.body.appendChild(p);
+                    $standardClass = p;
                 }
-
-                if (collectionInOrder[0].getAttribute('class') !== $standardClass.getAttribute('class'))
-                {
-                    return 0;
-                }
-                if (collectionInOrder[1].getAttribute('class') !== $standardClass.getAttribute('class'))
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
+                return (collectionInOrder[0].getAttribute('class') !== $standardClass.getAttribute('class')) ? 0 : 1;
             }
-        }
-        else
-        {
-            let $class = (collectionInOrder[0]).getAttribute('class');
-            if ($class !== (collectionInOrder[1]).getAttribute('class'))
-            {
-                const oldClass = $class;
-                $class = (collectionInOrder[2]).getAttribute('class');
-                if ($class === oldClass)
-                {
-                    return 1;
-                }
+        } else {
+            let $class = collectionInOrder[0].getAttribute('class');
+            if ($class !== collectionInOrder[1].getAttribute('class')) {
+                if (collectionInOrder[2].getAttribute('class') === $class) return 1;
             }
-
-            return collectionInOrder.findIndex(option =>
-            {
-                return $class !== option.getAttribute('class');
-            });
+            return collectionInOrder.findIndex(option => $class !== option.getAttribute('class'));
         }
     }
 </script>
