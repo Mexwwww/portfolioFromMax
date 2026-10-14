@@ -4,15 +4,15 @@
 @section('style')
     <style>
         .backgroundColor {
-            background: #0d1117 !important;
+            background: #f6f8fa !important;
         }
     </style>
 @endsection
 
 <style>
     body {
-        background-color: #0d1117;
-        color: #c9d1d9;
+        background-color: #f6f8fa;
+        color: #24292e;
     }
 
     #catagoryButtons {
@@ -20,32 +20,32 @@
     }
 
     .blackBackgroundColor {
-        background: #161b22;
+        background: #ffffff;
         border-radius: 8px;
-        border: 1px solid #30363d;
-        color: #8b949e;
+        border: 1px solid #e1e4e8;
+        color: #586069;
         transition: all 0.2s ease;
         font-family: 'Fira Code', monospace;
     }
 
     .blackBackgroundColor:hover {
-        background: #21262d;
-        color: #c9d1d9;
-        border-color: #8b949e;
+        background: #f1f8ff;
+        color: #0366d6;
+        border-color: #c8e1ff;
     }
 
     .blackBackgroundColor_slct {
         border-radius: 8px;
-        background: rgba(56, 139, 253, 0.15) !important;
-        color: #58a6ff !important;
+        background: rgba(3, 102, 214, 0.1) !important;
+        color: #0366d6 !important;
         text-decoration: none;
-        border: 1px solid #58a6ff !important;
-        box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+        border: 1px solid #c8e1ff !important;
+        box-shadow: 0 1px 4px rgba(3, 102, 214, 0.15);
         font-family: 'Fira Code', monospace;
     }
 
     #catagoryButtons.at-category-level .blackBackgroundColor_slct {
-        border-color: #58a6ff;
+        border-color: #0366d6;
     }
 
     .category-link {
@@ -61,18 +61,18 @@
     }
 
     .temp {
-        color: #c9d1d9;
+        color: #24292e;
         text-decoration: none;
         transition: color 0.2s ease;
     }
 
     .temp:hover {
-        color: #58a6ff;
+        color: #0366d6;
         text-decoration: none;
     }
 
     .temp_slct {
-        color: #58a6ff;
+        color: #0366d6;
         text-decoration: none;
     }
 
@@ -81,42 +81,42 @@
     }
 
     .project-card {
-        background: #161b22;
-        border: 1px solid #30363d;
+        background: #ffffff;
+        border: 1px solid #e1e4e8;
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
         transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         max-width: 320px;
         margin: 0 auto;
     }
 
     .project-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6);
-        border-color: #8b949e;
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(27, 31, 35, 0.08);
+        border-color: #c8e1ff;
     }
 
     .temp_slct .project-card {
-        border: 1px solid #58a6ff;
-        box-shadow: 0 0 15px rgba(88, 166, 255, 0.25);
+        border: 1px solid #0366d6;
+        box-shadow: 0 0 10px rgba(3, 102, 214, 0.15);
     }
 
     .project-card img {
         width: 100%;
         height: 180px;
         object-fit: cover;
-        border-bottom: 1px solid #30363d;
+        border-bottom: 1px solid #e1e4e8;
     }
 
     .project-card .card-title {
-        color: #58a6ff;
+        color: #0366d6;
         font-weight: 600;
         font-family: 'Fira Code', monospace;
     }
 
     .project-card .card-text {
-        color: #8b949e;
+        color: #586069;
         font-size: 0.9rem;
     }
 
@@ -129,17 +129,17 @@
 
     .project-tag {
         display: inline-block;
-        background: #21262d;
-        color: #8b949e;
+        background: #f1f8ff;
+        color: #0366d6;
         font-size: 0.75rem;
         padding: 0.25em 0.7em;
         border-radius: 999px;
-        border: 1px solid #30363d;
+        border: 1px solid #c8e1ff;
         font-family: 'Fira Code', monospace;
     }
 </style>
 
-<body style="color: #c9d1d9; background-color: #0d1117;">
+<body style="color: #24292e; background-color: #f6f8fa;">
 
 <?php
 $projects = [];
