@@ -11,26 +11,26 @@
 
     .divLeft {
         flex: 0 0 350px;
-        background: #161b22;
-        border: 1px solid #30363d;
+        background: #ffffff;
+        border: 1px solid #e1e4e8;
         border-radius: 12px;
         padding: 1.5rem;
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);[cite: 1]
     }
 
     .divRight {
         flex: 1;
-        background: #161b22;
-        border: 1px solid #30363d;
+        background: #ffffff;
+        border: 1px solid #e1e4e8;
         border-radius: 12px;
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);[cite: 1]
         min-height: 400px;
     }
 
@@ -40,43 +40,43 @@
         gap: 12px;
         padding: 0.85rem 1.2rem;
         border-radius: 8px;
-        color: #8b949e;
-        background: #0d1117;
-        border: 1px solid #30363d;
+        color: #586069;
+        background: #f6f8fa;
+        border: 1px solid #e1e4e8;
         text-decoration: none;
         font-family: 'Fira Code', monospace;
         font-size: 1.1rem;
         transition: all 0.2s ease;
         cursor: pointer;
         text-align: left;
-        width: 100%;
+        width: 100%;[cite: 1]
     }
 
     .category-btn:hover,
     .category-btn.active {
-        color: #58a6ff;
-        background: rgba(56, 139, 253, 0.1);
-        border-color: #58a6ff;
+        color: #0366d6;
+        background: rgba(3, 102, 214, 0.08);
+        border-color: #c8e1ff;
         transform: translateX(4px);
-        box-shadow: 0 0 12px rgba(88, 166, 255, 0.2);
+        box-shadow: 0 1px 4px rgba(3, 102, 214, 0.1);[cite: 1]
     }
 
     .category-btn .icon {
-        opacity: 0.4;
-        color: #8b949e;
+        opacity: 0.5;
+        color: #586069;[cite: 1]
     }
 
     .category-btn:hover .icon,
     .category-btn.active .icon {
         opacity: 1;
-        color: #58a6ff;
+        color: #0366d6;[cite: 1]
     }
 
     #preview {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: block;
+        display: block;[cite: 1]
     }
 
     @media (max-width: 900px) {
@@ -156,7 +156,6 @@ $unrealImages = array_map('basename', glob("images/unreal-engine/*.{png}", GLOB_
     function PreviewCategory(categoryName) {
         currentActiveCategory = categoryName;
         
-        // Highlight active button
         document.querySelectorAll('.category-btn').forEach(btn => {
             if (btn.id === categoryName) {
                 btn.classList.add('active');
@@ -180,7 +179,6 @@ $unrealImages = array_map('basename', glob("images/unreal-engine/*.{png}", GLOB_
         document.getElementById('preview').src = imagePath;
     }
 
-    // Initialize on page load
     window.addEventListener('DOMContentLoaded', () => {
         let dirNames = <?php echo json_encode($dirNames); ?>;
         if (dirNames.length > 0) {

@@ -4,96 +4,96 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 6vh 1rem;
+        padding: 6vh 1rem;[cite: 2]
     }
 
     .divRight {
         width: 100%;
         max-width: 480px;
-        background: #161b22;
-        border: 1px solid #30363d;
+        background: #ffffff;
+        border: 1px solid #e1e4e8;
         border-radius: 12px;
         padding: 2.5rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-        color: #c9d1d9;
+        box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);[cite: 2]
+        color: #24292e;
         font-family: 'Inter', sans-serif;
     }
 
     .divRight h3 {
         font-family: 'Fira Code', monospace;
-        color: #58a6ff;
+        color: #0366d6;
         margin-bottom: 1.5rem;
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.5rem;[cite: 2]
     }
 
     .divRight label {
-        color: #8b949e;
+        color: #586069;
         margin-bottom: 0.4rem;
         display: inline-block;
         font-size: 0.9rem;
-        font-family: 'Fira Code', monospace;
+        font-family: 'Fira Code', monospace;[cite: 2]
     }
 
     .divRight .form-control {
-        background: #0d1117;
-        border: 1px solid #30363d;
-        color: #c9d1d9;
+        background: #f6f8fa;
+        border: 1px solid #e1e4e8;
+        color: #24292e;
         border-radius: 6px;
         padding: 0.75rem;
         font-size: 0.95rem;
-        transition: all 0.2s ease;
+        transition: all 0.2s ease;[cite: 2]
     }
 
     .divRight .form-control::placeholder {
-        color: #484f58;
+        color: #959da5;[cite: 2]
     }
 
     .divRight .form-control:focus {
-        background: #0d1117;
-        color: #c9d1d9;
-        border-color: #58a6ff;
-        box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+        background: #ffffff;
+        color: #24292e;
+        border-color: #0366d6;
+        box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.15);[cite: 2]
     }
 
     .divRight .form-group {
-        margin-bottom: 1.25rem;
+        margin-bottom: 1.25rem;[cite: 2]
     }
 
     .divRight .input-group {
         margin-top: 0;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.5rem;[cite: 2]
     }
 
     .divRight textarea.form-control {
         min-height: 130px;
-        resize: vertical;
+        resize: vertical;[cite: 2]
     }
 
     .envolope {
         display: block;
         margin: 1.5rem auto 0;
         max-width: 60px;
-        height: auto;
+        height: auto;[cite: 2]
     }
 
     .divRight .btn-darkslate {
-        background: #238636;
+        background: #2ea44f;
         color: #ffffff;
-        border: 1px solid rgba(240, 246, 252, 0.1);
+        border: 1px solid rgba(27, 31, 35, 0.1);
         width: 100%;
         padding: 0.75rem;
         font-weight: 600;
         border-radius: 6px;
         font-family: 'Fira Code', monospace;
-        transition: all 0.2s ease;
+        transition: all 0.2s ease;[cite: 2]
     }
 
     .divRight .btn-darkslate:hover {
-        background: #2ea043;
+        background: #2c974b;
         color: #ffffff !important;
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(46, 160, 67, 0.3);
+        box-shadow: 0 4px 12px rgba(46, 164, 79, 0.3);[cite: 2]
     }
 
     @keyframes mailAnim {
@@ -173,12 +173,12 @@
 
     .animate-mail-anim {
         animation: mailAnim;
-        animation-duration: 10s;
+        animation-duration: 10s;[cite: 2]
     }
 
     .animate-envolope-anim {
         animation: envolopeAnim;
-        animation-duration: 10s;
+        animation-duration: 10s;[cite: 2]
     }
 </style>
 
