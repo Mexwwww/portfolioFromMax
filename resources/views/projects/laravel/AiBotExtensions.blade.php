@@ -1,5 +1,4 @@
 {{-- Here you can set the description that will show under the title on the select project page --}}
-{{--DESCRIPTION §Built a custom website around an existing, locally-run AI, extending what it could do through a chat interface.§--}}
 {{-- IMAGE §images/laravel/laravel-Logo.png§ --}}
 <style>
     .project-detail {

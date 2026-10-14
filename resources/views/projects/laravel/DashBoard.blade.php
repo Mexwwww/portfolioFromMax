@@ -1,5 +1,4 @@
 {{-- Here you can set the description that will show under the title on the select project page --}}
-{{--DESCRIPTION §An internal dashboard for automatically handling payments and tracking finances, connected to Exact.§--}}
 {{-- TAGS §1 dev§ --}}
 {{-- IMAGE §images/laravel/laravel-Logo.png§ --}}
 <style>

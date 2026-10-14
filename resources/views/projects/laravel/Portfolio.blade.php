@@ -1,5 +1,4 @@
 {{-- Here you can set the description that will show under the title on the select project page --}}
-{{--DESCRIPTION §This portfolio website itself, built with Laravel, featuring a sleek modern developer aesthetic and dynamic file-driven project rendering.§--}}
 {{-- IMAGE §images/laravel/laravel-Logo.png§ --}}
 <style>
     .project-detail {

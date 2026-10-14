@@ -1,5 +1,4 @@
 {{-- Here you can set the description that will show under the title on the select project page --}}
-{{--DESCRIPTION §Worked on multiple existing websites, adding and fixing features on request of customers.§--}}
 {{-- IMAGE §images/laravel/laravel-Logo.png§ --}}
 <style>
     .project-detail {

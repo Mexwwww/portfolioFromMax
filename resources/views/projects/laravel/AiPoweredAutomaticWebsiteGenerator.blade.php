@@ -1,5 +1,4 @@
 {{-- Here you can set the description that will show under the title on the select project page --}}
-{{--DESCRIPTION §Automated website finding and improving.§--}}
 {{-- TAGS §2 weeks, 1 Dev§ --}}
 {{-- IMAGE §images/laravel/laravel-Logo.png§ --}}
 <style>
