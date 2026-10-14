@@ -176,12 +176,23 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
         })->first();
 
         if (!$fileObj) return null;
-        $content = File::get($fileObj->getRealPath());
+        $lines = file($fileObj->getRealPath());
+        $content = implode('', $lines);
 
         if ($lookForImage) {
-            if (preg_match('/{{--\s*IMAGE\s*§(.*?)§\s*--}}/u', $content, $imgMatch) && isset($imgMatch[1])) {
-                return asset(trim($imgMatch[1]));
+            // Find IMAGE line using simple string matching and explode
+            $imgLine = collect($lines)->filter(function ($line) {
+                return str_contains($line, 'IMAGE');
+            })->first();
+            
+            if ($imgLine) {
+                $result = explode('§', $imgLine);
+                if (isset($result[1]) && !empty(trim($result[1]))) {
+                    return asset(trim($result[1]));
+                }
             }
+
+            // Fallback to category folder scan
             if (!empty($category)) {
                 $possiblePath = "images/{$category}/{$project}.png";
                 if (file_exists(public_path($possiblePath))) {
@@ -190,15 +201,23 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
             }
             return asset('images/laravel/laravel-Logo.png');
         } else {
-            // 1. Check DESCRIPTION tag first
-            if (preg_match('/{{--\s*DESCRIPTION\s*§(.*?)§\s*--}}/u', $content, $descMatch) && isset($descMatch[1])) {
-                return trim($descMatch[1]);
+            // 1. Check DESCRIPTION line using simple string matching and explode
+            $descLine = collect($lines)->filter(function ($line) {
+                return str_contains($line, 'DESCRIPTION');
+            })->first();
+            
+            if ($descLine) {
+                $result = explode('§', $descLine);
+                if (isset($result[1]) && !empty(trim($result[1]))) {
+                    return trim($result[1]);
+                }
             }
+
             // 2. Check project-summary div
             if (preg_match('/<div class="project-summary">\s*(.*?)\s*<\/div>/s', $content, $summaryMatch) && isset($summaryMatch[1])) {
                 return trim(strip_tags($summaryMatch[1]));
             }
-            // 3. Fallback to extracting the first paragraph (<p>) for other projects without tags/summaries
+            // 3. Fallback to extracting the first paragraph (<p>)
             if (preg_match('/<p>(.*?)<\/p>/s', $content, $pMatch) && isset($pMatch[1])) {
                 return trim(strip_tags($pMatch[1]));
             }
@@ -234,16 +253,15 @@ if(!function_exists('GetProjectTags'))
         })->first();
 
         if (!$fileObj) return [];
-        $content = File::get($fileObj->getRealPath());
+        $lines = file($fileObj->getRealPath());
 
-        $line = collect(file($fileObj->getRealPath()))->filter(function ($line) {
+        $line = collect($lines)->filter(function ($line) {
             return str_contains($line, 'TAGS');
         })->first();
         
-        if (preg_match('/TAGS\s*§(.*?)§/u', $line ?? '', $tagMatch) && isset($tagMatch[1])) {
-            return array_map('trim', explode(',', $tagMatch[1]));
-        }
-        return [];
+        $result = explode('§', $line ?? '');
+        $tags = $result[1] ?? null;
+        return $tags == null ? [] : array_map('trim', explode(',', $tags));
     }
 }
 ?>
