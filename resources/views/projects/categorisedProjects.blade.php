@@ -179,7 +179,7 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
         $content = File::get($fileObj->getRealPath());
 
         if ($lookForImage) {
-            if (preg_match('/{{--\s*IMAGE\s*§(.*?)§\s*--}}/.u', $content, $imgMatch) && isset($imgMatch[1])) {
+            if (preg_match('/{{--\s*IMAGE\s*§(.*?)§\s*--}}/u', $content, $imgMatch) && isset($imgMatch[1])) {
                 return asset(trim($imgMatch[1]));
             }
             if (!empty($category)) {
@@ -191,7 +191,7 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
             return asset('images/laravel/laravel-Logo.png');
         } else {
             // 1. Check DESCRIPTION tag first
-            if (preg_match('/{{--\s*DESCRIPTION\s*§(.*?)§\s*--}}/.u', $content, $descMatch) && isset($descMatch[1])) {
+            if (preg_match('/{{--\s*DESCRIPTION\s*§(.*?)§\s*--}}/u', $content, $descMatch) && isset($descMatch[1])) {
                 return trim($descMatch[1]);
             }
             // 2. Check project-summary div
@@ -240,7 +240,7 @@ if(!function_exists('GetProjectTags'))
             return str_contains($line, 'TAGS');
         })->first();
         
-        if (preg_match('/TAGS\s*§(.*?)§/.u', $line ?? '', $tagMatch) && isset($tagMatch[1])) {
+        if (preg_match('/TAGS\s*§(.*?)§/u', $line ?? '', $tagMatch) && isset($tagMatch[1])) {
             return array_map('trim', explode(',', $tagMatch[1]));
         }
         return [];
