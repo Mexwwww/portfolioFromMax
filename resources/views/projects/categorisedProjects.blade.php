@@ -10,20 +10,9 @@
 @endsection
 
 <style>
-    :root {
-        --bg-primary: #0d1117;
-        --bg-secondary: #161b22;
-        --border-color: #30363d;
-        --text-main: #c9d1d9;
-        --text-muted: #8b949e;
-        --accent-blue: #58a6ff;
-        --accent-green: #2ea043;
-    }
-
     body {
-        background-color: var(--bg-primary);
-        color: var(--text-main);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #0d1117;
+        color: #c9d1d9;
     }
 
     #catagoryButtons {
@@ -31,32 +20,32 @@
     }
 
     .blackBackgroundColor {
-        background: var(--bg-secondary);
+        background: #161b22;
         border-radius: 8px;
-        border: 1px solid var(--border-color);
-        color: var(--text-muted);
+        border: 1px solid #30363d;
+        color: #8b949e;
         transition: all 0.2s ease;
         font-family: 'Fira Code', monospace;
     }
 
     .blackBackgroundColor:hover {
         background: #21262d;
-        color: var(--text-main);
-        border-color: var(--text-muted);
+        color: #c9d1d9;
+        border-color: #8b949e;
     }
 
     .blackBackgroundColor_slct {
         border-radius: 8px;
         background: rgba(56, 139, 253, 0.15) !important;
-        color: var(--accent-blue) !important;
+        color: #58a6ff !important;
         text-decoration: none;
-        border: 1px solid var(--accent-blue) !important;
+        border: 1px solid #58a6ff !important;
         box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
         font-family: 'Fira Code', monospace;
     }
 
     #catagoryButtons.at-category-level .blackBackgroundColor_slct {
-        border-color: var(--accent-blue);
+        border-color: #58a6ff;
     }
 
     .category-link {
@@ -72,18 +61,18 @@
     }
 
     .temp {
-        color: var(--text-main);
+        color: #c9d1d9;
         text-decoration: none;
         transition: color 0.2s ease;
     }
 
     .temp:hover {
-        color: var(--accent-blue);
+        color: #58a6ff;
         text-decoration: none;
     }
 
     .temp_slct {
-        color: var(--accent-blue);
+        color: #58a6ff;
         text-decoration: none;
     }
 
@@ -92,8 +81,8 @@
     }
 
     .project-card {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
+        background: #161b22;
+        border: 1px solid #30363d;
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
@@ -105,11 +94,11 @@
     .project-card:hover {
         transform: translateY(-6px);
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6);
-        border-color: var(--text-muted);
+        border-color: #8b949e;
     }
 
     .temp_slct .project-card {
-        border: 1px solid var(--accent-blue);
+        border: 1px solid #58a6ff;
         box-shadow: 0 0 15px rgba(88, 166, 255, 0.25);
     }
 
@@ -117,17 +106,17 @@
         width: 100%;
         height: 180px;
         object-fit: cover;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid #30363d;
     }
 
     .project-card .card-title {
-        color: var(--accent-blue);
+        color: #58a6ff;
         font-weight: 600;
         font-family: 'Fira Code', monospace;
     }
 
     .project-card .card-text {
-        color: var(--text-muted);
+        color: #8b949e;
         font-size: 0.9rem;
     }
 
@@ -141,11 +130,11 @@
     .project-tag {
         display: inline-block;
         background: #21262d;
-        color: var(--text-muted);
+        color: #8b949e;
         font-size: 0.75rem;
         padding: 0.25em 0.7em;
         border-radius: 999px;
-        border: 1px solid var(--border-color);
+        border: 1px solid #30363d;
         font-family: 'Fira Code', monospace;
     }
 </style>
