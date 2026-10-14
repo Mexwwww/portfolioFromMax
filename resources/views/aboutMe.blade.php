@@ -30,10 +30,6 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
-    .about-me .bio-content {
-        overflow: hidden; /* Ensures text stays neatly beside the floated image on PC */
-    }
-
     .about-me p {
         font-size: 1.05rem;
         line-height: 1.7;
@@ -41,9 +37,10 @@
         color: #b1bac4;
     }
 
-    /* Clean desktop-only separation for the technical section */
-    .about-me .bio-content p.separated {
-        margin-top: 2rem;
+    /* Clears the float and drops underneath the image with clean spacing on PC */
+    .about-me p.below-image {
+        clear: both;
+        padding-top: 2rem;
     }
 
     .about-me a.cv-download {
@@ -87,8 +84,10 @@
             margin: 0 auto 1.5rem;
         }
 
-        .about-me .bio-content p.separated {
-            margin-top: 1.1rem;
+        /* Resets the clear on mobile so text flows naturally without extra gaps */
+        .about-me p.below-image {
+            clear: none;
+            padding-top: 0;
         }
 
         .about-me a.cv-download {
@@ -104,16 +103,14 @@
     <div class="about-me">
         <h1>About Me</h1>
         <img class="profile" src="{{ asset('images/max.png') }}" alt="Max Geurts">
-        <div class="bio-content">
-            <p>Hello,</p>
-            <p>My name is Max Geurts. I am a software developer who completed the 4-year Game Development study at Grafisch Lyceum Utrecht, which included two internship periods that combined took about a year.</p>
-            <p>After my studies, I started working at Xeropex, where I completed my internship periods and worked during summer vacation.</p>
-            <p class="separated">What I like most about software development is solving complex technical problems and seeing the end result of a high-quality project I have built.</p>
-            <p>In my free time, I like to code, play D&D, hang out with friends, and meet new people. My favourite game is Horizon Zero Dawn, with Undertale in second place and Omori in third.</p>
-            <a class="cv-download" download href="{{ asset('cv/CvOfMaxGeurts.pdf') }}">
-                <span>↓</span> Download CV
-            </a>
-        </div>
+        <p>Hello,</p>
+        <p>My name is Max Geurts. I am a software developer who completed the 4-year Game Development study at Grafisch Lyceum Utrecht, which included two internship periods that combined took about a year.</p>
+        <p>After my studies, I started working at Xeropex, where I completed my internship periods and worked during summer vacation.</p>
+        <p class="below-image">What I like most about software development is solving complex technical problems and seeing the end result of a high-quality project I have built.</p>
+        <p>In my free time, I like to code, play D&D, hang out with friends, and meet new people. My favourite game is Horizon Zero Dawn, with Undertale in second place and Omori in third.</p>
+        <a class="cv-download" download href="{{ asset('cv/CvOfMaxGeurts.pdf') }}">
+            <span>↓</span> Download CV
+        </a>
         <div class="clear"></div>
     </div>
 @endsection
