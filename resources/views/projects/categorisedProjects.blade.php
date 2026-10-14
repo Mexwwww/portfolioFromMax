@@ -48,6 +48,13 @@
         border-color: #58a6ff;
     }
 
+    .category-link {
+        font-size: 1.15rem;
+        padding: 0.6em 1.5em;
+        margin: 0.3rem 0.4em;
+        display: inline-block;
+    }
+
     .project {
         background: none;
         display: none;
@@ -180,7 +187,6 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
         $content = implode('', $lines);
 
         if ($lookForImage) {
-            // Find IMAGE line using simple string matching and explode
             $imgLine = collect($lines)->filter(function ($line) {
                 return str_contains($line, 'IMAGE');
             })->first();
@@ -192,7 +198,6 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
                 }
             }
 
-            // Fallback to category folder scan
             if (!empty($category)) {
                 $possiblePath = "images/{$category}/{$project}.png";
                 if (file_exists(public_path($possiblePath))) {
@@ -201,7 +206,6 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
             }
             return asset('images/laravel/laravel-Logo.png');
         } else {
-            // 1. Check DESCRIPTION line using simple string matching and explode
             $descLine = collect($lines)->filter(function ($line) {
                 return str_contains($line, 'DESCRIPTION');
             })->first();
@@ -213,11 +217,9 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
                 }
             }
 
-            // 2. Check project-summary div
             if (preg_match('/<div class="project-summary">\s*(.*?)\s*<\/div>/s', $content, $summaryMatch) && isset($summaryMatch[1])) {
                 return trim(strip_tags($summaryMatch[1]));
             }
-            // 3. Fallback to extracting the first paragraph (<p>)
             if (preg_match('/<p>(.*?)<\/p>/s', $content, $pMatch) && isset($pMatch[1])) {
                 return trim(strip_tags($pMatch[1]));
             }
@@ -269,8 +271,7 @@ if(!function_exists('GetProjectTags'))
 @section('content')
     <div id="catagoryButtons" style="text-align: center;">
         @foreach($directoryNames as $directoryName)
-            <a class="temp blackBackgroundColor"
-               style="font-size: 1.15rem; padding: 0.6em 1.5em; margin: 0 0.4em; display: inline-block;"
+            <a class="temp blackBackgroundColor category-link"
                id="{{$directoryName}}" onclick="ClickedOn(id)">
                 <span style="line-height: 1;">{{$directoryName}}</span>
             </a>
@@ -316,7 +317,7 @@ if(!function_exists('GetProjectTags'))
 <script>
     @section('onLoad')
     const id = document.URL.split('/').at(-1);
-    document.getElementById(id).setAttribute('class', 'temp_slct blackBackgroundColor_slct')
+    document.getElementById(id).setAttribute('class', 'temp_slct blackBackgroundColor_slct category-link')
     document.getElementById('categories').setAttribute('class', 'btn slct-darkslate')
     ChangeFilter(id);
     document.getElementById("selectedInLayout").textContent = -2;
@@ -445,7 +446,7 @@ if(!function_exists('GetProjectTags'))
         if (depthLevel === '-1')
         {
             $cattagoryButtons = GetCattagoryButtons();
-            LeftAndRight(key, $cattagoryButtons, 'temp blackBackgroundColor', 'temp_slct blackBackgroundColor_slct')
+            LeftAndRight(key, $cattagoryButtons, 'temp blackBackgroundColor category-link', 'temp_slct blackBackgroundColor_slct category-link')
             ChangeFilter($cattagoryButtons.at(GetSelectedButtonOrderNumber($cattagoryButtons)).id);
         } else
         {
@@ -495,10 +496,10 @@ if(!function_exists('GetProjectTags'))
         {
             if (button.id === id)
             {
-                document.getElementById(button.id).setAttribute('class', 'temp_slct blackBackgroundColor_slct')
+                document.getElementById(button.id).setAttribute('class', 'temp_slct blackBackgroundColor_slct category-link')
             } else
             {
-                document.getElementById(button.id).setAttribute('class', 'temp blackBackgroundColor')
+                document.getElementById(button.id).setAttribute('class', 'temp blackBackgroundColor category-link')
             }
         })
     }
