@@ -169,7 +169,7 @@ $directoryNames = collect($directoryNames)->unique()->values()->toArray();
 
 if(!function_exists('GetProjectDiscriptionOrImage'))
 {
-    function GetProjectDiscriptionOrImage($project, $projects, $lookForImage = false)
+    function GetProjectDiscriptionOrImage($project, $projects, $lookForImage = false, $category = '')
     {
         $fileObj = collect($projects)->filter(function ($file) use ($project) {
             return $file->getFilename() === $project . '.blade.php';
@@ -181,6 +181,13 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
         if ($lookForImage) {
             if (preg_match('/{{--\s*IMAGE\s*§(.*?)§\s*--}}/', $content, $imgMatch) && isset($imgMatch[1])) {
                 return asset(trim($imgMatch[1]));
+            }
+            // Auto-detect image folder based on category or project name if no explicit tag exists
+            if (!empty($category)) {
+                $possiblePath = "images/{$category}/{$project}.png";
+                if (file_exists(public_path($possiblePath))) {
+                    return asset($possiblePath);
+                }
             }
             return asset('images/laravel/laravel-Logo.png');
         } else {
@@ -256,14 +263,15 @@ if(!function_exists('GetProjectTags'))
             @foreach($projectNames as $key => $category)
                 @foreach($category as $project)
                     @php($projectForName = GetProjectTitle($project, $projects))
-                    @php($projectDescription = GetProjectDiscriptionOrImage($project, $projects))
+                    @php($projectDescription = GetProjectDiscriptionOrImage($project, $projects, false, $key))
+                    @php($projectImage = GetProjectDiscriptionOrImage($project, $projects, true, $key))
                     @php($projectTags = GetProjectTags($project, $projects))
                     @php($count++)
                     <div class="col project" id="{{$key}}">
                         <div id="project {{$count}}" class="col temp">
                             <a href="/projects/{{$key}}/{{$project}}">
                                 <div class="card project-card">
-                                    <img src="{{GetProjectDiscriptionOrImage($project, $projects, true)}}" alt="selected"
+                                    <img src="{{$projectImage}}" alt="selected"
                                          class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">{{$projectForName}}</h5>

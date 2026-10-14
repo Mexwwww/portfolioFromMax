@@ -1,5 +1,5 @@
 {{-- Here you can set the description that will show under the title on the select project page --}}
-{{--DESCRIPTION §This portfolio website itself, built with Laravel with full keyboard navigation and dynamically generated project pages.§--}}
+{{--DESCRIPTION §This portfolio website itself, built with Laravel, featuring a sleek modern developer aesthetic and dynamic file-driven project rendering.§--}}
 {{-- IMAGE §images/laravel/laravel-Logo.png§ --}}
 <style>
     .project-detail {
@@ -55,15 +55,15 @@
 
         <!-- 1-Sentence summary explaining the whole project -->
         <div class="project-summary">
-            A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering and responsive developer-themed UI layouts.
+            A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation.
         </div>
 
-        <p>This is this exact website. I made this in PhpStorm and made it as nice to use as I could make it.</p>
+        <p>This is this exact website. I designed and built this portfolio to reflect a clean, professional software developer aesthetic—moving away from traditional gimmicks into a polished, modern tech look inspired by developer tooling and GitHub dashboards.</p>
 
-        <h2>Keyboard navigation</h2>
-        <p>To make this website comfortable to use I made it so it's almost fully navigable with the keyboard without using a mouse. The controls are WASD or the arrow keys move you around, E, F, Z, Enter or Space select whatever you're on, and Q, X, Backspace or Escape take you back one page. This works for moving between pages in the top navigation bar, browsing categories, and moving through project grids row by row and column by column.</p>
+        <h2>Architecture & Design</h2>
+        <p>The site is built on a robust Laravel backend utilizing Blade templating and Bootstrap 5, styled completely with custom CSS to feature darkslate surfaces, subtle cyan accents, and Fira Code typography. Navigation is built around natural, fluid mouse interaction while preserving an Escape key shortcut for quick backward navigation.</p>
 
-        <h2>Dynamic projects</h2>
-        <p>Every project you can browse on this site, including this one, is just a Blade file placed in the right folder. A small comment at the top of the file holds the description, some tags and a thumbnail image, which get read straight from the file to build the category grid. So adding a new project is as easy as adding a new file.</p>
+        <h2>Dynamic File-Driven Projects</h2>
+        <p>Every project you can browse on this site is dynamically loaded from individual Blade files stored in structured category folders. The application scans these files on the fly, extracting metadata comments for tags, thumbnail images, and summaries to build the interactive project grids automatically. This makes adding or updating portfolio pieces as simple as dropping in a new file.</p>
     </div>
 @endsection
