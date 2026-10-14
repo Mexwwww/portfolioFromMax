@@ -61,10 +61,10 @@
             <source src="{{ asset('videos/PAnimation.mp4') }}" type="video/mp4">
         </video>
 
-        <p>Here you see the procedural animation I made in my free time because I was intrested on how it works.[cite: 10]</p>
+        <p>Here you see the procedural animation I made in my free time because I was intrested on how it works.</p>
 
         <h1>Displaying C# Code</h1>
-        <p>This is a code snippet from the script I made too make a humaniod walk with procedural animation.[cite: 10]</p>
+        <p>This is a code snippet from the script I made too make a humaniod walk with procedural animation.</p>
 
         <pre><code>private void LegPlacement()
 {
