@@ -1,31 +1,41 @@
 <style>
+    :root {
+        --bg-primary: #0d1117;
+        --bg-secondary: #161b22;
+        --border-color: #30363d;
+        --text-main: #c9d1d9;
+        --text-muted: #b1bac4;
+        --accent-blue: #58a6ff;
+        --accent-green: #2ea043;
+    }
+
     .about-me {
         max-width: 850px;
         margin: 6vh auto;
         padding: 2.5rem;
-        background: #161b22;
-        border: 1px solid #30363d;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
         border-radius: 12px;
-        color: #c9d1d9;
+        color: var(--text-main);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
     .about-me h1 {
         font-family: 'Fira Code', monospace;
-        color: #58a6ff;
+        color: var(--accent-blue);
         font-size: 2.2rem;
         margin-bottom: 1.5rem;
-        border-bottom: 1px solid #30363d;
+        border-bottom: 1px solid var(--border-color);
         padding-bottom: 0.75rem;
     }
 
     .about-me h2 {
         font-family: 'Fira Code', monospace;
-        color: #58a6ff;
+        color: var(--accent-blue);
         font-size: 1.5rem;
         margin-top: 2.5rem;
         margin-bottom: 1rem;
-        border-bottom: 1px solid #30363d;
+        border-bottom: 1px solid var(--border-color);
         padding-bottom: 0.5rem;
     }
 
@@ -35,7 +45,7 @@
         height: 310px;
         object-fit: cover;
         border-radius: 8px;
-        border: 1px solid #30363d;
+        border: 1px solid var(--border-color);
         margin: 0 2rem 1.5rem 0;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
@@ -44,7 +54,7 @@
         font-size: 1.05rem;
         line-height: 1.7;
         margin-bottom: 1.1rem;
-        color: #b1bac4;
+        color: var(--text-muted);
     }
 
     .about-me p.below-image {
@@ -59,9 +69,9 @@
     .cv-preview {
         width: 100%;
         height: 600px;
-        border: 1px solid #30363d;
+        border: 1px solid var(--border-color);
         border-radius: 8px;
-        background: #0d1117;
+        background: var(--bg-primary);
         margin-bottom: 1.2rem;
     }
 
@@ -70,7 +80,7 @@
         align-items: center;
         gap: 8px;
         padding: 0.75rem 1.75rem;
-        background: #238636;
+        background: var(--accent-green);
         color: #ffffff;
         font-weight: 600;
         text-decoration: none;
@@ -81,7 +91,7 @@
     }
 
     .about-me a.cv-download:hover {
-        background: #2ea043;
+        background: #3fb950;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(46, 160, 67, 0.3);
     }
@@ -135,7 +145,6 @@
 
         <h2>Curriculum Vitae</h2>
         <div class="cv-container">
-            <!-- Embedded PDF viewer so it displays directly on the page -->
             <iframe src="{{ asset('cv/CvOfMaxGeurts.pdf') }}" class="cv-preview" type="application/pdf">
                 <p>Your browser does not support PDFs. Please download the PDF to view it: <a href="{{ asset('cv/CvOfMaxGeurts.pdf') }}">Download CV</a>.</p>
             </iframe>
