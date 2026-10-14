@@ -19,16 +19,6 @@
         padding-bottom: 0.75rem;
     }
 
-    .about-me h2 {
-        font-family: 'Fira Code', monospace;
-        color: #58a6ff;
-        font-size: 1.5rem;
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
-        border-bottom: 1px solid #30363d;
-        padding-bottom: 0.5rem;
-    }
-
     .about-me img.profile {
         float: left;
         width: 220px;
@@ -47,28 +37,17 @@
         color: #b1bac4;
     }
 
+    /* Clears the float and drops underneath the image with clean spacing on PC */
     .about-me p.below-image {
         clear: both;
         padding-top: 2rem;
-    }
-
-    .cv-container {
-        margin-top: 2rem;
-    }
-
-    .cv-preview {
-        width: 100%;
-        height: 600px;
-        border: 1px solid #30363d;
-        border-radius: 8px;
-        background: #0d1117;
-        margin-bottom: 1.2rem;
     }
 
     .about-me a.cv-download {
         display: inline-flex;
         align-items: center;
         gap: 8px;
+        margin-top: 1.5rem;
         padding: 0.75rem 1.75rem;
         background: #238636;
         color: #ffffff;
@@ -105,13 +84,10 @@
             margin: 0 auto 1.5rem;
         }
 
+        /* Resets the clear on mobile so text flows naturally without extra gaps */
         .about-me p.below-image {
             clear: none;
             padding-top: 0;
-        }
-
-        .cv-preview {
-            height: 400px;
         }
 
         .about-me a.cv-download {
@@ -132,19 +108,9 @@
         <p>After my studies, I started working at Xeropex, where I completed my internship periods and worked during summer vacation.</p>
         <p class="below-image">What I like most about software development is solving complex technical problems and seeing the end result of a high-quality project I have built.</p>
         <p>In my free time, I like to code, play D&D, hang out with friends, and meet new people. My favourite game is Horizon Zero Dawn, with Undertale in second place and Omori in third.</p>
-
-        <h2>Curriculum Vitae</h2>
-        <div class="cv-container">
-            <!-- Embedded PDF viewer so it displays directly on the page -->
-            <iframe src="{{ asset('cv/CvOfMaxGeurts.pdf') }}" class="cv-preview" type="application/pdf">
-                <p>Your browser does not support PDFs. Please download the PDF to view it: <a href="{{ asset('cv/CvOfMaxGeurts.pdf') }}">Download CV</a>.</p>
-            </iframe>
-
-            <a class="cv-download" download href="{{ asset('cv/CvOfMaxGeurts.pdf') }}">
-                <span>↓</span> Download CV
-            </a>
-        </div>
-
+        <a class="cv-download" download href="{{ asset('cv/CvOfMaxGeurts.pdf') }}">
+            <span>↓</span> Download CV
+        </a>
         <div class="clear"></div>
     </div>
 @endsection
