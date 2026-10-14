@@ -12,20 +12,22 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
+            /* Deep systems-engineer dark background */
+            background-color: #050709;
             color: #c9d1d9;
         }
 
         .backgroundColor {
-            background: #0d1117;
+            background: #050709;
         }
 
-        /* Modern Developer Nav Bar */
+        /* Modern Systems Developer Nav Bar */
         .cnt-white {
             width: 100%;
-            border-bottom: 1px solid #30363d;
-            background: #161b22;
-            padding: 0.5rem 1rem;
+            /* Crisp clean line with darker IDE card tone */
+            border-bottom: 1px solid #21262d;
+            background: #0d1117;
+            padding: 0.6rem 1rem;
         }
 
         .layout-nav-links {
@@ -34,12 +36,13 @@
             align-items: center;
             justify-content: center;
             gap: 1rem 3rem;
-            padding: 8px 16px;
+            padding: 4px 16px;
             font-size: 0.95rem;
             font-family: 'Fira Code', monospace;
         }
 
         .btn-darkslate {
+            /* Muted code-editor text tone */
             color: #8b949e !important;
             background: transparent;
             border: 1px solid transparent;
@@ -47,24 +50,26 @@
             padding: 0.4rem 0.8rem;
             text-decoration: none;
             pointer-events: auto;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
 
         .btn-darkslate:hover,
         a:hover {
+            /* Terminal cyan/blue highlight */
             color: #58a6ff !important;
-            background: rgba(56, 139, 253, 0.1);
+            background: rgba(88, 166, 255, 0.08);
             border-color: #30363d;
             transform: translateY(-1px);
         }
 
         .slct-darkslate {
+            /* Active tab indicator styled like an open file in VS Code */
             color: #58a6ff !important;
-            background: rgba(56, 139, 253, 0.15);
+            background: rgba(88, 166, 255, 0.12);
             border: 1px solid #30363d;
             border-radius: 6px;
             padding: 0.4rem 0.8rem;
-            box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+            box-shadow: 0 0 12px rgba(88, 166, 255, 0.15);
             pointer-events: auto;
         }
 
@@ -76,8 +81,8 @@
         pre {
             max-width: 100%;
             overflow-x: auto;
-            background: #161b22;
-            border: 1px solid #30363d;
+            background: #0d1117;
+            border: 1px solid #21262d;
             border-radius: 6px;
             padding: 1rem;
             color: #e6edf3;
