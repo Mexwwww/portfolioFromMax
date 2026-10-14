@@ -1,5 +1,5 @@
 {{-- Here you can set the description that will show under the title on the select project page --}}
-{{-- IMAGE §images/laravel/laravel-Logo.png§ --}}
+{{-- IMAGE §images/laravel/bugfixingImg.jpg§ --}}
 <style>
     .project-detail {
         max-width: 850px;
