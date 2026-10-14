@@ -12,22 +12,22 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Deep systems-engineer dark background */
-            background-color: #050709;
-            color: #c9d1d9;
+            /* Clean daylight code editor background */
+            background-color: #f6f8fa;
+            color: #24292e;
         }
 
         .backgroundColor {
-            background: #050709;
+            background: #f6f8fa;
         }
 
-        /* Modern Systems Developer Nav Bar */
+        /* Modern Light Developer Nav Bar */
         .cnt-white {
             width: 100%;
-            /* Crisp clean line with darker IDE card tone */
-            border-bottom: 1px solid #21262d;
-            background: #0d1117;
+            border-bottom: 1px solid #e1e4e8;
+            background: #ffffff;
             padding: 0.6rem 1rem;
+            box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
         }
 
         .layout-nav-links {
@@ -42,8 +42,8 @@
         }
 
         .btn-darkslate {
-            /* Muted code-editor text tone */
-            color: #8b949e !important;
+            /* Muted dark gray text for unselected nav tabs */
+            color: #586069 !important;
             background: transparent;
             border: 1px solid transparent;
             border-radius: 6px;
@@ -55,21 +55,20 @@
 
         .btn-darkslate:hover,
         a:hover {
-            /* Terminal cyan/blue highlight */
-            color: #58a6ff !important;
-            background: rgba(88, 166, 255, 0.08);
-            border-color: #30363d;
+            color: #0366d6 !important;
+            background: rgba(3, 102, 214, 0.08);
+            border-color: #e1e4e8;
             transform: translateY(-1px);
         }
 
         .slct-darkslate {
-            /* Active tab indicator styled like an open file in VS Code */
-            color: #58a6ff !important;
-            background: rgba(88, 166, 255, 0.12);
-            border: 1px solid #30363d;
+            /* Active tab indicator styled like VS Code Light active file */
+            color: #0366d6 !important;
+            background: rgba(3, 102, 214, 0.1);
+            border: 1px solid #c8e1ff;
             border-radius: 6px;
             padding: 0.4rem 0.8rem;
-            box-shadow: 0 0 12px rgba(88, 166, 255, 0.15);
+            box-shadow: 0 1px 4px rgba(3, 102, 214, 0.15);
             pointer-events: auto;
         }
 
@@ -81,11 +80,11 @@
         pre {
             max-width: 100%;
             overflow-x: auto;
-            background: #0d1117;
-            border: 1px solid #21262d;
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
             border-radius: 6px;
             padding: 1rem;
-            color: #e6edf3;
+            color: #24292e;
             font-family: 'Fira Code', monospace;
         }
     </style>
