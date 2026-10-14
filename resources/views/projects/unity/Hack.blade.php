@@ -14,12 +14,31 @@
         box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);
     }
 
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #586069;
+        text-decoration: none;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+        color: #0366d6;
+        text-decoration: none;
+    }
+
     .project-detail video, .project-detail img {
         width: 100%;
         max-width: 639px;
         border-radius: 8px;
         display: block;
         margin: 1rem 0;
+        aspect-ratio: 16 / 9;
+        background: #f6f8fa;
     }
 
     .project-detail pre {
@@ -61,6 +80,10 @@
 @extends('layout.layout')
 @section('content')
     <div class="project-detail">
+        <a href="javascript:history.back()" class="back-link">
+            <span>&larr;</span> Back to categories
+        </a>
+
         <h1>Hack</h1>
         <p>This game was made in 4 weeks with c# in unity. <br>with 2 developers and 3 artists</p>
 
