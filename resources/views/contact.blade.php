@@ -74,7 +74,8 @@
         display: block;
         margin: 1.5rem auto 0;
         max-width: 60px;
-        height: auto;[cite: 2]
+        height: auto;
+        filter: invert(1) hue-rotate(180deg);
     }
 
     .divRight .btn-darkslate {
