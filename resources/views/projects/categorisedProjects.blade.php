@@ -184,13 +184,17 @@ if(!function_exists('GetProjectDiscriptionOrImage'))
             }
             return asset('images/laravel/laravel-Logo.png');
         } else {
-            // Check DESCRIPTION tag first
+            // 1. Check DESCRIPTION tag first
             if (preg_match('/{{--\s*DESCRIPTION\s*§(.*?)§\s*--}}/', $content, $descMatch) && isset($descMatch[1])) {
                 return trim($descMatch[1]);
             }
-            // Fallback to project-summary div
+            // 2. Check project-summary div
             if (preg_match('/<div class="project-summary">\s*(.*?)\s*<\/div>/s', $content, $summaryMatch) && isset($summaryMatch[1])) {
                 return trim(strip_tags($summaryMatch[1]));
+            }
+            // 3. Fallback to extracting the first paragraph (<p>) for other projects without tags/summaries
+            if (preg_match('/<p>(.*?)<\/p>/s', $content, $pMatch) && isset($pMatch[1])) {
+                return trim(strip_tags($pMatch[1]));
             }
             return null;
         }
@@ -208,7 +212,6 @@ if(!function_exists('GetProjectTitle'))
         if (!$fileObj) return $project;
         $content = File::get($fileObj->getRealPath());
 
-        // Extract <h1> title from file
         if (preg_match('/<h1>(.*?)<\/h1>/s', $content, $titleMatch) && isset($titleMatch[1])) {
             return trim(strip_tags($titleMatch[1]));
         }
