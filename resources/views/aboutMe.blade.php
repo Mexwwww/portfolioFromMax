@@ -3,29 +3,29 @@
         max-width: 850px;
         margin: 6vh auto;
         padding: 2.5rem;
-        background: #161b22;
-        border: 1px solid #30363d;
+        background: #ffffff;
+        border: 1px solid #e1e4e8;
         border-radius: 12px;
-        color: #c9d1d9;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        color: #24292e;
+        box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);
     }
 
     .about-me h1 {
         font-family: 'Fira Code', monospace;
-        color: #58a6ff;
+        color: #0366d6;
         font-size: 2.2rem;
         margin-bottom: 1.5rem;
-        border-bottom: 1px solid #30363d;
+        border-bottom: 1px solid #e1e4e8;
         padding-bottom: 0.75rem;
     }
 
     .about-me h2 {
         font-family: 'Fira Code', monospace;
-        color: #58a6ff;
+        color: #0366d6;
         font-size: 1.5rem;
         margin-top: 2.5rem;
         margin-bottom: 1rem;
-        border-bottom: 1px solid #30363d;
+        border-bottom: 1px solid #e1e4e8;
         padding-bottom: 0.5rem;
     }
 
@@ -35,16 +35,16 @@
         height: 310px;
         object-fit: cover;
         border-radius: 8px;
-        border: 1px solid #30363d;
+        border: 1px solid #e1e4e8;
         margin: 0 2rem 1.5rem 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 8px rgba(27, 31, 35, 0.08);
     }
 
     .about-me p {
         font-size: 1.05rem;
         line-height: 1.7;
         margin-bottom: 1.1rem;
-        color: #b1bac4;
+        color: #586069;
     }
 
     .about-me p.below-image {
@@ -59,9 +59,9 @@
     .cv-preview {
         width: 100%;
         height: 600px;
-        border: 1px solid #30363d;
+        border: 1px solid #e1e4e8;
         border-radius: 8px;
-        background: #0d1117;
+        background: #f6f8fa;
         margin-bottom: 1.2rem;
     }
 
@@ -70,20 +70,20 @@
         align-items: center;
         gap: 8px;
         padding: 0.75rem 1.75rem;
-        background: #238636;
+        background: #2ea44f;
         color: #ffffff;
         font-weight: 600;
         text-decoration: none;
         border-radius: 6px;
-        border: 1px solid rgba(240, 246, 252, 0.1);
+        border: 1px solid rgba(27, 31, 35, 0.1);
         transition: all 0.2s ease;
         font-family: 'Fira Code', monospace;
     }
 
     .about-me a.cv-download:hover {
-        background: #2ea043;
+        background: #2c974b;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(46, 160, 67, 0.3);
+        box-shadow: 0 4px 12px rgba(46, 164, 79, 0.3);
     }
 
     .about-me .clear {
