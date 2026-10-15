@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Max Geurts - Modular Laravel Developer Portfolio</title>
+    <title>Max Geurts - Portfolio Architecture</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -116,7 +116,7 @@
     <div id="site-header"></div>
 
     <div class="project-detail">
-        <!-- DESCRIPTION §A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation.§ -->
+        <!-- DESCRIPTION §A high-performance personal portfolio originally built in Laravel, fully rewritten into static HTML and JavaScript for free hosting and faster load times.§ -->
         <!-- TAGS §1 Dev§ -->
         <!-- IMAGE §images/laravel/portfolio.png§ -->
 
@@ -124,19 +124,19 @@
             <span>&larr;</span> Back to categories
         </a>
 
-        <h1>Modular Laravel Developer Portfolio & File-Driven View Engine</h1>
+        <h1>Modular Developer Portfolio & Static Architecture Rewrite</h1>
 
         <div class="project-summary">
-            A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation.
+            A high-performance personal portfolio originally built in Laravel, fully rewritten into static HTML and JavaScript for free hosting and faster load times.
         </div>
 
-        <p>This is this exact website. I designed and built this portfolio to reflect a clean, professional software developer aesthetic—moving away from traditional gimmicks into a polished, modern tech look inspired by developer tooling and GitHub dashboards.</p>
+        <p>This is this exact website. I originally designed and built this portfolio using Laravel PHP, but I later chose to completely rewrite it into a pure static architecture. This change allows me to host the site entirely for free while achieving significantly quicker load times, all while maintaining a clean, professional software developer aesthetic inspired by developer tooling and GitHub dashboards.</p>
 
-        <h2>Architecture & Design</h2>
-        <p>The site is built on a robust Laravel backend utilizing Blade templating and Bootstrap 5, styled completely with custom CSS to feature darkslate surfaces, subtle cyan accents, and Fira Code typography. Navigation is built around natural, fluid mouse interaction while preserving an Escape key shortcut for quick backward navigation.</p>
+        <h2>Architecture & Transition</h2>
+        <p>While the site started on a PHP backend utilizing Blade templating, it now runs entirely on lightweight static files, Bootstrap 5, and client-side JavaScript. It is styled completely with custom CSS featuring darkslate surfaces, subtle cyan accents, and Fira Code typography. Navigation is built around natural mouse interaction with an Escape key shortcut for quick backward navigation.</p>
 
-        <h2>Dynamic File-Driven Projects</h2>
-        <p>Every project you can browse on this site is dynamically loaded from individual Blade files stored in structured category folders. The application scans these files on the fly, extracting metadata comments for tags, thumbnail images, and summaries to build the interactive project grids automatically. This makes adding or updating portfolio pieces as simple as dropping in a new file.</p>
+        <h2>Dynamic Data & Project Loading</h2>
+        <p>To keep the project modular and easy to update without managing a heavy server backend, project details and category lists are driven by a centralized JSON dataset fetched dynamically on the client side. This preserves the ease of adding new work while keeping the site lightning-fast and natively compatible with static hosting providers like GitHub Pages.</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
