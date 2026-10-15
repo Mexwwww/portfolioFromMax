@@ -4,7 +4,7 @@
             "filename": "ai-chat.html",
             "title": "Local AI Chat Interface & Automated Database Reporting Extension",
             "description": "A custom web platform that parses structured commands from a local AI's chat replies to query isolated databases and generate automated reports.",
-            "tags": [ "Dev" ],
+            "tags": [ "1 Dev" ],
             "image": "images/laravel/flowchart.jpg",
             "url": "projects/laravel/ai-chat.html"
         },
@@ -20,7 +20,7 @@
             "filename": "financial-dashboard.html",
             "title": "Enterprise Financial Management & Automated Payment Dashboard",
             "description": "A standalone internal accounting and billing platform integrated with Exact Online to automate multi-interval recurring subscription payments and financial tracking.",
-            "tags": [ "Dev" ],
+            "tags": [ "1 Dev" ],
             "image": "images/laravel/laravel-Logo.png",
             "url": "projects/laravel/financial-dashboard.html"
         },
@@ -36,7 +36,7 @@
             "filename": "portfolio.html",
             "title": "Modular Laravel Developer Portfolio & File-Driven View Engine",
             "description": "A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation.",
-            "tags": [ "Dev" ],
+            "tags": [ "1 Dev" ],
             "image": "images/laravel/portfolio.png",
             "url": "projects/laravel/portfolio.html"
         }
@@ -54,7 +54,7 @@
             "filename": "procedural-animation.html",
             "title": "Procedural animation",
             "description": "I made this with c# in Unity.",
-            "tags": [ "1 dev" ],
+            "tags": [ "1 Dev" ],
             "image": "images/unity/procedural-animation.png",
             "url": "projects/unity/procedural-animation.html"
         },
@@ -62,7 +62,7 @@
             "filename": "the-play.html",
             "title": "The Play",
             "description": "This game was made with c# in Unity. Code all made by me. Art from the assetstore.",
-            "tags": [ "4 weeks", "1 dev" ],
+            "tags": [ "4 weeks", "1 Dev" ],
             "image": "images/unity/the-play.png",
             "url": "projects/unity/the-play.html"
         },
