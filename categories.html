@@ -204,10 +204,6 @@
         let randomProj = projects[Math.floor(Math.random() * projects.length)];
         document.getElementById('preview').src = randomProj.image;
         }
-
-        document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' || event.code === 'Escape') { history.back(); }
-        });
     </script>
 </body>
 </html>

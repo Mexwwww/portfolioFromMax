@@ -17,3 +17,10 @@ async function loadHeader() {
         console.error('Failed to load header component', e);
     }
 }
+
+window.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' || event.code === 'Escape') {
+        event.preventDefault();
+        history.back();
+    }
+});
