@@ -3,7 +3,7 @@
         {
             "filename": "ai-chat.html",
             "title": "Local AI Chat Interface & Automated Database Reporting Extension",
-            "description": "A custom web platform that parses structured commands from a local AI's chat replies to query isolated databases and generate automated reports[cite: 6].",
+            "description": "A custom web platform that parses structured commands from a local AI's chat replies to query isolated databases and generate automated reports.",
             "tags": [ "Dev" ],
             "image": "images/laravel/flowchart.jpg",
             "url": "projects/laravel/ai-chat.html"
@@ -11,7 +11,7 @@
         {
             "filename": "bug-fixing.html",
             "title": "Commercial Web Application Maintenance & Feature Development",
-            "description": "Professional client-facing web development involving custom feature engineering, scheduled design management systems, and critical browser-freeze bug resolution[cite: 10].",
+            "description": "Professional client-facing web development involving custom feature engineering, scheduled design management systems, and critical browser-freeze bug resolution.",
             "tags": [],
             "image": "images/laravel/bugfixingImg.jpg",
             "url": "projects/laravel/bug-fixing.html"
@@ -19,7 +19,7 @@
         {
             "filename": "financial-dashboard.html",
             "title": "Enterprise Financial Management & Automated Payment Dashboard",
-            "description": "A standalone internal accounting and billing platform integrated with Exact Online to automate multi-interval recurring subscription payments and financial tracking[cite: 8].",
+            "description": "A standalone internal accounting and billing platform integrated with Exact Online to automate multi-interval recurring subscription payments and financial tracking.",
             "tags": [ "Dev" ],
             "image": "images/laravel/laravel-Logo.png",
             "url": "projects/laravel/financial-dashboard.html"
@@ -27,7 +27,7 @@
         {
             "filename": "lead-generator.html",
             "title": "AI-Driven Automated Website Lead Generator & Upgrader",
-            "description": "An automated lead-generation pipeline that uses AI to discover prospective business websites, evaluate their feature gaps, and dynamically build upgraded drop-in replacement prototypes[cite: 7].",
+            "description": "An automated lead-generation pipeline that uses AI to discover prospective business websites, evaluate their feature gaps, and dynamically build upgraded drop-in replacement prototypes.",
             "tags": [ "2 weeks", "1 Dev" ],
             "image": "images/laravel/secondFlowchart.jpg",
             "url": "projects/laravel/lead-generator.html"
@@ -35,7 +35,7 @@
         {
             "filename": "portfolio.html",
             "title": "Modular Laravel Developer Portfolio & File-Driven View Engine",
-            "description": "A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation[cite: 9].",
+            "description": "A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation.",
             "tags": [ "Dev" ],
             "image": "images/laravel/portfolio.png",
             "url": "projects/laravel/portfolio.html"
@@ -45,7 +45,7 @@
         {
             "filename": "hack.html",
             "title": "Hack",
-            "description": "This game was made with c# in Unity[cite: 11].",
+            "description": "This game was made with c# in Unity.",
             "tags": [ "4 weeks", "2 developers", "3 artists" ],
             "image": "images/unity/hack.png",
             "url": "projects/unity/hack.html"
@@ -53,7 +53,7 @@
         {
             "filename": "procedural-animation.html",
             "title": "Procedural animation",
-            "description": "I made this with c# in Unity[cite: 12].",
+            "description": "I made this with c# in Unity.",
             "tags": [ "1 dev" ],
             "image": "images/unity/procedural-animation.png",
             "url": "projects/unity/procedural-animation.html"
@@ -61,7 +61,7 @@
         {
             "filename": "the-play.html",
             "title": "The Play",
-            "description": "This game was made with c# in Unity. Code all made by me. Art from the assetstore[cite: 13].",
+            "description": "This game was made with c# in Unity. Code all made by me. Art from the assetstore.",
             "tags": [ "4 weeks", "1 dev" ],
             "image": "images/unity/the-play.png",
             "url": "projects/unity/the-play.html"
@@ -69,7 +69,7 @@
         {
             "filename": "winter-wonder-ride.html",
             "title": "Winter Wonder Ride",
-            "description": "This game was made with c# in Unity[cite: 14].",
+            "description": "This game was made with c# in Unity.",
             "tags": [ "4 weeks", "2 developers", "4 artists" ],
             "image": "images/unity/winter-wonder-ride.png",
             "url": "projects/unity/winter-wonder-ride.html"
@@ -79,7 +79,7 @@
         {
             "filename": "the-rift-guardian.html",
             "title": "THE RIFT GUARDIAN",
-            "description": "This VR game was made in Unreal engine with blueprints and C++ code[cite: 15].",
+            "description": "This VR game was made in Unreal engine with blueprints and C++ code.",
             "tags": [ "20 developers", "3 artists" ],
             "image": "images/unreal-engine/the-rift-guardian.png",
             "url": "projects/unreal-engine/the-rift-guardian.html"
