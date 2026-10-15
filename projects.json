@@ -2,86 +2,86 @@
     "laravel": [
         {
             "filename": "ai-chat.html",
-            "title": "Commercial Web Application Maintenance & Feature Development",
-            "description": "I've worked on multiple existing websites, adding or fixing features at the request of a customer. This work was all done while working at a company, so I unfortunately can't go into specifics, talk about the customers themselves, or share the code behind these projects[cite: 5].",
-            "tags": [],
-            "image": "images/laravel/default.png",
+            "title": "Local AI Chat Interface & Automated Database Reporting Extension",
+            "description": "A custom web platform that parses structured commands from a local AI's chat replies to query isolated databases and generate automated reports.",
+            "tags": [ "1 Dev" ],
+            "image": "images/laravel/flowchart.jpg",
             "url": "projects/laravel/ai-chat.html"
         },
         {
             "filename": "bug-fixing.html",
-            "title": "Local AI Chat Interface & Automated Database Reporting Extension",
-            "description": "I worked with an existing, locally-run AI by building a custom website around it, with its own chat area[cite: 6].",
+            "title": "Commercial Web Application Maintenance & Feature Development",
+            "description": "Professional client-facing web development involving custom feature engineering, scheduled design management systems, and critical browser-freeze bug resolution.",
             "tags": [],
-            "image": "images/laravel/default.png",
+            "image": "images/laravel/bugfixingImg.jpg",
             "url": "projects/laravel/bug-fixing.html"
         },
         {
             "filename": "financial-dashboard.html",
-            "title": "AI-Driven Automated Website Lead Generator & Upgrader",
-            "description": "This project was made to bring in more customers by sending them a testable improved version of their site without putting hours into working on a site when it isn't even confirmed that the customer wants a new site[cite: 7].",
-            "tags": [],
-            "image": "images/laravel/default.png",
+            "title": "Enterprise Financial Management & Automated Payment Dashboard",
+            "description": "A standalone internal accounting and billing platform integrated with Exact Online to automate multi-interval recurring subscription payments and financial tracking.",
+            "tags": [ "1 Dev" ],
+            "image": "images/laravel/laravel-Logo.png",
             "url": "projects/laravel/financial-dashboard.html"
         },
         {
             "filename": "lead-generator.html",
-            "title": "Enterprise Financial Management & Automated Payment Dashboard",
-            "description": "I made a dashboard to be used internally at the company. It would automatically send payments and keep track of the status of those payments, and automatically send an email if a vacature hadn't been paid for a certain amount of days[cite: 8].",
-            "tags": [],
-            "image": "images/laravel/default.png",
+            "title": "AI-Driven Automated Website Lead Generator & Upgrader",
+            "description": "An automated lead-generation pipeline that uses AI to discover prospective business websites, evaluate their feature gaps, and dynamically build upgraded drop-in replacement prototypes.",
+            "tags": [ "2 weeks", "1 Dev" ],
+            "image": "images/laravel/secondFlowchart.jpg",
             "url": "projects/laravel/lead-generator.html"
         },
         {
             "filename": "portfolio.html",
             "title": "Modular Laravel Developer Portfolio & File-Driven View Engine",
-            "description": "This is this exact website. I designed and built this portfolio to reflect a clean, professional software developer aesthetic—moving away from traditional gimmicks into a polished, modern tech look inspired by developer tooling and GitHub dashboards[cite: 9].",
-            "tags": [],
-            "image": "images/laravel/default.png",
+            "description": "A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation.",
+            "tags": [ "1 Dev" ],
+            "image": "images/laravel/portfolio.png",
             "url": "projects/laravel/portfolio.html"
         }
     ],
     "unity": [
         {
-            "filename": "Hack.blade.html",
+            "filename": "Hack.html",
             "title": "Hack",
-            "description": "This game was made in 4 weeks with c# in unity. with 2 developers and 3 artists[cite: 5]",
-            "tags": [],
-            "image": "images/unity/default.png",
-            "url": "projects/unity/Hack.blade.html"
+            "description": "This game was made with c# in Unity.",
+            "tags": [ "4 weeks", "2 developers", "3 artists" ],
+            "image": "images/unity/hack.png",
+            "url": "projects/unity/Hack.html"
         },
         {
-            "filename": "ProceduralAnimation.blade.html",
+            "filename": "ProceduralAnimation.html",
             "title": "Procedural animation",
-            "description": "Here you see the procedural animation I made in my free time because I was intrested on how it works[cite: 6].",
-            "tags": [],
-            "image": "images/unity/default.png",
-            "url": "projects/unity/ProceduralAnimation.blade.html"
+            "description": "I made this with c# in Unity.",
+            "tags": [ "1 Dev" ],
+            "image": "images/unity/procedural-animation.png",
+            "url": "projects/unity/ProceduralAnimation.html"
         },
         {
-            "filename": "ThePlay.blade.html",
+            "filename": "ThePlay.html",
             "title": "The Play",
-            "description": "This game was made in 4 weeks with c# in unity. All code by me. Art from the assetstore[cite: 7].",
-            "tags": [],
-            "image": "images/unity/default.png",
-            "url": "projects/unity/ThePlay.blade.html"
+            "description": "This game was made with c# in Unity. Code all made by me. Art from the assetstore.",
+            "tags": [ "4 weeks", "1 dev" ],
+            "image": "images/unity/the-play.png",
+            "url": "projects/unity/ThePlay.html"
         },
         {
-            "filename": "WinterWonderRide.blade.html",
+            "filename": "WinterWonderRide.html",
             "title": "Winter Wonder Ride",
-            "description": "This game was made in 4 weeks with c# in unity. with 2 developers and 4 artists[cite: 8]",
-            "tags": [],
-            "image": "images/unity/default.png",
-            "url": "projects/unity/WinterWonderRide.blade.html"
+            "description": "This game was made with c# in Unity.",
+            "tags": [ "4 weeks", "2 developers", "4 artists" ],
+            "image": "images/unity/winter-wonder-ride.png",
+            "url": "projects/unity/WinterWonderRide.html"
         }
     ],
     "unreal-engine": [
         {
             "filename": "the-rift-guardian.html",
             "title": "THE RIFT GUARDIAN",
-            "description": "This VR game was made in Unreal Engine with blueprints and C++ code. This game is made by 20 developers and 3 artists[cite: 4].",
-            "tags": [],
-            "image": "images/unreal-engine/default.png",
+            "description": "This VR game was made in Unreal engine with blueprints and C++ code.",
+            "tags": [ "20 developers", "3 artists" ],
+            "image": "images/unreal-engine/the-rift-guardian.png",
             "url": "projects/unreal-engine/the-rift-guardian.html"
         }
     ]
