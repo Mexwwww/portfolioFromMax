@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Max Geurts - Enterprise Financial Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f6f8fa;
+            color: #24292e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cnt-white {
+            width: 100%;
+            border-bottom: 1px solid #e1e4e8;
+            background: #ffffff;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
+        }
+
+        .layout-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 3rem;
+            padding: 4px 16px;
+            font-size: 0.95rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .btn-darkslate {
+            color: #586069 !important;
+            background: transparent;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+            .btn-darkslate:hover, a:hover {
+                color: #0366d6 !important;
+                background: rgba(3, 102, 214, 0.1);
+                border: 1px solid #c8e1ff;
+            }
+
+        .project-detail {
+            max-width: 850px;
+            margin: 6vh auto;
+            padding: 2.5rem;
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            color: #24292e;
+            box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #586069;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+            .back-link:hover {
+                color: #0366d6;
+                text-decoration: none;
+            }
+
+        .project-detail h1 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 0.75rem;
+        }
+
+        .project-detail h2 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-detail p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+            color: #586069;
+        }
+
+        .project-detail .project-summary {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0366d6;
+            background: rgba(3, 102, 214, 0.08);
+            border-left: 3px solid #0366d6;
+            padding: 0.75rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 6px 6px 0;
+        }
+    </style>
+</head>
+<body onload="loadHeader()">
+
+    <div id="site-header"></div>
+
+    <div class="project-detail">
+        <!-- DESCRIPTION §A standalone internal accounting and billing platform integrated with Exact Online to automate multi-interval recurring subscription payments and financial tracking.§ -->
+        <!-- TAGS §1 dev§ -->
+        <!-- IMAGE §images/laravel/laravel-Logo.png§ -->
+
+        <a href="javascript:history.back()" class="back-link">
+            <span>&larr;</span> Back to categories
+        </a>
+
+        <h1>Enterprise Financial Management & Automated Payment Dashboard</h1>
+
+        <div class="project-summary">
+            A standalone internal accounting and billing platform integrated with Exact Online to automate multi-interval recurring subscription payments and financial tracking[cite: 8].
+        </div>
+
+        <p>I made a dashboard to be used internally at the company. It would automatically send payments and keep track of the status of those payments, and automatically send an email if a vacature hadn't been paid for a certain amount of days[cite: 8].</p>
+
+        <h2>Finances and vacatures</h2>
+        <p>The dashboard also keeps track of expenses and income and shows it all directly on the dashboard, along with an overview of the active and old vacatures[cite: 8].</p>
+
+        <h2>Working with Exact</h2>
+        <p>All of this was connected to Exact through their API, but all I actually got from them was the base info, like the vacatures themselves and the data needed to work with them. Everything else, filtering, sorting, and even showing profits over custom time frames, was all custom made, since Exact only allows a certain amount of API calls. We didn't want to spend those on anything beyond getting the base vacatures and the info we needed[cite: 8].</p>
+
+        <h2>The hard part: automatic payments</h2>
+        <p>The most time-intensive part of the dashboard was the automatic payments, because it needed a lot of safety features to make sure nothing could go wrong. This included handling refunds and what happens if a customer doesn't pay in time, but a big part of it was simply knowing which payment belonged to which[cite: 8].</p>
+        <p>The information from Exact gave me the vacature along with the customer and the price, but if a customer had multiple automatic vacatures open at once, there was no direct link telling me which payment belonged to which earlier payment from that same customer. Knowing this mattered, because I needed to know whether the customer had paid the previous payment before the new one, so that even when a customer pays late, it's never so late that a new payment period has already opened up[cite: 8].</p>
+        <p>To deal with this, I wrote code that connects a payment to older payments by looking at the interval between them and the price. On top of that, I had to account for the price changing, since that can happen, so it couldn't just rely on the interval alone. It also had to take into account that a new payment might not be a price change on an existing one at all, but a completely new, unrelated automatic payment. So instead of just checking which customer a payment belonged to, it also checked the number of current standard monthly, weekly or other interval payments running for that customer, the planned dates for the new payments, the price, and any potential price change, to make sure nothing could ever go wrong[cite: 8].</p>
+
+        <p>I made this whole dashboard on my own, no other devs involved[cite: 8].</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../main.js"></script>
+    <script>
+        document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' || event.code === 'Escape') { history.back(); }
+        });
+    </script>
+</body>
+</html>

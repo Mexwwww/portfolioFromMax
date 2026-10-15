@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Max Geurts - Local AI Chat Interface</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f6f8fa;
+            color: #24292e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cnt-white {
+            width: 100%;
+            border-bottom: 1px solid #e1e4e8;
+            background: #ffffff;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
+        }
+
+        .layout-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 3rem;
+            padding: 4px 16px;
+            font-size: 0.95rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .btn-darkslate {
+            color: #586069 !important;
+            background: transparent;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+            .btn-darkslate:hover, a:hover {
+                color: #0366d6 !important;
+                background: rgba(3, 102, 214, 0.1);
+                border: 1px solid #c8e1ff;
+            }
+
+        .project-detail {
+            max-width: 850px;
+            margin: 6vh auto;
+            padding: 2.5rem;
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            color: #24292e;
+            box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #586069;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+            .back-link:hover {
+                color: #0366d6;
+                text-decoration: none;
+            }
+
+        .project-detail h1 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 0.75rem;
+        }
+
+        .project-detail h2 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-detail p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+            color: #586069;
+        }
+
+        .project-detail .project-summary {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0366d6;
+            background: rgba(3, 102, 214, 0.08);
+            border-left: 3px solid #0366d6;
+            padding: 0.75rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .project-detail pre {
+            background: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+            color: #0366d6;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 1.2rem 0;
+        }
+    </style>
+</head>
+<body onload="loadHeader()">
+
+    <div id="site-header"></div>
+
+    <div class="project-detail">
+        <!-- DESCRIPTION §A custom web platform that parses structured commands from a local AI's chat replies to query isolated databases and generate automated reports.§ -->
+        <!-- TAGS §1 Dev§ -->
+        <!-- IMAGE §images/laravel/flowchart.jpg§ -->
+
+        <a href="javascript:history.back()" class="back-link">
+            <span>&larr;</span> Back to categories
+        </a>
+
+        <h1>Local AI Chat Interface & Automated Database Reporting Extension</h1>
+
+        <div class="project-summary">
+            A custom web platform that parses structured commands from a local AI's chat replies to query isolated databases and generate automated reports[cite: 6].
+        </div>
+
+        <p>I worked with an existing, locally-run AI by building a custom website around it, with its own chat area[cite: 6].</p>
+        <p>By giving the AI a specific set of rules, I got it to write certain things in its replies in a specific format. My own code on the website could then read that format out of the AI's response and use it to do things the AI itself wasn't able to do directly, such as getting information from a database the AI had no direct access to, and using that information to generate a report with visual graphs and text[cite: 6].</p>
+
+        <h2>How it worked</h2>
+        <p>I gave the AI a rule that basically came down to: if the user asks for a report on, for example, the profit made in the last 2 years of the company, write the years and the information you want inside {} in this specific format[cite: 6]:</p>
+        <pre><code>{time:"2"; scale:"years"; format:"report"}</code></pre>
+        <p>My code on the website would take the AI's response shown in the chat area and pull that tagged information out of it. It would then use that to get the needed information from the database, and send it to a separate AI agent that generated the report. That agent sent back the formatted information, which my code then used to generate graphs, with the rest of the report shown as text[cite: 6].</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../main.js"></script>
+    <script>
+        document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' || event.code === 'Escape') { history.back(); }
+        });
+    </script>
+</body>
+</html>

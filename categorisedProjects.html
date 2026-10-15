@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Max Geurts - Projects</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f6f8fa;
+            color: #24292e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cnt-white {
+            width: 100%;
+            border-bottom: 1px solid #e1e4e8;
+            background: #ffffff;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
+        }
+
+        .layout-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 3rem;
+            padding: 4px 16px;
+            font-size: 0.95rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .btn-darkslate {
+            color: #586069 !important;
+            background: transparent;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+            .btn-darkslate:hover, .slct-darkslate {
+                color: #0366d6 !important;
+                background: rgba(3, 102, 214, 0.1);
+                border: 1px solid #c8e1ff;
+            }
+
+        #catagoryButtons {
+            padding: 6vh 1rem 2vh;
+            text-align: center;
+        }
+
+        .blackBackgroundColor {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e1e4e8;
+            color: #586069;
+            transition: all 0.2s ease;
+            font-family: 'Fira Code', monospace;
+            cursor: pointer;
+        }
+
+            .blackBackgroundColor:hover {
+                background: #f1f8ff;
+                color: #0366d6;
+                border-color: #c8e1ff;
+            }
+
+        .blackBackgroundColor_slct {
+            border-radius: 8px;
+            background: rgba(3, 102, 214, 0.1) !important;
+            color: #0366d6 !important;
+            text-decoration: none;
+            border: 1px solid #c8e1ff !important;
+            box-shadow: 0 1px 4px rgba(3, 102, 214, 0.15);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .category-link {
+            font-size: 1.15rem;
+            padding: 0.6em 1.5em;
+            margin: 0.3rem 0.4em;
+            display: inline-block;
+        }
+
+        .project {
+            background: none;
+            display: none;
+        }
+
+        .temp {
+            color: #24292e;
+            text-decoration: none;
+        }
+
+        #projectHandeler {
+            padding: 2vh 0 6vh;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+            .project-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 4px 12px rgba(27, 31, 35, 0.08);
+                border-color: #c8e1ff;
+            }
+
+        .temp_slct .project-card {
+            border: 1px solid #0366d6;
+            box-shadow: 0 0 10px rgba(3, 102, 214, 0.15);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #e1e4e8;
+        }
+
+        .project-card .card-title {
+            color: #0366d6;
+            font-weight: 600;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .project-card .card-text {
+            color: #586069;
+            font-size: 0.9rem;
+        }
+
+        .project-tags {
+            margin-top: 0.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: #f1f8ff;
+            color: #0366d6;
+            font-size: 0.75rem;
+            padding: 0.25em 0.7em;
+            border-radius: 999px;
+            border: 1px solid #c8e1ff;
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
+</head>
+<body onload="loadHeader(); initPortfolio()">
+
+    <div id="site-header"></div>
+
+    <div id="catagoryButtons"></div>
+    <div class="container text-center">
+        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3" id="projectHandeler"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        let portfolioData = {};
+        let directoryNames = [];
+
+        async function initPortfolio() {
+        let activeBtn = document.getElementById('categories');
+        if (activeBtn) { activeBtn.classList.add('slct-darkslate'); }
+
+        try {
+        let response = await fetch('projects.json');
+        portfolioData = await response.json();
+        directoryNames = Object.keys(portfolioData);
+
+        renderCategoryButtons();
+        renderProjects();
+
+        let hash = window.location.hash.replace('#', '');
+        let initialCat = directoryNames.includes(hash) ? hash : directoryNames[0];
+        if (initialCat) { ClickedOn(initialCat); }
+        } catch (error) {
+        console.error('Failed to load projects.json.', error);
+        }
+        }
+
+        function renderCategoryButtons() {
+        let container = document.getElementById('catagoryButtons');
+        container.innerHTML = '';
+        directoryNames.forEach(dir => {
+        let btn = document.createElement('a');
+        btn.className = "temp blackBackgroundColor category-link";
+        btn.id = dir;
+        btn.onclick = () => ClickedOn(dir);
+        btn.innerHTML = `<span style="line-height: 1;">${dir}</span>`;
+        container.appendChild(btn);
+        });
+        }
+
+        function renderProjects() {
+        let handler = document.getElementById('projectHandeler');
+        handler.innerHTML = '';
+        let count = 0;
+
+        directoryNames.forEach(categoryKey => {
+        let projects = portfolioData[categoryKey] || [];
+        projects.forEach(proj => {
+        count++;
+        let tagsHtml = proj.tags ? proj.tags.map(t => `<span class="project-tag">${t}</span>`).join('') : '';
+        let colDiv = document.createElement('div');
+        colDiv.className = 'col project';
+        colDiv.id = categoryKey;
+        colDiv.innerHTML = `
+        <div id="project-${count}" class="col temp">
+        <a href="${proj.url}">
+        <div class="card project-card">
+        <img src="${proj.image}" alt="${proj.title}" class="card-img-top">
+        <div class="card-body text-start">
+        <h5 class="card-title">${proj.title}</h5>
+        <p class="card-text">${proj.description}</p>
+        ${tagsHtml ? `<div class="project-tags">${tagsHtml}</div>` : ''}
+        </div>
+        </div>
+        </a>
+        </div>
+        `;
+        handler.appendChild(colDiv);
+        });
+        });
+        }
+
+        function ChangeFilter(id) {
+        const projects = document.getElementsByClassName('project');
+        for (var i = 0; i < projects.length; i++) {
+        var project = projects[i];
+        project.style.display = (project.id === id) ? 'block' : 'none';
+        }
+        }
+
+        function ClickedOn(id) {
+        ChangeFilter(id);
+        window.location.hash = id;
+        directoryNames.forEach(dir => {
+        let button = document.getElementById(dir);
+        if (button) {
+        button.className = (dir === id)
+        ? 'temp_slct blackBackgroundColor_slct category-link'
+        : 'temp blackBackgroundColor category-link';
+        }
+        });
+        }
+
+        document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' || event.code === 'Escape') { history.back(); }
+        });
+    </script>
+</body>
+</html>

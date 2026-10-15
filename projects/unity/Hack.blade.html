@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Max Geurts - Hack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f6f8fa;
+            color: #24292e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cnt-white {
+            width: 100%;
+            border-bottom: 1px solid #e1e4e8;
+            background: #ffffff;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
+        }
+
+        .layout-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 3rem;
+            padding: 4px 16px;
+            font-size: 0.95rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .btn-darkslate {
+            color: #586069 !important;
+            background: transparent;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+            .btn-darkslate:hover, a:hover {
+                color: #0366d6 !important;
+                background: rgba(3, 102, 214, 0.1);
+                border: 1px solid #c8e1ff;
+            }
+
+        .project-detail {
+            max-width: 850px;
+            margin: 6vh auto;
+            padding: 2.5rem;
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            color: #24292e;
+            box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #586069;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+            .back-link:hover {
+                color: #0366d6;
+                text-decoration: none;
+            }
+
+        .project-detail video, .project-detail img {
+            width: 100%;
+            max-width: 639px;
+            border-radius: 8px;
+            display: block;
+            margin: 1rem auto;
+            aspect-ratio: 16 / 9;
+            background: #f6f8fa;
+        }
+
+        .project-detail pre {
+            background: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+            color: #0366d6;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .project-detail h1 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 0.75rem;
+        }
+
+        .project-detail h2 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-detail p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+            color: #586069;
+        }
+    </style>
+</head>
+<body onload="loadHeader()">
+
+    <div id="site-header"></div>
+
+    <div class="project-detail">
+        <!-- DESCRIPTION §This game was made with c# in Unity.§ -->
+        <!-- TAGS §4 weeks, 2 developers, 3 artists§ -->
+        <!-- IMAGE §images/unity/hack.png§ -->
+
+        <a href="javascript:history.back()" class="back-link"><span>&larr;</span> Back to categories</a>
+
+        <h1>Hack</h1>
+        <p>This game was made in 4 weeks with c# in unity. <br>with 2 developers and 3 artists[cite: 5]</p>
+
+        <video autoplay muted loop><source src="../../videos/Hack.mp4" type="video/mp4"></video>
+
+        <p>Hack is a game where you're hacked into a robot of a company and your trying to escape by going into the elevator[cite: 5].</p>
+
+        <h1>My Contributions</h1>
+        <h2>Vision cone:</h2>
+        <video autoplay muted loop><source src="../../videos/HackVisioncone.mp4" type="video/mp4"></video>
+        <p>The vision cone makes it so the enemy can spot you, when they do they will start attacking you.<br></p>
+
+        <h1>Displaying C# Code</h1>
+        <p>In the code below you see how I made the vision cone;</p>
+        <pre><code>private void FieldOfViewCheck()
+{
+	Collider[] rangeCecks = Physics. OverlapSphere(transform.position, _Radius, _TargetMask);
+	if (rangeCecks.Length != 0)
+	{
+		Transform taget = rangeCecks[0].transform;
+		Vector3 directionToTarget = (taget. position - transform.position).normalized;
+		if (Vector3.Angle(transform.forward, directionToTarget) &lt; _Angle / 2)
+		{
+			DistanceToTarget = Vector3.Distance (transform.position, taget.position);
+			if (!Physics.Raycast(transform.position, directionToTarget, DistanceToTarget, _ObstructionMask) &amp;&amp; _Inviseble == false)
+			{
+				_canSeePlayer = true
+			else
+			{
+				_canSeePlayer = false;
+			}
+		}
+		else
+		{
+			_canSeePlayer = false;
+		}
+	}
+	else if (_canSeePlayer == true)
+	{
+		_canSeePlayer = false;
+	}
+	}</code></pre>
+
+        <h2>Enemy movement:</h2>
+        <video autoplay muted loop><source src="../../videos/HackEnmeyMovement.mp4" type="video/mp4"></video>
+        <p>The enemy movement system allows enemies to patrol the area and follow the player once they spot them[cite: 5].</p>
+
+        <h2>Power ups:</h2>
+        <video autoplay muted loop><source src="../../videos/HackPowerUps.mp4" type="video/mp4"></video>
+        <p>There are two power-ups: the first one makes the player invisible to enemies, while the second one prevents enemies from moving[cite: 5].</p>
+
+        <h2>Elevator animation:</h2>
+        <video autoplay muted loop><source src="../../videos/HackElivatorAnim.mp4" type="video/mp4"></video>
+        <p>This is the elevator animation for when you enter the elevator. I also created an animation for entering the elevator, which is the same animation but reversed and in a different location[cite: 5].</p>
+
+        <h2>Enemy states:</h2>
+        <video autoplay muted loop><source src="../../videos/HackEnemyStates.mp4" type="video/mp4"></video>
+        <p>Here are the enemy states: Patrol, Look Around, and Attack[cite: 5].</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../main.js"></script>
+    <script>
+        document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' || event.code === 'Escape') { history.back(); }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Max Geurts - AI-Driven Automated Website Lead Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f6f8fa;
+            color: #24292e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cnt-white {
+            width: 100%;
+            border-bottom: 1px solid #e1e4e8;
+            background: #ffffff;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
+        }
+
+        .layout-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 3rem;
+            padding: 4px 16px;
+            font-size: 0.95rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .btn-darkslate {
+            color: #586069 !important;
+            background: transparent;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+            .btn-darkslate:hover, a:hover {
+                color: #0366d6 !important;
+                background: rgba(3, 102, 214, 0.1);
+                border: 1px solid #c8e1ff;
+            }
+
+        .project-detail {
+            max-width: 850px;
+            margin: 6vh auto;
+            padding: 2.5rem;
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            color: #24292e;
+            box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #586069;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+            .back-link:hover {
+                color: #0366d6;
+                text-decoration: none;
+            }
+
+        .project-detail h1 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 0.75rem;
+        }
+
+        .project-detail h2, .project-detail h3 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-detail h2 {
+            font-size: 1.4rem;
+        }
+
+        .project-detail h3 {
+            font-size: 1.15rem;
+        }
+
+        .project-detail p, .project-detail li {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #586069;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-detail ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-detail .project-summary {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0366d6;
+            background: rgba(3, 102, 214, 0.08);
+            border-left: 3px solid #0366d6;
+            padding: 0.75rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .project-detail a.cv-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1.75rem;
+            background: #2ea44f;
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid rgba(27, 31, 35, 0.1);
+            transition: all 0.2s ease;
+            font-family: 'Fira Code', monospace;
+        }
+
+            .project-detail a.cv-download:hover {
+                background: #2c974b;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(46, 164, 79, 0.3);
+            }
+    </style>
+</head>
+<body onload="loadHeader()">
+
+    <div id="site-header"></div>
+
+    <div class="project-detail">
+        <!-- DESCRIPTION §An automated lead-generation pipeline that uses AI to discover prospective business websites, evaluate their feature gaps, and dynamically build upgraded drop-in replacement prototypes.§ -->
+        <!-- TAGS §2 weeks, 1 Dev§ -->
+        <!-- IMAGE §images/laravel/secondFlowchart.jpg§ -->
+
+        <a href="javascript:history.back()" class="back-link">
+            <span>&larr;</span> Back to categories
+        </a>
+
+        <h1>AI-Driven Automated Website Lead Generator & Upgrader</h1>
+
+        <div class="project-summary">
+            An automated lead-generation pipeline that uses AI to discover prospective business websites, evaluate their feature gaps, and dynamically build upgraded drop-in replacement prototypes[cite: 7].
+        </div>
+
+        <p>This project was made to bring in more customers by sending them a testable improved version of their site without putting hours into working on a site when it isn't even confirmed that the customer wants a new site[cite: 7].</p>
+
+        <p>What this project does exactly is[cite: 7]:</p>
+
+        <ol>
+            <li>Find websites online with AI[cite: 7].</li>
+            <li>Scrape the websites and compare the features on the site with a customisable feature list[cite: 7].</li>
+            <li>Create an improved version of the site with all the old features, plus the ones in the feature list that were not yet present[cite: 7].</li>
+            <li>Make an SEO file of the original and the new website[cite: 7].</li>
+        </ol>
+
+        <h2>Token AI optimisation</h2>
+
+        <p>To not make generating a whole website too expensive, I made sure to be as optimal with the prompting as I could be. I also made a feature that would make the tokens 50% cheaper by using a Batches API, but that does make it take way longer to generate. The average cost for generating a website with this project was 5 euros, and it would take around 15–30 minutes to generate[cite: 7].</p>
+
+        <h3>Here is a generated site of a company that allowed me to put it on my portfolio:</h3>
+        <a class="cv-download" download href="../../site/xeropexGeneratedSite.zip">Download generated website</a>
+        <p>When downloaded, just click the index file to open the home page[cite: 7].</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../main.js"></script>
+    <script>
+        document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' || event.code === 'Escape') { history.back(); }
+        });
+    </script>
+</body>
+</html>

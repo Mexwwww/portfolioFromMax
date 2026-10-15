@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Max Geurts - Modular Laravel Developer Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f6f8fa;
+            color: #24292e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cnt-white {
+            width: 100%;
+            border-bottom: 1px solid #e1e4e8;
+            background: #ffffff;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
+        }
+
+        .layout-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 3rem;
+            padding: 4px 16px;
+            font-size: 0.95rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .btn-darkslate {
+            color: #586069 !important;
+            background: transparent;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+            .btn-darkslate:hover, a:hover {
+                color: #0366d6 !important;
+                background: rgba(3, 102, 214, 0.1);
+                border: 1px solid #c8e1ff;
+            }
+
+        .project-detail {
+            max-width: 850px;
+            margin: 6vh auto;
+            padding: 2.5rem;
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            color: #24292e;
+            box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #586069;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+            .back-link:hover {
+                color: #0366d6;
+                text-decoration: none;
+            }
+
+        .project-detail h1 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 0.75rem;
+        }
+
+        .project-detail h2 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1.0rem;
+        }
+
+        .project-detail p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+            color: #586069;
+        }
+
+        .project-detail .project-summary {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0366d6;
+            background: rgba(3, 102, 214, 0.08);
+            border-left: 3px solid #0366d6;
+            padding: 0.75rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 6px 6px 0;
+        }
+    </style>
+</head>
+<body onload="loadHeader()">
+
+    <div id="site-header"></div>
+
+    <div class="project-detail">
+        <!-- DESCRIPTION §A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation.§ -->
+        <!-- TAGS §1 Dev§ -->
+        <!-- IMAGE §images/laravel/portfolio.png§ -->
+
+        <a href="javascript:history.back()" class="back-link">
+            <span>&larr;</span> Back to categories
+        </a>
+
+        <h1>Modular Laravel Developer Portfolio & File-Driven View Engine</h1>
+
+        <div class="project-summary">
+            A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation[cite: 9].
+        </div>
+
+        <p>This is this exact website. I designed and built this portfolio to reflect a clean, professional software developer aesthetic—moving away from traditional gimmicks into a polished, modern tech look inspired by developer tooling and GitHub dashboards[cite: 9].</p>
+
+        <h2>Architecture & Design</h2>
+        <p>The site is built on a robust Laravel backend utilizing Blade templating and Bootstrap 5, styled completely with custom CSS to feature darkslate surfaces, subtle cyan accents, and Fira Code typography. Navigation is built around natural, fluid mouse interaction while preserving an Escape key shortcut for quick backward navigation[cite: 9].</p>
+
+        <h2>Dynamic File-Driven Projects</h2>
+        <p>Every project you can browse on this site is dynamically loaded from individual Blade files stored in structured category folders. The application scans these files on the fly, extracting metadata comments for tags, thumbnail images, and summaries to build the interactive project grids automatically. This makes adding or updating portfolio pieces as simple as dropping in a new file[cite: 9].</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../main.js"></script>
+    <script>
+        document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' || event.code === 'Escape') { history.back(); }
+        });
+    </script>
+</body>
+</html>

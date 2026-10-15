@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Max Geurts - Commercial Web Application Maintenance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f6f8fa;
+            color: #24292e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cnt-white {
+            width: 100%;
+            border-bottom: 1px solid #e1e4e8;
+            background: #ffffff;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 1px 3px rgba(27, 31, 35, 0.04);
+        }
+
+        .layout-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 3rem;
+            padding: 4px 16px;
+            font-size: 0.95rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .btn-darkslate {
+            color: #586069 !important;
+            background: transparent;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+            .btn-darkslate:hover, a:hover {
+                color: #0366d6 !important;
+                background: rgba(3, 102, 214, 0.1);
+                border: 1px solid #c8e1ff;
+            }
+
+        .project-detail {
+            max-width: 850px;
+            margin: 6vh auto;
+            padding: 2.5rem;
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            color: #24292e;
+            box-shadow: 0 4px 12px rgba(27, 31, 35, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #586069;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+            .back-link:hover {
+                color: #0366d6;
+                text-decoration: none;
+            }
+
+        .project-detail h1 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 0.75rem;
+        }
+
+        .project-detail h2 {
+            font-family: 'Fira Code', monospace;
+            color: #0366d6;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-detail p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+            color: #586069;
+        }
+
+        .project-detail .project-summary {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0366d6;
+            background: rgba(3, 102, 214, 0.08);
+            border-left: 3px solid #0366d6;
+            padding: 0.75rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 6px 6px 0;
+        }
+    </style>
+</head>
+<body onload="loadHeader()">
+
+    <div id="site-header"></div>
+
+    <div class="project-detail">
+        <!-- DESCRIPTION §Professional client-facing web development involving custom feature engineering, scheduled design management systems, and critical browser-freeze bug resolution.§ -->
+        <!-- IMAGE §images/laravel/bugfixingImg.jpg§ -->
+
+        <a href="javascript:history.back()" class="back-link">
+            <span>&larr;</span> Back to categories
+        </a>
+
+        <h1>Commercial Web Application Maintenance & Feature Development</h1>
+
+        <div class="project-summary">
+            Professional client-facing web development involving custom feature engineering, scheduled design management systems, and critical browser-freeze bug resolution[cite: 5].
+        </div>
+
+        <p>I've worked on multiple existing websites, adding or fixing features at the request of a customer. This work was all done while working at a company, so I unfortunately can't go into specifics, talk about the customers themselves, or share the code behind these projects[cite: 5].</p>
+        <p>What I can share is the kind of feature I built. For one customer, for example, I added the ability to schedule when the design of banners and other visual aspects of their website would change, for a set amount of time, all managed through a separate dashboard[cite: 5].</p>
+
+        <h2>Bug fixing</h2>
+        <p>Alongside building features, I also found and fixed a good number of bugs. One example was a bug that would freeze the entire website, and depending on which browser you used, the whole browser along with it. It had never been found before because it was really specific to trigger[cite: 5].</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../main.js"></script>
+    <script>
+        document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' || event.code === 'Escape') { history.back(); }
+        });
+    </script>
+</body>
+</html>
