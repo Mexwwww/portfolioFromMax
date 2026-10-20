@@ -34,7 +34,7 @@
         },
         {
             "filename": "portfolio.html",
-            "title": "Modular Laravel Developer Portfolio & File-Driven View Engine",
+            "title": "Modular Developer Portfolio & Static Architecture Rewrite",
             "description": "A high-performance personal portfolio built in Laravel featuring dynamic file-based project rendering, a sleek GitHub-inspired dark UI, and smooth mouse-driven navigation.",
             "tags": [ "1 Dev" ],
             "image": "images/laravel/portfolio.png",
